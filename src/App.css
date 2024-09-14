@@ -1,4 +1,4 @@
-/* App.css */
+App.css
 .app-container {
   position: relative;
   width: 100vw;
@@ -19,3 +19,48 @@
   color: white;
   margin-top: 20vh;
 }
+
+/* App.css */
+
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden; /* Prevents body scrollbars */
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #ffffff00;
+  color: rgb(255, 255, 255);
+  padding: 10px;
+  z-index: 1000; /* Ensure it's above other content */
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 10px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+main {
+  padding-top: 30px; /* Adjust based on the height of the navigation bar */
+  margin: 0;
+  height: 100%;
+  overflow: auto; /* Allow scrolling if content overflows */
+  position: relative;
+}
+

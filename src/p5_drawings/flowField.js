@@ -11,7 +11,7 @@ export const flowField = (props) => {
   let flowField;
   let inc = 0.1; // Perlin noise increment
   let transparency = 0; // this can change interactive maybe on movement 0-40
-  let transparencyThreshold = 20;
+  let transparencyThreshold = 40;
   let dissipationFactor = 0.03;
   let dissipationThreshold = 0.5; // this can change interactive maybe on movement 0-1
   let dissipate = true;
