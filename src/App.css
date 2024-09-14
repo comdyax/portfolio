@@ -1,9 +1,28 @@
-App.css
+/* App.css */
+
+@font-face {
+  font-family: PrimaryFont;
+  src: url(assets/fonts/Roboto-Thin.ttf);
+}
+
+body {
+  font-family: PrimaryFont, "Helvetica", sans-serif;
+  margin: 0;
+  text-align: center;
+  color: #f0dfc7;
+  background-color: rgb(15, 0, 0);
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+
+}
+
 .app-container {
   position: relative;
   width: 100vw;
   height: 100vh;
   overflow: hidden;
+  color: #f0dfc7;
 }
 
 .p5-canvas {
@@ -16,17 +35,8 @@ App.css
   position: relative;
   z-index: 1;
   text-align: center;
-  color: white;
+  color: #f0dfc7;
   margin-top: 20vh;
-}
-
-/* App.css */
-
-html, body, #root {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  overflow: hidden; /* Prevents body scrollbars */
 }
 
 nav {
@@ -35,7 +45,7 @@ nav {
   left: 0;
   right: 0;
   background-color: #ffffff00;
-  color: rgb(255, 255, 255);
+  color: #f0dfc7;
   padding: 10px;
   z-index: 1000; /* Ensure it's above other content */
 }
@@ -52,15 +62,31 @@ nav ul li {
 }
 
 nav ul li a {
-  color: white;
+  color: #f0dfc7;
   text-decoration: none;
 }
 
 main {
-  padding-top: 30px; /* Adjust based on the height of the navigation bar */
+  padding-top: 0px;
   margin: 0;
   height: 100%;
-  overflow: auto; /* Allow scrolling if content overflows */
+  overflow: auto;
   position: relative;
 }
 
+.band {
+  position: relative;
+  padding: 4%;
+  text-align: center;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 2;
+  z-index: 2;
+}
+
+.links {
+  color: rgb(156, 95, 37);
+  text-decoration: none;
+
+}

@@ -7,10 +7,13 @@ export const gridParticles = (props) => {
   let fadingTrails = 20
   let particleSpeed = 1;
   let transparency = 10;
+  let particleColor = (240, 223, 199);
+  let backgroundColor = (5, 0, 5)
+  let particleSize = 1;
 
   props.setup = () => {
     props.createCanvas(window.innerWidth +gridSize, window.innerHeight + gridSize);
-    props.background(0);
+    props.background(backgroundColor);
 
     // Create all particles
     for (let i = 0; i < particleCount; i++) {
@@ -19,11 +22,11 @@ export const gridParticles = (props) => {
   };
 
   props.draw = () => {
-    props.background(0, fadingTrails);
+    props.background(backgroundColor, fadingTrails);
 
     particles.forEach((particle) => {
       particle.update();
-      particle.show(transparency);
+      particle.show(transparency, particleSize, particleColor);
     });
   };
 
@@ -120,9 +123,9 @@ export const gridParticles = (props) => {
       }
     }
 
-    show(transparency) {
-      props.stroke(255, transparency); // White with transparency
-      props.strokeWeight(1); // Particle size
+    show() {
+      props.stroke(particleColor, transparency);
+      props.strokeWeight(particleSize);
       props.line(this.pos.x, this.pos.y, this.prevPos.x, this.prevPos.y);
       this.updatePrev();
     }
