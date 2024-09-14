@@ -11,8 +11,7 @@ function App() {
     <div className="app-container">
       <BackgroundWrapper canvas={gridParticles} />
       <div className="content">
-        <h1>Welcome to My React App</h1>
-        <p>This is a p5.js sketch in the background!</p>
+        <h1>Perplexities on Mars</h1>
       </div>
       {/* <BackgroundWrapper canvas={flowField} /> */}
     </div>

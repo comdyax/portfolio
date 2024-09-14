@@ -2,18 +2,19 @@ import p5 from "p5";
 
 export const gridParticles = (props) => {
   let particles = [];
-  let gridSize = 50;
-  let particleCount = 200;
-  let fadingTrails = 10;
-  let particleSpeed = 0.5;
+  let gridSize = 8;
+  let particleCount = 15000;
+  let fadingTrails = 20
+  let particleSpeed = 1;
+  let transparency = 10;
 
   props.setup = () => {
-    props.createCanvas(window.innerWidth, window.innerHeight);
+    props.createCanvas(window.innerWidth +gridSize, window.innerHeight + gridSize);
     props.background(0);
 
     // Create all particles
     for (let i = 0; i < particleCount; i++) {
-      particles[i] = new Particle();
+      particles.push(new Particle());
     }
   };
 
@@ -22,8 +23,7 @@ export const gridParticles = (props) => {
 
     particles.forEach((particle) => {
       particle.update();
-      particle.edges();
-      particle.show();
+      particle.show(transparency);
     });
   };
 
@@ -45,10 +45,11 @@ export const gridParticles = (props) => {
       this.prevPos = this.pos.copy();
       this.prevGrids = []; // List of all previously visited grid points
       this.prevGrids.push(this.pos.copy()); // Store initial position
+      this.lastDirection = null; // Track the last movement direction
     }
 
-    // Get all valid directions excluding the ones that lead to previously visited grid points
-    getPossibleDirections(currentPos, prevGrids) {
+    // Get all valid directions excluding the ones that would go off the screen or lead backward
+    getPossibleDirections(currentPos) {
       let directions = [
         props.createVector(1, 0), // Right
         props.createVector(-1, 0), // Left
@@ -60,14 +61,28 @@ export const gridParticles = (props) => {
         props.createVector(-1, -1), // Diagonal up-left
       ];
 
-      // Filter out any directions that would lead to a previously visited grid point
-      return directions.filter((dir) => {
+      // Filter out directions that would move the particle off-screen
+      let validDirections = directions.filter((dir) => {
         let nextPos = props.createVector(
           currentPos.x + dir.x * gridSize,
           currentPos.y + dir.y * gridSize
         );
-        return !prevGrids.some((prev) => prev.equals(nextPos)); // Avoid revisiting grid points
+        return (
+          nextPos.x >= 0 &&
+          nextPos.x < props.width &&
+          nextPos.y >= 0 &&
+          nextPos.y < props.height
+        );
       });
+
+      // Filter out the reverse of the last direction to prevent 180-degree turn
+      if (this.lastDirection) {
+        validDirections = validDirections.filter((dir) => {
+          return !dir.equals(this.lastDirection.copy().mult(-1));
+        });
+      }
+
+      return validDirections;
     }
 
     update() {
@@ -84,83 +99,29 @@ export const gridParticles = (props) => {
     }
 
     chooseNextGridPoint() {
-      let possibleDirections = this.getPossibleDirections(
-        this.pos,
-        this.prevGrids
-      );
+      let possibleDirections = this.getPossibleDirections(this.pos);
 
       if (possibleDirections.length > 0) {
-        // Choose a random valid direction (excluding visited ones)
+        // Choose a random valid direction (excluding directions leading off-screen and reverse direction)
         let direction = props.random(possibleDirections);
 
         // Calculate the next grid point based on the chosen direction
         let nextX = this.pos.x + direction.x * gridSize;
         let nextY = this.pos.y + direction.y * gridSize;
 
-        // Wrap around the edges of the canvas
-        if (nextX >= props.width) nextX = 0;
-        if (nextX < 0) nextX = props.width - gridSize;
-        if (nextY >= props.height) nextY = 0;
-        if (nextY < 0) nextY = props.height - gridSize;
-
-        // Set the new target grid point and update the previous grid point list
-        if (props.dist(this.pos.x, nextX, this.pos.y, nextY) <= 5) {
-          this.target = props.createVector(nextX, nextY);
-          this.prevGrids.push(this.pos.copy()); // Store the current grid point in history
-        } else this.resetPath();
+        // Set the new target grid point
+        this.target = props.createVector(nextX, nextY);
+        this.lastDirection = direction.copy(); // Store the last movement direction
+        this.prevGrids.push(this.pos.copy()); // Store the current grid point in history
       } else {
-        // No valid directions found, reset to an adjacent grid point
-        this.resetPath();
+        // No valid directions found, bounce back by reversing the velocity
+        this.vel.mult(-1);
+        this.target = this.pos.copy(); // Stop the particle from moving
       }
     }
 
-    resetPath() {
-      let adjacentDirections = [
-        props.createVector(1, 0), // Right
-        props.createVector(-1, 0), // Left
-        props.createVector(0, 1), // Down
-        props.createVector(0, -1), // Up
-      ];
-
-      // Remove directions leading to previously visited grid points
-      adjacentDirections = adjacentDirections.filter((dir) => {
-        let nextPos = props.createVector(
-          this.pos.x + dir.x * gridSize,
-          this.pos.y + dir.y * gridSize
-        );
-        return !this.prevGrids.some((prev) => prev.equals(nextPos)); // Avoid revisiting grid points
-      });
-
-      if (adjacentDirections.length > 0) {
-        // Choose a random adjacent direction
-        let direction = props.random(adjacentDirections);
-
-        // Calculate the new grid point based on the chosen direction
-        let nextX = this.pos.x + direction.x * gridSize;
-        let nextY = this.pos.y + direction.y * gridSize;
-
-        // Wrap around the edges of the canvas
-        if (nextX >= props.width) nextX = 0;
-        if (nextX < 0) nextX = props.width - gridSize;
-        if (nextY >= props.height) nextY = 0;
-        if (nextY < 0) nextY = props.height - gridSize;
-
-        // Reset path and target
-        this.prevGrids = [this.pos.copy()]; // Clear previous visits
-        this.target = props.createVector(nextX, nextY); // Set new target to adjacent point
-      } else {
-        // If no adjacent grid points are valid, restart at random position
-        this.pos = props.createVector(
-          props.round(props.random(props.width) / gridSize) * gridSize,
-          props.round(props.random(props.height) / gridSize) * gridSize
-        );
-        this.target = this.pos.copy(); // Reset target to new random position
-        this.prevGrids = [this.pos.copy()]; // Store new initial position
-      }
-    }
-
-    show() {
-      props.stroke(255, 100); // White with transparency
+    show(transparency) {
+      props.stroke(255, transparency); // White with transparency
       props.strokeWeight(1); // Particle size
       props.line(this.pos.x, this.pos.y, this.prevPos.x, this.prevPos.y);
       this.updatePrev();
@@ -169,17 +130,6 @@ export const gridParticles = (props) => {
     updatePrev() {
       this.prevPos.x = this.pos.x;
       this.prevPos.y = this.pos.y;
-    }
-
-    edges() {
-      // Handle wrapping around edges of the canvas
-      if (this.pos.x >= props.width) this.pos.x = 0;
-      if (this.pos.x < 0) this.pos.x = props.width - gridSize;
-      if (this.pos.y >= props.height) this.pos.y = 0;
-      if (this.pos.y < 0) this.pos.y = props.height - gridSize;
-
-      // Update previous position
-      this.updatePrev();
     }
   }
 };

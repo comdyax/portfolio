@@ -1,27 +1,29 @@
 import p5 from "p5";
 
 export const flowField = (props) => {
-  let cols, rows;
-  let scale = 10; // Grid scale
+  let cols, rows, centerX, centerY;
+  let scale = 20;
   let particles = [];
-  let particleCount = 50000;
-  let particleSize = 0.5;
+  let particleCount = 40000;
+  let particleSize = 1;
   let fadingTrails = 20;
-  let particleSpeed = 0.5;
+  let particleSpeed = 1; // this can change interactive maybe on movement (1-10)
   let flowField;
   let inc = 0.1; // Perlin noise increment
-  let transparency = 0;
-  let transparencyThreshold = 40;
-  let dissipationFactor = 0.0;
-  let dissipationThreshold = 0.01
+  let transparency = 0; // this can change interactive maybe on movement 0-40
+  let transparencyThreshold = 20;
+  let dissipationFactor = 0.03;
+  let dissipationThreshold = 0.5; // this can change interactive maybe on movement 0-1
   let dissipate = true;
 
   props.setup = () => {
-    props.createCanvas(window.innerWidth, window.innerHeight);
-    props.background(0);
+    props.createCanvas(window.innerWidth + scale, window.innerHeight + scale);
+    props.background(0)
 
     cols = props.floor(props.width / scale);
     rows = props.floor(props.height / scale);
+    centerX = props.floor(props.width / 2)
+    centerY = props.floor(props.height / 2)
 
     flowField = new Array(cols * rows);
 
@@ -36,7 +38,32 @@ export const flowField = (props) => {
 
     let yoff = 0;
     let t = props.sin(transparency) * 0.5 + 0.5; // Oscillates between 0 and 1
-    transparency += 0.01;
+
+     //Calculate distance from mouse to the center
+     let distanceFromCenter = props.dist(props.mouseX, props.mouseY, centerX, centerY);
+    
+     // Calculate the maximum distance from the center to any corner
+     let maxDistance = props.dist(0, 0, centerX, centerY);
+     
+     let normalizedDistance = props.map(distanceFromCenter, 0, maxDistance, 1, 0);     
+     // Map normalized distance to transparency and dissipationFactor
+     //particleSpeed = normalizedDistance + 1
+    //transparency = normalizedDistance * transparencyThreshold;
+    //dissipationFactor = normalizedDistance * dissipationThreshold;
+
+    if (dissipate == true) {
+      dissipationFactor += 0.001;
+      transparency += 0.01;
+      if (dissipationFactor >= dissipationThreshold) {
+        dissipate = false;
+      }
+    } else if (dissipate == false) {
+      dissipationFactor -= 0.001;
+      transparency -= 0.01;
+      if (dissipationFactor <= 0.0) {
+        dissipate = true;
+      }
+    }
 
     // Create the Perlin noise flow field
     for (let y = 0; y < rows; y++) {
@@ -48,18 +75,6 @@ export const flowField = (props) => {
         let angle = props.noise(xoff, yoff, t) * props.TWO_PI * 2;
         let v = p5.Vector.fromAngle(angle).setMag(1);
 
-        if (dissipate == true) {
-          dissipationFactor += 0.001;
-          if (dissipationFactor >= dissipationThreshold) {
-            dissipate = false;
-          }
-        }
-        if (dissipate == false) {
-          dissipationFactor -= 0.001;
-          if (dissipationFactor <= 0.0) {
-            dissipate = true;
-          }
-        }
         if (flowField[index]) {
           flowField[index].lerp(v, dissipationFactor);
         } else {
@@ -107,9 +122,10 @@ export const flowField = (props) => {
     }
 
     update() {
+      this.maxSpeed = particleSpeed
       this.vel.add(this.acc);
       this.vel.limit(this.maxSpeed);
-      this.pos.add(this.vel)
+      this.pos.add(this.vel);
       this.acc.mult(0);
     }
 
