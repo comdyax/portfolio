@@ -48,6 +48,12 @@ body {
   z-index: 2;
 }
 
+.youtube-iframe {
+  border: 0;
+  max-width: 60%;
+  aspect-ratio: 16/9;
+}
+
 nav {
   position: fixed;
   top: 0;
