@@ -16,7 +16,7 @@ const Band = ({ lan }) => {
   return (
     <div className="app-container">
       <BackgroundWrapper canvas={flowField} />
-      <div id="band" className="band">
+      <div className="text-content">
         {content ? (
           <>
             <h1>{content.title}</h1>

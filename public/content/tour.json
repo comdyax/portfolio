@@ -1,0 +1,45 @@
+{
+    "title": "TOUR",
+    "dates": [
+        {
+            "date": "2023-12-15",
+            "text": "Saxstall Pohrsdorf",
+            "url": null
+        },
+        {
+            "date": "2024-04-12",
+            "text": "48. Freiberger Jazztage",
+            "url": null
+        },
+        {
+            "date": "2024-04-26",
+            "text": "Club Voltaire Frankfurt am Main",
+            "url": null
+        },
+        {
+            "date": "2024-06-06",
+            "text": "Weltecho Chemnitz",
+            "url": null
+        },
+        {
+            "date": "2024-12-13",
+            "text": "artist Wiesbaden",
+            "url": "https://www.artist-wiesbaden.de/konzerte-2-2024/2024-12-13_perplexitiesonmars/"
+        },
+        {
+            "date": "2023-12-12",
+            "text": "Tante Betty Nürnberg",
+            "url": null
+        },
+        {
+            "date": "2023-12-13",
+            "text": "C-Keller Weimar",
+            "url": null
+        },
+        {
+            "date": "2023-12-14",
+            "text": "Horns-Erben Leipzig",
+            "url": null
+        }
+    ]
+}
