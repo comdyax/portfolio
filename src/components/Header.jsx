@@ -1,6 +1,6 @@
 import { Outlet, Link } from "react-router-dom";
 
-const Header = () => {
+const Header = ({ lan, handleLanChange }) => {
   return (
     <>
       <nav>
@@ -19,6 +19,16 @@ const Header = () => {
           </li>
           <li>
             <Link to="/contact">Contact</Link>
+          </li>
+          <li>
+            <select
+              className="form-select w-auto"
+              value={lan}
+              onChange={(event) => handleLanChange(event.target.value)}
+            >
+              <option value="en">english</option>
+              <option value="de">german</option>
+            </select>
           </li>
         </ul>
       </nav>

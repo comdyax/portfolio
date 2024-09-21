@@ -1,43 +1,33 @@
+import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import BackgroundWrapper from "./BackgroundWrapper";
 import { gridParticles } from "../p5_drawings/gridParticles";
+import { flowField } from "../p5_drawings/flowField";
 
-const Band = () => {
+const Band = ({ lan }) => {
+  const [content, setContent] = useState(null);
+  useEffect(() => {
+    fetch("/content/band.json")
+      .then((res) => res.json())
+      .then((text) => setContent(text))
+      .catch((exc) => console.log(exc));
+  }, [lan]);
   return (
     <div className="app-container">
-      <BackgroundWrapper canvas={gridParticles} />
+      <BackgroundWrapper canvas={flowField} />
       <div id="band" className="band">
-        <h1>BAND</h1>
-        <br />
-        <p>
-          Wer sagt, dass Beobachtungen unseres Sonnensystems nur Astronauten und
-          maschinellen Flugkörpern vergönnt sind?
-        </p>
-        <p>
-          Die vier von Perplexities on Mars zeichnen ihre Beobachtungen für
-          Tagträumer und aufmerksame Zuhörer tonmalerisch in jedermanns
-          Phantasie. Sie widmen sich unteranderem dem hellsten Stern an unserem
-          Himmel - der Sonne - und erzählen die Geschichte eines Ringplaneten.
-          Aber auch andere universale Erlebnisse werden in den Musikstücken der
-          Band geschildert. Dass es dabei nun ausgerechnet auf dem roten
-          Planeten zu Ratlosigkeit (Perplexity) kommt, kann sich wahrscheinlich
-          selbst der Namensgeber und Kriegsgott Mars nicht erklären….
-        </p>
-        <p>
-          Mit dieser speziellen Besetzung, ohne Harmonieinstrument, erzeugt die
-          Gruppe - durch hochenergetische und melodische Eigenkompositionen -
-          eine stilistisch tief in der Jazztradition verankerte, aber zugleich
-          moderne und neue Musik, die durch die verschiedenen sich ergänzenden
-          Improvisationen einzigartig wird.
-        </p>
-        <p>
-          „[…] das Quartett &apos;Perplexities on Mars&apos; […] in dem sich
-          zwei Tenorsaxophonisten (Christopher Kunz und Max Hirth)
-          energiegeladene Battles lieferten, also kreative Jazz-Wettkämpfe, die
-          hohe Tradition haben - hier aber so modern und berstend intensiv
-          klangen wie nur selten sonst.“ - Roland Spiegel; BR-Klassik
-        </p>
+        {content ? (
+          <>
+            <h1>{content.title}</h1>
+            <br />
+            {lan == "de"
+              ? content.text_german.map((con, idx) => <p key={idx}>{con}</p>)
+              : content.text_english.map((con, idx) => <p key={idx}>{con}</p>)}
+          </>
+        ) : (
+          <h3>loading content...</h3>
+        )}
         <p>
           Stephan Deller | Kontrabass
           <br />

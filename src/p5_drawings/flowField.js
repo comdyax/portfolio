@@ -1,18 +1,18 @@
 import p5 from "p5";
 
 export const flowField = (props) => {
-  let cols, rows, centerX, centerY;
-  let scale = 20;
+  let cols, rows;
+  let scale = 10;
   let particles = [];
-  let particleCount = 40000;
-  let particleSize = 1;
-  let fadingTrails = 20;
-  let particleSpeed = 1; // this can change interactive maybe on movement (1-10)
+  let particleCount = 4000;
+  let particleSize = 0.5;
+  let fadingTrails = 4;
+  let particleSpeed = 20; // this can change interactive maybe on movement (1-10)
   let flowField;
   let inc = 0.1; // Perlin noise increment
-  let transparency = 0; // this can change interactive maybe on movement 0-40
-  let transparencyThreshold = 40;
-  let dissipationFactor = 0.03;
+  let transparency = 80; // this can change interactive maybe on movement 0-40
+  let transparencyThreshold = 80;
+  let dissipationFactor = 0.01;
   let dissipationThreshold = 0.5; // this can change interactive maybe on movement 0-1
   let dissipate = true;
 
@@ -22,8 +22,6 @@ export const flowField = (props) => {
 
     cols = props.floor(props.width / scale);
     rows = props.floor(props.height / scale);
-    centerX = props.floor(props.width / 2)
-    centerY = props.floor(props.height / 2)
 
     flowField = new Array(cols * rows);
 
@@ -38,28 +36,16 @@ export const flowField = (props) => {
 
     let yoff = 0;
     let t = props.sin(transparency) * 0.5 + 0.5; // Oscillates between 0 and 1
-
-     //Calculate distance from mouse to the center
-     let distanceFromCenter = props.dist(props.mouseX, props.mouseY, centerX, centerY);
-    
-     // Calculate the maximum distance from the center to any corner
-     let maxDistance = props.dist(0, 0, centerX, centerY);
-     
-     let normalizedDistance = props.map(distanceFromCenter, 0, maxDistance, 1, 0);     
-     // Map normalized distance to transparency and dissipationFactor
-     //particleSpeed = normalizedDistance + 1
-    //transparency = normalizedDistance * transparencyThreshold;
-    //dissipationFactor = normalizedDistance * dissipationThreshold;
+    if (transparency < transparencyThreshold)
+      transparency += 0.5;
 
     if (dissipate == true) {
-      dissipationFactor += 0.001;
-      transparency += 0.01;
+      dissipationFactor += 0.001;    
       if (dissipationFactor >= dissipationThreshold) {
         dissipate = false;
       }
     } else if (dissipate == false) {
       dissipationFactor -= 0.001;
-      transparency -= 0.01;
       if (dissipationFactor <= 0.0) {
         dissipate = true;
       }
@@ -76,7 +62,11 @@ export const flowField = (props) => {
         let v = p5.Vector.fromAngle(angle).setMag(1);
 
         if (flowField[index]) {
-          flowField[index].lerp(v, dissipationFactor);
+          if (dissipate)
+            flowField[index].lerp(v, t * dissipationFactor);
+          else
+            flowField[index].lerp(v, 0);
+
         } else {
           flowField[index] = v;
         }
