@@ -1,0 +1,15 @@
+{
+    "header": "RELEASES",
+    "data": [
+        {
+            "name": "PERSEVERANCE",
+            "releaseDate": "2023-04-12",
+            "labelUrl": "https://jazzhausmusik.de/de/detail/jhm-297.html",
+            "labelName": "JAZZHAUSMUSIK",
+            "streamingUrl": "https://open.spotify.com/intl-de/album/1xL2U0gjlVBxwt6UBHg7ym",
+            "streamingName": "SPOTIFY",
+            "imgPath": "PerseveranceCover.jpg",
+            "imgAltText": "Perseverance Cover"
+        }
+    ]
+}

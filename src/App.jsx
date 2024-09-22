@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import BackgroundWrapper from "./components/BackgroundWrapper";
 import { flowField } from "./p5_drawings/flowField";
 import Tour from "./components/Tour";
+import Releases from "./components/Releases";
 import Video from "./components/Video";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
@@ -10,7 +11,7 @@ import Band from "./components/Band";
 import Home from "./components/Home";
 import Header from "./components/Header";
 
-import "bootstrap/dist/css/bootstrap.min.css"
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
             }
           >
             <Route index element={<Home />} />
+            <Route path="Releases" element={<Releases />} />
             <Route path="Video" element={<Video />} />
             <Route path="Tour" element={<Tour />} />
             <Route path="Band" element={<Band lan={lan} />} />

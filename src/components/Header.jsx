@@ -9,6 +9,9 @@ const Header = ({ lan, handleLanChange }) => {
             <Link to="/">Perplexities on Mars </Link>
           </li>
           <li>
+            <Link to="/releases">Releases</Link>
+          </li>
+          <li>
             <Link to="/video">Video</Link>
           </li>
           <li>
