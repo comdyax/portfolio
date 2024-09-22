@@ -4,8 +4,11 @@ import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
+import { useContext } from "react";
+import { CookieConsentContext } from "../contexts/CookieContextProvider";
 
 function IFrameCard({ videoId, title }) {
+  const { consentGiven } = useContext(CookieConsentContext);
   return (
     <Card
       className="m-3"
@@ -16,15 +19,19 @@ function IFrameCard({ videoId, title }) {
         color: "rgb(240, 223, 199)",
       }}
     >
-      <iframe
-        className="youtube-iframe"
-        width="100%"
-        height="100%"
-        src={`https://www.youtube.com/embed/${videoId}`}
-        title={title}
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerPolicy="strict-origin-when-cross-origin"
-      />
+      {consentGiven ? (
+        <iframe
+          className="youtube-iframe"
+          width="100%"
+          height="100%"
+          src={`https://www.youtube.com/embed/${videoId}`}
+          title={title}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerPolicy="strict-origin-when-cross-origin"
+        />
+      ) : (
+        <>Something here if no cookies set.</>
+      )}
       <Card.Body>
         <Card.Title>{title}</Card.Title>
         <Button

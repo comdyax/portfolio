@@ -9,6 +9,7 @@ import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Stack from "react-bootstrap/Stack";
+
 const formatDate = (dateString) => {
   const date = new Date(dateString);
   const conf = {
@@ -30,7 +31,11 @@ const ReleaseCard = ({ props }) => {
         color: "rgb(240, 223, 199)",
       }}
     >
-      <Card.Img variant="top" src={`/images/${props.imgPath}`} alt={props.imgAltText} />
+      <Card.Img
+        variant="top"
+        src={`/images/${props.imgPath}`}
+        alt={props.imgAltText}
+      />
       <Card.Body>
         <Card.Title>{props.name}</Card.Title>
         <Card.Text>RELEASE: {formatDate(props.releaseDate)}</Card.Text>
