@@ -1,5 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
+import BackgroundWrapper from "./components/BackgroundWrapper";
+import { flowField } from "./p5_drawings/flowField";
 import Tour from "./components/Tour";
 import Video from "./components/Video";
 import Contact from "./components/Contact";
@@ -7,8 +9,9 @@ import Footer from "./components/Footer";
 import Band from "./components/Band";
 import Home from "./components/Home";
 import Header from "./components/Header";
+
+import "bootstrap/dist/css/bootstrap.min.css"
 import "./App.css";
-//import "bootstrap/dist/css/bootstrap.min.css"
 
 function App() {
   const [lan, setLan] = useState("en");
@@ -25,22 +28,25 @@ function App() {
   }, []);
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <Header lan={lan} handleLanChange={(newLan) => setLan(newLan)} />
-          }
-        >
-          <Route index element={<Home />} />
-          <Route path="Video" element={<Video />} />
-          <Route path="Tour" element={<Tour />} />
-          <Route path="Band" element={<Band lan={lan} />} />
-          <Route path="contact" element={<Contact />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <div className="app-container">
+      <BackgroundWrapper canvas={flowField} />
+      <BrowserRouter>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Header lan={lan} handleLanChange={(newLan) => setLan(newLan)} />
+            }
+          >
+            <Route index element={<Home />} />
+            <Route path="Video" element={<Video />} />
+            <Route path="Tour" element={<Tour />} />
+            <Route path="Band" element={<Band lan={lan} />} />
+            <Route path="contact" element={<Contact />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 }
 

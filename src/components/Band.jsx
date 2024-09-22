@@ -14,8 +14,8 @@ const Band = ({ lan }) => {
       .catch((exc) => console.log(exc));
   }, [lan]);
   return (
-    <div className="app-container">
-      <BackgroundWrapper canvas={flowField} />
+    // <div className="app-container">
+    //   <BackgroundWrapper canvas={flowField} />
       <div className="text-content">
         {content ? (
           <>
@@ -54,7 +54,7 @@ const Band = ({ lan }) => {
           &ensp; | Schlagzeug
         </p>
       </div>
-    </div>
+    // </div>
   );
 };
 

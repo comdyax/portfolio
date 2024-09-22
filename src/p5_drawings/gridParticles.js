@@ -12,7 +12,7 @@ export const gridParticles = (props) => {
   let particleSize = 1;
 
   props.setup = () => {
-    props.createCanvas(window.innerWidth +gridSize, window.innerHeight + gridSize);
+    props.createCanvas(window.innerWidth, window.innerHeight);
     props.background(backgroundColor);
 
     // Create all particles

@@ -32,9 +32,7 @@ const Header = ({ lan, handleLanChange }) => {
           </li>
         </ul>
       </nav>
-      <main>
-        <Outlet />
-      </main>
+      <Outlet />
     </>
   );
 };
