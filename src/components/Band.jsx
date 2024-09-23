@@ -1,60 +1,59 @@
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
-import BackgroundWrapper from "./BackgroundWrapper";
-import { gridParticles } from "../p5_drawings/gridParticles";
-import { flowField } from "../p5_drawings/flowField";
+import { useContext } from "react";
+import { LanguageContext } from "../contexts/LanguageContextProvider";
 
-const Band = ({ lan }) => {
+const Band = () => {
+  const { language } = useContext(LanguageContext);
   const [content, setContent] = useState(null);
   useEffect(() => {
     fetch("/content/band.json")
       .then((res) => res.json())
       .then((text) => setContent(text))
       .catch((exc) => console.log(exc));
-  }, [lan]);
+  }, []);
   return (
-    // <div className="app-container">
-    //   <BackgroundWrapper canvas={flowField} />
-      <div className="text-content">
-        {content ? (
-          <>
-            <h1>{content.title}</h1>
-            <br />
-            {lan == "de"
-              ? content.text_german.map((con, idx) => <p key={idx}>{con}</p>)
-              : content.text_english.map((con, idx) => <p key={idx}>{con}</p>)}
-          </>
-        ) : (
-          <h3>loading content...</h3>
-        )}
-        <p>
-          Stephan Deller | Kontrabass
+    <div className="text-content">
+      {content ? (
+        <>
+          <h1>{content.header}</h1>
           <br />
-          <a
-            href="https://www.christopherkunz.net"
-            target="_blank"
-            className="links"
-          >
-            Christopher Kunz &ensp;
-            <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
-          </a>
-          &ensp; | Tenorsaxophon
+          {language == "de"
+            ? content.text_german.map((con, idx) => <p key={idx}>{con}</p>)
+            : content.text_english.map((con, idx) => <p key={idx}>{con}</p>)}
           <br />
-          Max Hirth | Tenorsaxophon
-          <br />
-          <a
-            href="https://www.tom-friedrich.com"
-            target="_blank"
-            className="links"
-          >
-            Tom Friedrich&ensp;
-            <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
-          </a>
-          &ensp; | Schlagzeug
-        </p>
-      </div>
-    // </div>
+          <p>
+            {content.members.map((member, idx) =>
+              member.url ? (
+                <div key={idx}>
+                  <a href={member.url} target="_blank" className="links">
+                    {member.name} &ensp;
+                    <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
+                    &ensp;
+                  </a>
+                  | &ensp;
+                  {language === "de"
+                    ? member.instrument_german
+                    : member.instrument_english}
+                  <br />
+                </div>
+              ) : (
+                <div key={idx}>
+                  {member.name} &ensp; | &ensp;
+                  {language === "de"
+                    ? member.instrument_german
+                    : member.instrument_english}
+                  <br />
+                </div>
+              )
+            )}
+          </p>
+        </>
+      ) : (
+        <h3>loading content...</h3>
+      )}
+    </div>
   );
 };
 

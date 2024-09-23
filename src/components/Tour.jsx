@@ -26,6 +26,7 @@ const Tour = () => {
       {dates ? (
         <>
           <h1>{dates.title}</h1>
+          <br/>
           {dates.dates
             .sort((a, b) => new Date(b.date) - new Date(a.date))
             .map((date, idx) => (

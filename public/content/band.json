@@ -11,5 +11,31 @@
         "The four musicians of Perplexities on Mars record their observations for dreamers and attentive listeners, painting them tonally into everyone's imagination. They dedicate themselves to, among other things, the brightest star in our sky - the sun - and tell the story of a ringed planet. But other universal experiences are also depicted in the band's compositions. That perplexity occurs on the red planet of all places is something even Mars, the god of war and namesake, probably cannot explain….",
         "With this special lineup, without harmonic instruments, the group creates a style deeply rooted in jazz tradition through highly energetic and melodic original compositions, while at the same time offering modern and fresh music that becomes unique through the various complementary improvisations.",
         "‘[...] the quartet Perplexities on Mars [...] in which two tenor saxophonists (Christopher Kunz and Max Hirth) engaged in energetic battles, creative jazz competitions with a strong tradition, but here they sounded as modern and intensely bursting as rarely ever before.’ - Roland Spiegel; BR-Klassik"
+    ],
+    "members": [
+        {
+            "name": "Stephan Deller",
+            "instrument_german": "Kontrabass",
+            "instrument_english": "double bass",
+            "url": ""
+        },
+        {
+            "name": "Christopher Kunz",
+            "instrument_german": "Tenorsaxophon, Sopransaxophon",
+            "instrument_english": "tenor saxophone, soprano saxophone",
+            "url": "https://www.christopherkunz.net"
+        },
+        {
+            "name": "Max Hirth",
+            "instrument_german": "Tenorsaxophon",
+            "instrument_english": "tenor saxophone",
+            "url": ""
+        },
+        {
+            "name": "Tom Friedrich",
+            "instrument_german": "Schlagzeug",
+            "instrument_english": "drums",
+            "url": "https://www.tom-friedrich.com"
+        }
     ]
 }

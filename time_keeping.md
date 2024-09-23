@@ -8,8 +8,9 @@ FSO_Project: Portfolio:
 21.09.2024 - 5 - 09:00 - 14:30: fetch Content from public folder and Select language Option + Tour component + also fetch with useEffect + first iframe idea
 22.09.2024 - 4 - 09:00 - 13:00: Video component + react bootstrap + a bit css cleanup + Backgroundwrapper to App.jsx and resize/scrolling Bugfix of p5canvas with css
 22.09.2024 - 4 - 18:00 - 22:00: Releases Component + Boostrap + a bit design + CookieConsent and CookieContextProvider with conditional loading of Iframes
+23.09.2024 - 2 - 19:30 - 21:30: ContextProvider for Language and Band load all info from json
 
 
 
 
-sum: 30h
+sum: 32h

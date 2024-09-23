@@ -11,6 +11,7 @@ import Band from "./components/Band";
 import Home from "./components/Home";
 import Header from "./components/Header";
 import { CookieConsentProvider } from "./contexts/CookieContextProvider";
+import { LanguageProvider } from "./contexts/LanguageContextProvider";
 import ConsentCookies from "./components/ConsentCookies";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
@@ -30,32 +31,26 @@ function App() {
   }, []);
 
   return (
-    <CookieConsentProvider>
-      <div className="app-container">
-        <BackgroundWrapper canvas={flowField} />
-        <ConsentCookies />
-        <BrowserRouter>
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <Header
-                  lan={lan}
-                  handleLanChange={(newLan) => setLan(newLan)}
-                />
-              }
-            >
-              <Route index element={<Home />} />
-              <Route path="Releases" element={<Releases />} />
-              <Route path="Video" element={<Video />} />
-              <Route path="Tour" element={<Tour />} />
-              <Route path="Band" element={<Band lan={lan} />} />
-              <Route path="contact" element={<Contact />} />
-            </Route>
-          </Routes>
-        </BrowserRouter>
-      </div>
-    </CookieConsentProvider>
+    <LanguageProvider>
+      <CookieConsentProvider>
+        <div className="app-container">
+          <BackgroundWrapper canvas={flowField} />
+          <ConsentCookies />
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Header />}>
+                <Route index element={<Home />} />
+                <Route path="Releases" element={<Releases />} />
+                <Route path="Video" element={<Video />} />
+                <Route path="Tour" element={<Tour />} />
+                <Route path="Band" element={<Band />} />
+                <Route path="contact" element={<Contact />} />
+              </Route>
+            </Routes>
+          </BrowserRouter>
+        </div>
+      </CookieConsentProvider>
+    </LanguageProvider>
   );
 }
 

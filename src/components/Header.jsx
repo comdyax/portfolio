@@ -1,6 +1,9 @@
 import { Outlet, Link } from "react-router-dom";
+import { useContext } from "react";
+import { LanguageContext } from "../contexts/LanguageContextProvider";
 
-const Header = ({ lan, handleLanChange }) => {
+const Header = () => {
+  const { language, handleSetLanguage } = useContext(LanguageContext)
   return (
     <>
       <nav>
@@ -26,8 +29,8 @@ const Header = ({ lan, handleLanChange }) => {
           <li>
             <select
               className="form-select w-auto"
-              value={lan}
-              onChange={(event) => handleLanChange(event.target.value)}
+              value={language}
+              onChange={(event) => handleSetLanguage(event.target.value)}
             >
               <option value="en">english</option>
               <option value="de">german</option>
