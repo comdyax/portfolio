@@ -3,13 +3,13 @@ import { useContext } from "react";
 import { LanguageContext } from "../contexts/LanguageContextProvider";
 
 const Header = () => {
-  const { language, handleSetLanguage } = useContext(LanguageContext)
+  const { language, handleSetLanguage } = useContext(LanguageContext);
   return (
     <>
       <nav>
         <ul>
           <li>
-            <Link to="/">Perplexities on Mars </Link>
+            <Link to="/">Perplexities on Mars</Link>
           </li>
           <li>
             <Link to="/releases">Releases</Link>

@@ -4,7 +4,7 @@ import { gridParticles } from "../p5_drawings/gridParticles";
 const Home = () => {
   return (
     <>
-      <div className="app-container">
+      <div className="content">
         <BackgroundWrapper canvas={gridParticles} />
         {/* <BackgroundWrapper canvas={flowField} /> */}
         <div className="content">

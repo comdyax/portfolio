@@ -11,19 +11,23 @@ body {
   background-color: rgb(15, 0, 0);
   padding: 0;
   height: 100%;
-}
-
-.app-container {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
   overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .p5-canvas {
   position: fixed;
   top: 0;
   left: 0;
+}
+
+.footer {
+  position: fixed;
+  padding: 0.5%;
+  z-index: 100;
+  width: 100%;
+  bottom: 0px;
+  background-color: rgb(15, 0, 0);
 }
 
 .content {
