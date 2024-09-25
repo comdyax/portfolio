@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useEffect, useState } from "react";
 import BackgroundWrapper from "./components/BackgroundWrapper";
 import { flowField } from "./p5_drawings/flowField";
 import Tour from "./components/Tour";
@@ -11,6 +10,7 @@ import Band from "./components/Band";
 import Home from "./components/Home";
 import Header from "./components/Header";
 import Imprint from "./components/Imprint";
+import PrivacyPolicy from "./components/PrivacyPolicy";
 import { CookieConsentProvider } from "./contexts/CookieContextProvider";
 import { LanguageProvider } from "./contexts/LanguageContextProvider";
 import ConsentCookies from "./components/ConsentCookies";
@@ -27,12 +27,13 @@ function App() {
           <Header />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="Releases" element={<Releases />} />
-            <Route path="Video" element={<Video />} />
-            <Route path="Tour" element={<Tour />} />
-            <Route path="Band" element={<Band />} />
-            <Route path="Contact" element={<Contact />} />
-            <Route path="Imprint" element={<Imprint />} />
+            <Route path="releases" element={<Releases />} />
+            <Route path="video" element={<Video />} />
+            <Route path="tour" element={<Tour />} />
+            <Route path="band" element={<Band />} />
+            <Route path="contact" element={<Contact />} />
+            <Route path="imprint" element={<Imprint />} />
+            <Route path="privacy-policy" element={<PrivacyPolicy />} />
           </Routes>
           <Footer />
         </BrowserRouter>

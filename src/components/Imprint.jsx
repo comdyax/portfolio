@@ -290,7 +290,7 @@ const ImprintGerman = () => {
 
 const Imprint = () => {
   const { language } = useContext(LanguageContext);
-  return <div className="text-content">{language === "de" ? <ImprintGerman /> : <ImprintEnglish />}</div>;
+  return <div className="imprint_policy">{language === "de" ? <ImprintGerman /> : <ImprintEnglish />}</div>;
 };
 
 export default Imprint;
