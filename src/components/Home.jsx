@@ -1,16 +1,15 @@
 import BackgroundWrapper from "./BackgroundWrapper";
 import { gridParticles } from "../p5_drawings/gridParticles";
+import ParticleSystem from "./ParticleSystem";
 
 const Home = () => {
   return (
     <>
-      <div className="content">
-        <BackgroundWrapper canvas={gridParticles} />
-        {/* <BackgroundWrapper canvas={flowField} /> */}
-        <div className="content">
-          <h1>Perplexities on Mars</h1>
-        </div>
-       
+      {/* <BackgroundWrapper canvas={gridParticles} /> */}
+      <div style={{ height: "100vh", width: "100vw", background: "#000" }}>
+        <ParticleSystem />
+        <h1>Perplexities on Mars</h1>
+        <div className="content"></div>
       </div>
     </>
   );

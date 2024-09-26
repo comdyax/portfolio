@@ -12,7 +12,8 @@
 |23.09.2024 | 2    | ContextProvider for Language and Band load all info from json |
 |24.09.2024 | 3    | German and English Imprint + Footer with Routes |
 |25.09.2024 | 3    | Privacy Policy german + english + css styles + mail decoder in footer |
+|26.09.2024 | 8    | react three fiber first idea for a background/canvas maybe use this for audio visuals |
 
 
 
-sum: 38h
+sum: 46h
