@@ -1,10 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import BackgroundWrapper from "./components/BackgroundWrapper";
-import { flowField } from "./p5_drawings/flowField";
 import Tour from "./components/Tour";
 import Releases from "./components/Releases";
 import Video from "./components/Video";
-import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import Band from "./components/Band";
 import Home from "./components/Home";
@@ -21,7 +18,6 @@ function App() {
   return (
     <LanguageProvider>
       <CookieConsentProvider>
-      {/* <BackgroundWrapper canvas={flowField} /> */}
         <ConsentCookies />
         <BrowserRouter>
           <Header />
@@ -31,7 +27,6 @@ function App() {
             <Route path="video" element={<Video />} />
             <Route path="tour" element={<Tour />} />
             <Route path="band" element={<Band />} />
-            <Route path="contact" element={<Contact />} />
             <Route path="imprint" element={<Imprint />} />
             <Route path="privacy-policy" element={<PrivacyPolicy />} />
           </Routes>

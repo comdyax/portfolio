@@ -9,6 +9,8 @@ import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Stack from "react-bootstrap/Stack";
+import BackgroundWrapper from "./BackgroundWrapper";
+import { flowField } from "../p5_drawings/flowField";
 
 const formatDate = (dateString) => {
   const date = new Date(dateString);
@@ -80,20 +82,23 @@ const Releases = () => {
   }, []);
 
   return (
-    <div className="content">
-      {releases ? (
-        <>
-          <h1>{releases.header}</h1>
-          <Container className="d-flex flex-wrap justify-content-center my-5">
-            {releases.data.map((con, key) => (
-              <ReleaseCard key={key} props={con} />
-            ))}
-          </Container>
-        </>
-      ) : (
-        <h3>loading content...</h3>
-      )}
-    </div>
+    <>
+      <BackgroundWrapper canvas={flowField} />
+      <div className="content">
+        {releases ? (
+          <>
+            <h1>{releases.header}</h1>
+            <Container className="d-flex flex-wrap justify-content-center my-5">
+              {releases.data.map((con, key) => (
+                <ReleaseCard key={key} props={con} />
+              ))}
+            </Container>
+          </>
+        ) : (
+          <h3>loading content...</h3>
+        )}
+      </div>
+    </>
   );
 };
 

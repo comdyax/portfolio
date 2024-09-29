@@ -3,7 +3,7 @@ import p5 from "p5";
 export const gridParticles = (props) => {
   let particles = [];
   let gridSize = 8;
-  let particleCount = 10000;
+  let particleCount = 4000;
   let fadingTrails = 20
   let particleSpeed = 2;
   let transparency = 10;

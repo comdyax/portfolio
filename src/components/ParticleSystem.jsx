@@ -3,7 +3,7 @@ import { Canvas, useFrame, useLoader } from "@react-three/fiber";
 import { Sphere, Stars, OrbitControls } from "@react-three/drei";
 import * as THREE from "three";
 
-const Planet = ({ radius, speed }) => {
+const Planet = ({ radius, speed, position, offset, texture }) => {
   const planetRef = useRef();
   useFrame(() => {
     if (planetRef.current) {
@@ -12,11 +12,10 @@ const Planet = ({ radius, speed }) => {
       planetRef.current.rotation.z += speed[2];
     }
   });
-  const texture = useLoader(THREE.TextureLoader, "/texture_asteroid.png");
 
   return (
-    <group ref={planetRef}>
-      <Sphere args={[radius, 16, 16]} position={[0, 0, 0]}>
+    <group ref={planetRef} rotation={offset}>
+      <Sphere args={[radius, 16, 16]} position={position}>
         <meshStandardMaterial
           bumpMap={texture}
           bumpScale={6}
@@ -77,7 +76,7 @@ const AsteroidField = ({
           <meshStandardMaterial
             bumpMap={texture}
             bumpScale={20}
-            emissive="#ffffff"  
+            emissive="#ffffff"
             emissiveIntensity={0.01}
             roughness={1}
             color="#ffffff"
@@ -90,6 +89,8 @@ const AsteroidField = ({
 };
 
 const ParticleSystem = () => {
+  const textureMars = useLoader(THREE.TextureLoader, "/texture_asteroid.png");
+  const textureMoon = useLoader(THREE.TextureLoader, "/asteroid_texture.png");
   const offsetRings = [
     [0, 0, 0],
     [Math.PI / 4, 0, 0],
@@ -100,7 +101,7 @@ const ParticleSystem = () => {
         position: [-50, -5, 40],
       }}
     >
-      <OrbitControls maxDistance={40} minDistance={15} />
+      <OrbitControls maxDistance={100} minDistance={15} />
       <directionalLight />
       <ambientLight intensity={0.1} />
       <pointLight position={[10, 10, 10]} intensity={0.5} />
@@ -116,7 +117,27 @@ const ParticleSystem = () => {
           offset={offset}
         />
       ))}
-      <Planet radius={3.5} speed={[0.0005, 0.0005, 0.0005]} />
+      <Planet
+        radius={3.5}
+        speed={[0.0005, 0.0005, 0.0005]}
+        position={[0, 0, 0]}
+        offset={[0, 0, 0]}
+        texture={textureMars}
+      />
+      <Planet
+        radius={1}
+        speed={[0, 0.0009, 0]}
+        position={[0, 0, 50]}
+        offset={[Math.PI / -4, 0, 0]}
+        texture={textureMoon}
+      />
+      <Planet
+        radius={0.4}
+        speed={[0, 0.001, 0]}
+        position={[0, 0, 10]}
+        offset={[0, 0, 0]}
+        texture={textureMoon}
+      />
       <AsteroidField
         radius={10}
         spread={20}
@@ -129,7 +150,7 @@ const ParticleSystem = () => {
       <Stars
         radius={200}
         depth={100}
-        count={2000}
+        count={1000}
         factor={8}
         saturation={10}
         fade={true}

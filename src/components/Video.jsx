@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import { useContext } from "react";
 import { CookieConsentContext } from "../contexts/CookieContextProvider";
+import BackgroundWrapper from "./BackgroundWrapper";
+import { gridParticles } from "../p5_drawings/gridParticles";
 
 function IFrameCard({ videoId, title }) {
   const { consentGiven } = useContext(CookieConsentContext);
@@ -58,6 +60,8 @@ const Video = () => {
   }, []);
 
   return (
+    <>
+    <BackgroundWrapper canvas={gridParticles} />
     <div className="content">
       {videos ? (
         <>
@@ -72,6 +76,7 @@ const Video = () => {
         <h3>loading content...</h3>
       )}
     </div>
+    </>
   );
 };
 

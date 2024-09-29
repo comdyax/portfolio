@@ -24,9 +24,6 @@ const Header = () => {
             <Link to="/band">Band</Link>
           </li>
           <li>
-            <Link to="/contact">Contact</Link>
-          </li>
-          <li>
             <select
               className="form-select w-auto"
               value={language}
