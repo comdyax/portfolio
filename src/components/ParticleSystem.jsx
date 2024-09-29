@@ -1,39 +1,48 @@
 import { useMemo, useRef } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { Points, PointMaterial } from "@react-three/drei";
+import { Canvas, useFrame, useLoader } from "@react-three/fiber";
+import { Sphere, Stars, OrbitControls } from "@react-three/drei";
+import * as THREE from "three";
 
-const SpaceTrash = ({ count, radius, spread }) => {
-  const positions = useMemo(() => {
-    const positions = new Float32Array(count * 3);
-    for (let i = 0; i < count; i++) {
-      const theta = Math.random() * Math.PI * 2;
-      const phi = Math.acos(Math.random() * 2 - 1);
-      const distance = radius + Math.random() * spread;
-      const x = distance * Math.sin(phi) * Math.cos(theta);
-      const y = distance * Math.sin(phi) * Math.sin(theta);
-      const z = distance * Math.cos(phi);
-      positions.set([x, y, z], i * 3);
-    }
-    return positions;
-  }, [count, radius, spread]);
-
-  const trashFieldRef = useRef();
+const Planet = ({ radius, speed }) => {
+  const planetRef = useRef();
   useFrame(() => {
-    if (trashFieldRef.current) {
-      trashFieldRef.current.rotation.y -= 0.004;
+    if (planetRef.current) {
+      planetRef.current.rotation.x += speed[0];
+      planetRef.current.rotation.y += speed[1];
+      planetRef.current.rotation.z += speed[2];
     }
   });
+  const texture = useLoader(THREE.TextureLoader, "/texture_asteroid.png");
 
   return (
-    <Points ref={trashFieldRef} positions={positions}>
-      <PointMaterial size={0.02} color="#00ffff" />
-    </Points>
+    <group ref={planetRef}>
+      <Sphere args={[radius, 16, 16]} position={[0, 0, 0]}>
+        <meshStandardMaterial
+          bumpMap={texture}
+          bumpScale={6}
+          map={texture}
+          emissive="#000fff"
+          emissiveIntensity={0.001}
+          roughness={0.9}
+          color="#f0dfc7"
+          metalness={0.4}
+        />
+      </Sphere>
+    </group>
   );
 };
 
-const AsteroidField = ({ count, radius, spread, thickness }) => {
+const AsteroidField = ({
+  count,
+  radius,
+  spread,
+  thickness,
+  size,
+  speed,
+  offset,
+}) => {
   const positions = useMemo(() => {
-    const positions = new Float32Array(count * 3);
+    const positions = [];
     for (let i = 0; i < count; i++) {
       const theta = Math.random() * Math.PI * 2;
       const distance = radius + Math.random() * spread;
@@ -41,7 +50,7 @@ const AsteroidField = ({ count, radius, spread, thickness }) => {
       const z = distance * Math.sin(theta);
       const y = (Math.random() - 0.5) * thickness;
 
-      positions.set([x, y, z], i * 3);
+      positions.push([x, y, z]);
     }
     return positions;
   }, [count, radius, spread, thickness]);
@@ -49,24 +58,82 @@ const AsteroidField = ({ count, radius, spread, thickness }) => {
   const asteroidFieldRef = useRef();
   useFrame(() => {
     if (asteroidFieldRef.current) {
-      asteroidFieldRef.current.rotation.y += 0.001;
+      asteroidFieldRef.current.rotation.x += speed[0];
+      asteroidFieldRef.current.rotation.y += speed[1];
+      asteroidFieldRef.current.rotation.z += speed[2];
     }
   });
 
-  return (
+  const texture = useLoader(THREE.TextureLoader, "/asteroid_texture.png");
 
-    <Points ref={asteroidFieldRef} positions={positions} rotation={[1.8, 0, 0]}>
-      <PointMaterial size={0.02} color="#00ffff" />
-    </Points>
+  return (
+    <group ref={asteroidFieldRef} rotation={offset}>
+      {positions.map((pos, i) => (
+        <Sphere
+          key={i}
+          args={[size + Math.random() * 0.05, 16, 16]}
+          position={pos}
+        >
+          <meshStandardMaterial
+            bumpMap={texture}
+            bumpScale={20}
+            emissive="#ffffff"  
+            emissiveIntensity={0.01}
+            roughness={1}
+            color="#ffffff"
+            metalness={0.3}
+          />
+        </Sphere>
+      ))}
+    </group>
   );
 };
 
 const ParticleSystem = () => {
+  const offsetRings = [
+    [0, 0, 0],
+    [Math.PI / 4, 0, 0],
+  ];
   return (
-    <Canvas camera={{ position: [10, 2.4, 10] }}>
-      <SpaceTrash radius={1} spread={3} count={20000} />
-      <SpaceTrash radius={10} spread={10} count={10000} />
-      <AsteroidField radius={3} spread={6} count={20000} thickness={0.001} />
+    <Canvas
+      camera={{
+        position: [-50, -5, 40],
+      }}
+    >
+      <OrbitControls maxDistance={40} minDistance={15} />
+      <directionalLight />
+      <ambientLight intensity={0.1} />
+      <pointLight position={[10, 10, 10]} intensity={0.5} />
+      {offsetRings.map((offset, key) => (
+        <AsteroidField
+          key={key}
+          radius={3}
+          spread={5}
+          count={50}
+          thickness={10}
+          size={0.04}
+          speed={[0.0005, 0.0005, 0.0005]}
+          offset={offset}
+        />
+      ))}
+      <Planet radius={3.5} speed={[0.0005, 0.0005, 0.0005]} />
+      <AsteroidField
+        radius={10}
+        spread={20}
+        count={500}
+        thickness={3}
+        size={0.05}
+        speed={[0, 0.0005, 0]}
+        offset={[Math.PI / 4, 0, 0]}
+      />
+      <Stars
+        radius={200}
+        depth={100}
+        count={2000}
+        factor={8}
+        saturation={10}
+        fade={true}
+      />
     </Canvas>
   );
 };

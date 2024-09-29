@@ -21,7 +21,7 @@ function App() {
   return (
     <LanguageProvider>
       <CookieConsentProvider>
-      <BackgroundWrapper canvas={flowField} />
+      {/* <BackgroundWrapper canvas={flowField} /> */}
         <ConsentCookies />
         <BrowserRouter>
           <Header />
