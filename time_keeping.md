@@ -14,8 +14,9 @@
 |25.09.2024 | 3    | Privacy Policy german + english + css styles + mail decoder in footer |
 |26.09.2024 | 8    | react three fiber first idea for a background/canvas maybe use this for audio visuals |
 |29.09.2024 | 8    | refactor: new idea: planet mars + asteroidfield with threejs components Sphere and texture maps |
-|04.10.2024 | 1    | deactivate threejs and refactor background |
+|04.10.2024 | 4    | deactivate threejs and refactor background + responsive navbar with bootsrap (not ready yet) |
 
 
 
-sum: 55h
+
+sum: 58h
