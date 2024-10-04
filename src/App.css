@@ -68,33 +68,6 @@ body {
   border-radius: 1.5%;
 }
 
-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  background-color: #ffffff00;
-  color: #f0dfc7;
-  padding: 10px;
-  z-index: 1000; /* Ensure it's above other content */
-}
-
-nav ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
-nav ul li {
-  display: inline;
-  margin-right: 10px;
-}
-
-nav ul li a {
-  color: #f0dfc7;
-  text-decoration: none;
-}
-
 .links {
   color: rgb(156, 95, 37);
   text-decoration: none;

@@ -280,7 +280,7 @@ const ImprintGerman = () => {
           target="_blank"
           className="links"
         >
-          Imprint
+          Impressum
         </a>{" "}
         wurde freundlicherweise von www.jurarat.de zur Verfügung gestellt.
       </p>
