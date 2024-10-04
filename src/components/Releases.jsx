@@ -9,8 +9,6 @@ import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Stack from "react-bootstrap/Stack";
-import BackgroundWrapper from "./BackgroundWrapper";
-import { flowField } from "../p5_drawings/flowField";
 
 const formatDate = (dateString) => {
   const date = new Date(dateString);
@@ -82,8 +80,6 @@ const Releases = () => {
   }, []);
 
   return (
-    <>
-      <BackgroundWrapper canvas={flowField} />
       <div className="content">
         {releases ? (
           <>
@@ -98,7 +94,6 @@ const Releases = () => {
           <h3>loading content...</h3>
         )}
       </div>
-    </>
   );
 };
 

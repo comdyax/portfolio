@@ -13,12 +13,15 @@ import { LanguageProvider } from "./contexts/LanguageContextProvider";
 import ConsentCookies from "./components/ConsentCookies";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+import BackgroundWrapper from "./components/BackgroundWrapper";
+import { flowField } from "./p5_drawings/flowField";
 
 function App() {
   return (
     <LanguageProvider>
       <CookieConsentProvider>
         <ConsentCookies />
+        <BackgroundWrapper canvas={flowField}/>
         <BrowserRouter>
           <Header />
           <Routes>

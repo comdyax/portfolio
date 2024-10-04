@@ -3,8 +3,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import { useContext } from "react";
 import { LanguageContext } from "../contexts/LanguageContextProvider";
-import BackgroundWrapper from "./BackgroundWrapper";
-import { flowField } from "../p5_drawings/flowField";
 
 const Band = () => {
   const { language } = useContext(LanguageContext);
@@ -16,8 +14,6 @@ const Band = () => {
       .catch((exc) => console.log(exc));
   }, []);
   return (
-    <>
-    <BackgroundWrapper canvas={flowField} />
     <div className="text-content">
       {content ? (
         <>
@@ -27,7 +23,7 @@ const Band = () => {
             ? content.text_german.map((con, idx) => <p key={idx}>{con}</p>)
             : content.text_english.map((con, idx) => <p key={idx}>{con}</p>)}
           <br />
-          <p>
+          <div>
             {content.members.map((member, idx) =>
               member.url ? (
                 <div key={idx}>
@@ -52,13 +48,12 @@ const Band = () => {
                 </div>
               )
             )}
-          </p>
+          </div>
         </>
       ) : (
         <h3>loading content...</h3>
       )}
     </div>
-    </>
   );
 };
 

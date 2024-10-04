@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
-import BackgroundWrapper from "./BackgroundWrapper";
-import { gridParticles } from "../p5_drawings/gridParticles";
 
 const Tour = () => {
   const [dates, setDates] = useState(null);
@@ -24,39 +22,36 @@ const Tour = () => {
   };
 
   return (
-    <>
-      <BackgroundWrapper canvas={gridParticles} />
-      <div className="text-content">
-        {dates ? (
-          <>
-            <h1>{dates.title}</h1>
-            <br />
-            {dates.dates
-              .sort((a, b) => new Date(b.date) - new Date(a.date))
-              .map((date, idx) => (
-                <p key={idx}>
-                  {date.url != null ? (
-                    <>
-                      {formatDate(date.date)}
-                      <a href={date.url} target="_blank" className="links">
-                        {" "}
-                        @ {date.text}{" "}
-                        <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
-                      </a>
-                    </>
-                  ) : (
-                    <>
-                      {formatDate(date.date)} @ {date.text}
-                    </>
-                  )}
-                </p>
-              ))}
-          </>
-        ) : (
-          <h3>loading content...</h3>
-        )}
-      </div>
-    </>
+    <div className="text-content">
+      {dates ? (
+        <>
+          <h1>{dates.title}</h1>
+          <br />
+          {dates.dates
+            .sort((a, b) => new Date(b.date) - new Date(a.date))
+            .map((date, idx) => (
+              <p key={idx}>
+                {date.url != null ? (
+                  <>
+                    {formatDate(date.date)}
+                    <a href={date.url} target="_blank" className="links">
+                      {" "}
+                      @ {date.text}{" "}
+                      <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
+                    </a>
+                  </>
+                ) : (
+                  <>
+                    {formatDate(date.date)} @ {date.text}
+                  </>
+                )}
+              </p>
+            ))}
+        </>
+      ) : (
+        <h3>loading content...</h3>
+      )}
+    </div>
   );
 };
 
