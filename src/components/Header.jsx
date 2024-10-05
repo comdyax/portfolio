@@ -25,9 +25,11 @@ const Header = () => {
     handleClose();
   };
   return (
-    <Navbar fixed="top" expand={expand} bg="dark">
+    <Navbar fixed="top" expand={expand} className="nav" data-bs-theme="dark">
       <Container fluid>
-        <Navbar.Brand style={{color: "#f0dfc7"}} href="/">Perplexities on Mars</Navbar.Brand>
+        <Navbar.Brand className="nav-link" as={Link} to="/">
+          <b>Perplexities on Mars</b>
+        </Navbar.Brand>
         <Navbar.Toggle onClick={handleShow} />
         <Navbar.Offcanvas
           show={showOffcanvas}
@@ -35,32 +37,71 @@ const Header = () => {
           placement="end"
           data-bs-theme="dark"
         >
-          <Offcanvas.Header closeButton style={{color: "#f0dfc7"}}>
-            <Offcanvas.Title style={{color: "#f0dfc7"}}>Perplexities on Mars</Offcanvas.Title>
+          <Offcanvas.Header closeButton>
+            <Offcanvas.Title className="nav-link">
+              <b>Perplexities on Mars</b>
+            </Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body>
-            <Nav className="justify-content-end flex-grow-1">
-              <Nav.Link style={{color: "#f0dfc7"}} as={Link} onClick={handleNavLinkClick} to="/">
+            <Nav>
+              <Nav.Link
+                className="nav-link"
+                as={Link}
+                onClick={handleNavLinkClick}
+                to="/"
+              >
                 Home
               </Nav.Link>
-              <Nav.Link style={{color: "#f0dfc7"}} as={Link} onClick={handleNavLinkClick} to="/releases">
+              <Nav.Link
+                className="nav-link"
+                as={Link}
+                onClick={handleNavLinkClick}
+                to="/releases"
+              >
                 Releases
               </Nav.Link>
-              <Nav.Link style={{color: "#f0dfc7"}} as={Link} onClick={handleNavLinkClick} to="/video">
+              <Nav.Link
+                className="nav-link"
+                as={Link}
+                onClick={handleNavLinkClick}
+                to="/video"
+              >
                 Video
               </Nav.Link>
-              <Nav.Link style={{color: "#f0dfc7"}} as={Link} onClick={handleNavLinkClick} to="/tour">
+              <Nav.Link
+                className="nav-link"
+                as={Link}
+                onClick={handleNavLinkClick}
+                to="/tour"
+              >
                 Tour
               </Nav.Link>
-              <Nav.Link style={{color: "#f0dfc7"}} as={Link} onClick={handleNavLinkClick} to="/band">
+              <Nav.Link
+                className="nav-link"
+                as={Link}
+                onClick={handleNavLinkClick}
+                to="/band"
+              >
                 Band
               </Nav.Link>
-              <NavDropdown style={{color: "#f0dfc7"}} title={language === "de" ? "Sprache" : "Language"}>
-                <NavDropdown.Item onClick={() => handleLanguageChange("de")}>
+              <NavDropdown
+                title={
+                  <span className="dropdown_nav">
+                    {language === "de" ? "Sprache" : "Language"}
+                  </span>
+                }
+              >
+                <NavDropdown.Item
+                  className="dropdown_nav"
+                  onClick={() => handleLanguageChange("de")}
+                >
                   Deutsch
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item onClick={() => handleLanguageChange("en")}>
+                <NavDropdown.Item
+                  className="dropdown_nav"
+                  onClick={() => handleLanguageChange("en")}
+                >
                   English
                 </NavDropdown.Item>
               </NavDropdown>

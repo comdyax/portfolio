@@ -11,13 +11,7 @@ function IFrameCard({ videoId, title }) {
   const { consentGiven } = useContext(CookieConsentContext);
   return (
     <Card
-      className="m-3"
-      style={{
-        maxWidth: "600px",
-        width: "100%",
-        backgroundColor: "rgb(15, 0, 0)",
-        color: "rgb(240, 223, 199)",
-      }}
+      className="m-3 iframe"
     >
       {consentGiven ? (
         <iframe
@@ -35,10 +29,9 @@ function IFrameCard({ videoId, title }) {
       <Card.Body>
         <Card.Title>{title}</Card.Title>
         <Button
-          variant="primary"
+          variant="light"
           href={`https://www.youtube.com/watch?v=${videoId}`}
           target="_blank"
-          style={{ color: "rgb(240, 223, 199)" }}
         >
           YOUTUBE &ensp;
           <FontAwesomeIcon icon={faArrowUpRightFromSquare} />

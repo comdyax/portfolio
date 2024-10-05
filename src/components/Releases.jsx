@@ -23,13 +23,7 @@ const formatDate = (dateString) => {
 const ReleaseCard = ({ props }) => {
   return (
     <Card
-      className="m-3"
-      style={{
-        maxWidth: "500px",
-        width: "100%",
-        backgroundColor: "rgb(15, 0, 0)",
-        color: "rgb(240, 223, 199)",
-      }}
+      className="m-3 release"
     >
       <Card.Img
         variant="top"
@@ -41,10 +35,9 @@ const ReleaseCard = ({ props }) => {
         <Card.Text>RELEASE: {formatDate(props.releaseDate)}</Card.Text>
         <Stack gap={3} className="col-md-6 mx-auto">
           <Button
-            variant="primary"
+            variant="light"
             href={props.labelUrl}
             target="_blank"
-            style={{ color: "rgb(240, 223, 199)" }}
           >
             <FontAwesomeIcon icon={faRecordVinyl} />
             &ensp;
@@ -53,10 +46,9 @@ const ReleaseCard = ({ props }) => {
             <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
           </Button>
           <Button
-            variant="primary"
+            variant="light"
             href={props.streamingUrl}
             target="_blank"
-            style={{ color: "rgb(240, 223, 199)" }}
           >
             <FontAwesomeIcon icon={faSpotify} />
             &ensp;

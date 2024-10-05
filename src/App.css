@@ -4,15 +4,31 @@
 }
 
 body {
-  font-family: PrimaryFont, "Helvetica", sans-serif;
+  font-family: "Helvetica", sans-serif;
   margin: 0;
   text-align: center;
-  color: #f0dfc7;
-  background-color: rgb(15, 0, 0);
+  color: #ffffff;
+  background-color: #00000000;
   padding: 0;
   height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
+  overscroll-behavior: none;
+}
+
+.nav {
+  color: #ffffff;
+  background-color: #252525ad;
+
+}
+
+.nav-link {
+  color: #ffffff;
+}
+
+.dropdown_nav {
+  color: #ffffff;
+  text-align: center;
 }
 
 .p5-canvas {
@@ -22,24 +38,28 @@ body {
 }
 
 .footer {
-  position: fixed;
+  position: sticky;
+  bottom: 0;
   padding: 0.5%;
   z-index: 100;
   width: 100%;
-  bottom: 0px;
-  /* background-color: rgb(15, 0, 0); */
+  background-color: rgba(28, 28, 28, 0.644);
 }
 
 .content {
   position: relative;
+  margin-top: 45px;
   z-index: 1;
   padding: 4%;
   margin-left: auto;
   margin-right: auto;
+  min-height: 100vh;
 }
 
 .text-content {
+  min-height: 100vh;
   position: relative;
+  margin-top: 45px;
   padding: 4%;
   text-align: center;
   max-width: 1000px;
@@ -47,6 +67,13 @@ body {
   margin-right: auto;
   line-height: 2;
   z-index: 2;
+}
+
+.iframe {
+  max-width: 600px;
+  width: 100%;
+  background-color: rgba(28, 28, 28, 0.644);
+  color: rgb(255, 255, 255);
 }
 
 .imprint_policy {
@@ -71,5 +98,15 @@ body {
 .links {
   color: rgb(156, 95, 37);
   text-decoration: none;
+}
 
+.links:hover {
+  color: rgb(100, 86, 74);
+}
+
+.release {
+  max-width: 500px;
+  width: 100%;
+  background-color: rgba(28, 28, 28, 0.644);
+  color: rgb(255, 255, 255);
 }
