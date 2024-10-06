@@ -20,11 +20,13 @@ import TopScroller from "./components/TopScroller";
 
 function App() {
   return (
+    
     <LanguageProvider>
       <CookieConsentProvider>
         <ConsentCookies />
         <BackgroundWrapper canvas={flowField} />
         <BrowserRouter>
+        <div className="app">
         <TopScroller/>
           <Header />
           <Routes>
@@ -37,6 +39,7 @@ function App() {
             <Route path="privacy-policy" element={<PrivacyPolicy />} />
           </Routes>
           <Footer />
+          </div>
         </BrowserRouter>
       </CookieConsentProvider>
     </LanguageProvider>

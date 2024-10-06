@@ -76,7 +76,7 @@ const Releases = () => {
         {releases ? (
           <>
             <h1>{releases.header}</h1>
-            <Container className="d-flex flex-wrap justify-content-center my-5">
+            <Container className="d-flex flex-wrap justify-content-center my-5 rounded-3 overflow-hidden">
               {releases.data.map((con, key) => (
                 <ReleaseCard key={key} props={con} />
               ))}

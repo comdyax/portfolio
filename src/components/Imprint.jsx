@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import { LanguageContext } from "../contexts/LanguageContextProvider";
-import { Container } from "react-bootstrap";
 
 const ImprintEnglish = () => {
   return (

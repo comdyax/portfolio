@@ -51,10 +51,10 @@ const ImprintPolicyWrapper = () => {
   const { language } = useContext(LanguageContext);
   return (
     <>
-      <Link to="/imprint" className="links foot_components">
+      <Link to="/imprint" className="links footer_components">
         {language === "de" ? "Impressum" : "Imprint"}
       </Link>
-      <Link to="/privacy-policy" className="links foot_components">
+      <Link to="/privacy-policy" className="links footer_components">
         {language === "de" ? "Datenschutzerklärung" : "Privacy Policy"}
       </Link>
     </>
@@ -67,7 +67,7 @@ const Copyright = () => {
 
 const Footer = () => {
   return (
-    <footer className="footer">
+    <div className="footer">
       <Container fluid>
         <Row>
           <Col md={3}>
@@ -82,7 +82,7 @@ const Footer = () => {
           </Col>
         </Row>
       </Container>
-    </footer>
+    </div>
   );
 };
 
