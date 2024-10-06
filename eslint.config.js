@@ -18,16 +18,6 @@ export default [
       },
     },
     settings: { react: { version: "18.3" } },
-    "react-three-fiber": {
-      components: [
-        "mesh",
-        "group",
-        "pointLight",
-        "ambientLight",
-        "orbitControls",
-        "sphere",
-      ],
-    },
     plugins: {
       react,
       "react-hooks": reactHooks,

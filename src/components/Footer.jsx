@@ -12,8 +12,7 @@ const EPK = () => {
     <a
       href={`/${fileName}.pdf`}
       download={`${fileName}.pdf`}
-      className="links"
-      style={{ whiteSpace: "nowrap" }}
+      className="links footer_components"
     >
       {language === "de" ? "EPK.pdf herunterladen" : "EPK.pdf download"}
       &ensp;
@@ -41,49 +40,45 @@ const EmailDecoder = () => {
   };
 
   return (
-    <a
-      className="links"
-      href="#"
-      onClick={openMailer}
-      style={{ whiteSpace: "nowrap" }}
-    >
+    <a className="links footer_components" href="#" onClick={openMailer}>
       info[a]perplexitiesonmars.de&ensp;
       <FontAwesomeIcon icon={faEnvelope} />
     </a>
   );
 };
 
-const Footer = () => {
+const ImprintPolicyWrapper = () => {
   const { language } = useContext(LanguageContext);
+  return (
+    <>
+      <Link to="/imprint" className="links foot_components">
+        {language === "de" ? "Impressum" : "Imprint"}
+      </Link>
+      <Link to="/privacy-policy" className="links foot_components">
+        {language === "de" ? "Datenschutzerklärung" : "Privacy Policy"}
+      </Link>
+    </>
+  );
+};
+
+const Copyright = () => {
+  return <>&copy; {new Date().getFullYear()} Perplexities on Mars</>;
+};
+
+const Footer = () => {
   return (
     <footer className="footer">
       <Container fluid>
         <Row>
           <Col md={3}>
-            &copy; {new Date().getFullYear()} Perplexities on Mars{" "}
+            <Copyright />
           </Col>
-          <Col md={3}>
+          <Col md={6}>
             <EmailDecoder />
-          </Col>
-          <Col md={3}>
             <EPK />
           </Col>
           <Col md={3}>
-            <Link
-              to="/imprint"
-              className="links"
-              style={{ whiteSpace: "nowrap" }}
-            >
-              {language === "de" ? "Impressum" : "Imprint"}
-            </Link>
-            &emsp;
-            <Link
-              to="/privacy-policy"
-              className="links"
-              style={{ whiteSpace: "nowrap" }}
-            >
-              {language === "de" ? "Datenschutzerklärung" : "Privacy Policy"}
-            </Link>
+            <ImprintPolicyWrapper />
           </Col>
         </Row>
       </Container>

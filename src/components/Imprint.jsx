@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { LanguageContext } from "../contexts/LanguageContextProvider";
+import { Container } from "react-bootstrap";
 
 const ImprintEnglish = () => {
   return (
@@ -67,8 +68,9 @@ const ImprintEnglish = () => {
         Our website contains links to external third-party websites. We have no
         influence on the content of these directly or indirectly linked
         websites. Therefore, we cannot guarantee the accuracy of the content of
-        the &quot;external links.&quot; The respective providers or operators (authors) of
-        the pages are responsible for the content of the external links.
+        the &quot;external links.&quot; The respective providers or operators
+        (authors) of the pages are responsible for the content of the external
+        links.
       </p>
       <p>
         The external links were checked for possible legal violations at the
@@ -290,7 +292,11 @@ const ImprintGerman = () => {
 
 const Imprint = () => {
   const { language } = useContext(LanguageContext);
-  return <div className="imprint_policy">{language === "de" ? <ImprintGerman /> : <ImprintEnglish />}</div>;
+  return (
+      <div className="imprint_policy">
+        {language === "de" ? <ImprintGerman /> : <ImprintEnglish />}
+      </div>
+  );
 };
 
 export default Imprint;

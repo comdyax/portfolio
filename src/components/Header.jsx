@@ -37,7 +37,7 @@ const Header = () => {
   return (
     <Navbar fixed="top" expand={expand} className="nav" data-bs-theme="dark">
       <Container fluid>
-        <Navbar.Brand className="nav-link" as={Link} to="/" style={{maxWidth: "5px", maxHeight: "40px"}}>
+        <Navbar.Brand className="nav-link" as={Link} to="/" style={{maxWidth: "20px", maxHeight: "40px"}}>
         <span ref={canvasRef} />
         </Navbar.Brand>
         <Navbar.Brand className="nav-link" as={Link} to="/">
@@ -56,7 +56,7 @@ const Header = () => {
             </Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body>
-            <Nav>
+            <Nav className="justify-content-end flex-grow-1 pe-3">
               <Nav.Link
                 className="nav-link"
                 as={Link}
@@ -98,6 +98,7 @@ const Header = () => {
                 Band
               </Nav.Link>
               <NavDropdown
+              align="end"
                 title={
                   <span className="dropdown_nav">
                     {language === "de" ? "Sprache" : "Language"}
