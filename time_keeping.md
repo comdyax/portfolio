@@ -15,8 +15,9 @@
 |26.09.2024 | 8    | react three fiber first idea for a background/canvas maybe use this for audio visuals |
 |29.09.2024 | 8    | refactor: new idea: planet mars + asteroidfield with threejs components Sphere and texture maps |
 |04.10.2024 | 4    | deactivate threejs and refactor background + responsive navbar with bootsrap (not ready yet) |
+|05.10.2024 | 3    | header styled and css cleanug into App.css file |
 
 
 
 
-sum: 58h
+sum: 61h

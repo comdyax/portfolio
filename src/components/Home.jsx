@@ -1,10 +1,9 @@
-import Planetsystem from "./Planetsysten";
+import { logo } from "../p5_drawings/logo";
+import BackgroundWrapper from "./BackgroundWrapper";
 
 const Home = () => {
   return (
-    <div style={{ height: "100vh", width: "100vw", background: "#000" }}>
-      {/* <Planetsystem /> */}
-    </div>
+<></>
   );
 };
 

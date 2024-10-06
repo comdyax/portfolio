@@ -2,6 +2,25 @@ import { Container, Row, Col } from "react-bootstrap";
 import { useContext } from "react";
 import { LanguageContext } from "../contexts/LanguageContextProvider";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faDownload, faEnvelope } from "@fortawesome/free-solid-svg-icons";
+
+const EPK = () => {
+  const { language } = useContext(LanguageContext);
+  const fileName = language === "de" ? "epk_pom" : "epk_pom_english";
+  return (
+    <a
+      href={`/${fileName}.pdf`}
+      download={`${fileName}.pdf`}
+      className="links"
+      style={{ whiteSpace: "nowrap" }}
+    >
+      {language === "de" ? "EPK.pdf herunterladen" : "EPK.pdf download"}
+      &ensp;
+      <FontAwesomeIcon icon={faDownload} />
+    </a>
+  );
+};
 
 const EmailDecoder = () => {
   const { language } = useContext(LanguageContext);
@@ -22,8 +41,14 @@ const EmailDecoder = () => {
   };
 
   return (
-    <a className="links" href="#" onClick={openMailer}>
-      {language === "de" ? "E-Mail: bitte klicken" : "Mail: please click"}
+    <a
+      className="links"
+      href="#"
+      onClick={openMailer}
+      style={{ whiteSpace: "nowrap" }}
+    >
+      info[a]perplexitiesonmars.de&ensp;
+      <FontAwesomeIcon icon={faEnvelope} />
     </a>
   );
 };
@@ -32,23 +57,33 @@ const Footer = () => {
   const { language } = useContext(LanguageContext);
   return (
     <footer className="footer">
-      <Container>
+      <Container fluid>
         <Row>
-          <Col md={6}>
-            <p className="mb-0">
-              &copy; {new Date().getFullYear()} Perplexities on Mars{" "}
-            </p>
+          <Col md={3}>
+            &copy; {new Date().getFullYear()} Perplexities on Mars{" "}
           </Col>
-          <Col md={6} className="text-md-right">
-            <Link to="/imprint" className="links">
+          <Col md={3}>
+            <EmailDecoder />
+          </Col>
+          <Col md={3}>
+            <EPK />
+          </Col>
+          <Col md={3}>
+            <Link
+              to="/imprint"
+              className="links"
+              style={{ whiteSpace: "nowrap" }}
+            >
               {language === "de" ? "Impressum" : "Imprint"}
             </Link>
             &emsp;
-            <Link to="/privacy-policy" className="links">
+            <Link
+              to="/privacy-policy"
+              className="links"
+              style={{ whiteSpace: "nowrap" }}
+            >
               {language === "de" ? "Datenschutzerklärung" : "Privacy Policy"}
             </Link>
-            &emsp;
-            <EmailDecoder />
           </Col>
         </Row>
       </Container>

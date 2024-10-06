@@ -8,8 +8,18 @@ import {
   Container,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { logo } from "../p5_drawings/logo";
+import { useEffect, useRef } from 'react';
+import p5 from 'p5';
 
 const Header = () => {
+  const canvasRef = useRef(null);
+
+  useEffect(() => {
+    const p5Logo = new p5(logo, canvasRef.current);
+    return () => p5Logo.remove();
+  }, []);
+
   const { language, handleSetLanguage } = useContext(LanguageContext);
   const [showOffcanvas, setShowOffcanvas] = useState(false);
   const expand = "sm";
@@ -27,6 +37,9 @@ const Header = () => {
   return (
     <Navbar fixed="top" expand={expand} className="nav" data-bs-theme="dark">
       <Container fluid>
+        <Navbar.Brand className="nav-link" as={Link} to="/" style={{maxWidth: "5px", maxHeight: "40px"}}>
+        <span ref={canvasRef} />
+        </Navbar.Brand>
         <Navbar.Brand className="nav-link" as={Link} to="/">
           <b>Perplexities on Mars</b>
         </Navbar.Brand>

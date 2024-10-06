@@ -16,12 +16,13 @@ import "./App.css";
 import BackgroundWrapper from "./components/BackgroundWrapper";
 import { flowField } from "./p5_drawings/flowField";
 
+
 function App() {
   return (
     <LanguageProvider>
       <CookieConsentProvider>
         <ConsentCookies />
-        <BackgroundWrapper canvas={flowField}/>
+        <BackgroundWrapper canvas={flowField} />
         <BrowserRouter>
           <Header />
           <Routes>
