@@ -22,9 +22,7 @@ const formatDate = (dateString) => {
 
 const ReleaseCard = ({ props }) => {
   return (
-    <Card
-      className="m-3 release"
-    >
+    <Card className="m-3 release">
       <Card.Img
         variant="top"
         src={`/images/${props.imgPath}`}
@@ -34,26 +32,14 @@ const ReleaseCard = ({ props }) => {
         <Card.Title>{props.name}</Card.Title>
         <Card.Text>RELEASE: {formatDate(props.releaseDate)}</Card.Text>
         <Stack gap={3} className="col-md-6 mx-auto">
-          <Button
-            variant="light"
-            href={props.labelUrl}
-            target="_blank"
-          >
+          <Button variant="light" href={props.labelUrl} target="_blank">
             <FontAwesomeIcon icon={faRecordVinyl} />
-            &ensp;
-            {props.labelName}
-            &ensp;
+            &ensp;{props.labelName}&ensp;
             <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
           </Button>
-          <Button
-            variant="light"
-            href={props.streamingUrl}
-            target="_blank"
-          >
+          <Button variant="light" href={props.streamingUrl} target="_blank">
             <FontAwesomeIcon icon={faSpotify} />
-            &ensp;
-            {props.streamingName}
-            &ensp;
+            &ensp;{props.streamingName}&ensp;
             <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
           </Button>
         </Stack>
@@ -72,20 +58,20 @@ const Releases = () => {
   }, []);
 
   return (
-      <div className="content">
-        {releases ? (
-          <>
-            <h1>{releases.header}</h1>
-            <Container className="d-flex flex-wrap justify-content-center my-5 rounded-3 overflow-hidden">
-              {releases.data.map((con, key) => (
-                <ReleaseCard key={key} props={con} />
-              ))}
-            </Container>
-          </>
-        ) : (
-          <h3>loading content...</h3>
-        )}
-      </div>
+    <div className="content">
+      {releases ? (
+        <>
+          <h1>{releases.header}</h1>
+          <Container className="d-flex flex-wrap justify-content-center my-5 rounded-3 overflow-hidden">
+            {releases.data.map((con, key) => (
+              <ReleaseCard key={key} props={con} />
+            ))}
+          </Container>
+        </>
+      ) : (
+        <h3>loading content...</h3>
+      )}
+    </div>
   );
 };
 

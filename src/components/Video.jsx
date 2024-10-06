@@ -4,15 +4,14 @@ import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
+import { faYoutube } from "@fortawesome/free-brands-svg-icons";
 import { useContext } from "react";
 import { CookieConsentContext } from "../contexts/CookieContextProvider";
 
 function IFrameCard({ videoId, title }) {
   const { consentGiven } = useContext(CookieConsentContext);
   return (
-    <Card
-      className="m-3 iframe"
-    >
+    <Card className="m-3 iframe">
       {consentGiven ? (
         <iframe
           className="youtube-iframe"
@@ -33,7 +32,8 @@ function IFrameCard({ videoId, title }) {
           href={`https://www.youtube.com/watch?v=${videoId}`}
           target="_blank"
         >
-          YOUTUBE &ensp;
+          <FontAwesomeIcon icon={faYoutube} />
+          &ensp;YOUTUBE&ensp;
           <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
         </Button>
       </Card.Body>

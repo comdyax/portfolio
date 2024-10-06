@@ -62,23 +62,37 @@ const ImprintPolicyWrapper = () => {
 };
 
 const Copyright = () => {
-  return <>&copy; {new Date().getFullYear()} Perplexities on Mars</>;
+  return (
+    <div className="footer_components">
+      &copy; {new Date().getFullYear()} Perplexities on Mars
+    </div>
+  );
 };
 
 const Footer = () => {
+  const { language } = useContext(LanguageContext);
   return (
     <div className="footer">
       <Container fluid>
-        <Row>
-          <Col md={3}>
+        <Row className="justify-content-center">
+          <Col md="auto">
             <Copyright />
           </Col>
-          <Col md={6}>
+          <Col md="auto">
             <EmailDecoder />
+          </Col>
+          <Col md="auto">
             <EPK />
           </Col>
-          <Col md={3}>
-            <ImprintPolicyWrapper />
+          <Col md="auto">
+            <Link to="/privacy-policy" className="links footer_components">
+              {language === "de" ? "Datenschutzerklärung" : "Privacy Policy"}
+            </Link>
+          </Col>
+          <Col md="auto">
+            <Link to="/imprint" className="links footer_components">
+              {language === "de" ? "Impressum" : "Imprint"}
+            </Link>
           </Col>
         </Row>
       </Container>

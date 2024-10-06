@@ -9,8 +9,8 @@ import {
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { logo } from "../p5_drawings/logo";
-import { useEffect, useRef } from 'react';
-import p5 from 'p5';
+import { useEffect, useRef } from "react";
+import p5 from "p5";
 
 const Header = () => {
   const canvasRef = useRef(null);
@@ -22,7 +22,7 @@ const Header = () => {
 
   const { language, handleSetLanguage } = useContext(LanguageContext);
   const [showOffcanvas, setShowOffcanvas] = useState(false);
-  const expand = "sm";
+  const expand = "md";
 
   const handleClose = () => setShowOffcanvas(false);
   const handleShow = () => setShowOffcanvas(true);
@@ -37,8 +37,13 @@ const Header = () => {
   return (
     <Navbar fixed="top" expand={expand} className="nav" data-bs-theme="dark">
       <Container fluid>
-        <Navbar.Brand className="nav-link" as={Link} to="/" style={{maxWidth: "20px", maxHeight: "40px"}}>
-        <span ref={canvasRef} />
+        <Navbar.Brand
+          className="nav-link"
+          as={Link}
+          to="/"
+          style={{ maxWidth: "20px", maxHeight: "40px" }}
+        >
+          <span ref={canvasRef} />
         </Navbar.Brand>
         <Navbar.Brand className="nav-link" as={Link} to="/">
           <b>Perplexities on Mars</b>
@@ -50,13 +55,16 @@ const Header = () => {
           placement="end"
           data-bs-theme="dark"
         >
-          <Offcanvas.Header closeButton>
+          <Offcanvas.Header closeButton >
             <Offcanvas.Title className="nav-link">
               <b>Perplexities on Mars</b>
             </Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body>
-            <Nav className="justify-content-end flex-grow-1 pe-3">
+            <Nav
+              className="justify-content-end flex-grow-1 pe-3"
+              style={{ textAlign: "center" }}
+            >
               <Nav.Link
                 className="nav-link"
                 as={Link}
@@ -98,7 +106,7 @@ const Header = () => {
                 Band
               </Nav.Link>
               <NavDropdown
-              align="end"
+                align="end"
                 title={
                   <span className="dropdown_nav">
                     {language === "de" ? "Sprache" : "Language"}
