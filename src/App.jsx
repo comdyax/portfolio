@@ -17,7 +17,6 @@ import BackgroundWrapper from "./components/BackgroundWrapper";
 import { flowField } from "./p5_drawings/flowField";
 import TopScroller from "./components/TopScroller";
 
-
 function App() {
   return (
     

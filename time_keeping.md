@@ -17,8 +17,9 @@
 |04.10.2024 | 4    | deactivate threejs and refactor background + responsive navbar with bootsrap (not ready yet) |
 |05.10.2024 | 3    | header styled and css cleanup into App.css file |
 |06.10.2024 | 10   | footer with icons and download(PDF), p5 sketch logo, cleanup a bit, scroll to top, footer css/components, css fixes, tour Table, flexbox |
+|07.10.2024 | 6    | audiovisualizer with p5 -> could not use p5.sound module needed workaround + first draft |
 
 
 
 
-sum: 71h
+sum: 77h

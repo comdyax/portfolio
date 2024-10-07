@@ -1,10 +1,8 @@
-import { logo } from "../p5_drawings/logo";
+import { audioVisualizer } from "../p5_drawings/audioVisualizer";
 import BackgroundWrapper from "./BackgroundWrapper";
 
 const Home = () => {
-  return (
-<></>
-  );
+  return <BackgroundWrapper canvas={audioVisualizer} />
 };
 
 export default Home;
