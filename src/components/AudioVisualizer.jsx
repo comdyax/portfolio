@@ -4,6 +4,9 @@ import { audioVisualizer } from "../p5_drawings/audioVisualizer";
 import Button from "react-bootstrap/Button";
 import { faPlay, faPause } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useContext } from "react";
+import { PlayContext } from "../contexts/PlayContextProvider";
+
 //const audioUrl = "/platte.wav";
 const audioUrl = "/aeguin.wav";
 
@@ -28,16 +31,21 @@ const PlayButton = ({ handlePlay }) => {
   );
 };
 
-const PauseButton = ({ handlePlay }) => {
+const PauseButton = ({ handlePlay, fadeDuration }) => {
   const [delButton, setDelButton] = useState(false);
+  const [fade, setFade] = useState(false);
 
   useEffect(() => {
+    setFade(true);
     const timer = setTimeout(() => {
       setDelButton(true);
-    }, 3000);
+      setFade(false);
+    }, fadeDuration * 1000);
 
-    return () => clearTimeout(timer);
-  }, []);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [fadeDuration]);
 
   return (
     <>
@@ -52,6 +60,8 @@ const PauseButton = ({ handlePlay }) => {
             left: "50%",
             transform: "translate(-50%, -50%)",
             zIndex: "3",
+            transition: `opacity ${fadeDuration}s ease`,
+            opacity: fade ? 0 : 1,
           }}
         >
           &ensp;
@@ -64,7 +74,7 @@ const PauseButton = ({ handlePlay }) => {
 };
 
 const AudioVisualizer = () => {
-  const [playing, setPlaying] = useState(false);
+  const { display, fadeDuration, play, handleSetPlay } = useContext(PlayContext);
   const visualizerRef = useRef(null);
   const audioContextRef = useRef(null);
   const analyserRef = useRef(null);
@@ -100,23 +110,32 @@ const AudioVisualizer = () => {
   }, []);
 
   const handlePlay = () => {
+    if (audioContextRef.current.state === "suspended") {
+      audioContextRef.current.resume();
+    }
     if (audioElementRef.current.paused) {
-      audioElementRef.current.play();
-      setPlaying(true);
+      audioElementRef.current
+        .play()
+        .then(() => {
+          handleSetPlay(true);
+        })
+        .catch((error) => {
+          console.error("An error occured:", error);
+        });
     } else {
       audioElementRef.current.pause();
-      setPlaying(false);
+      handleSetPlay(false);
     }
   };
 
   return (
     <>
-      {!playing ? (
+      {!play ? (
         <PlayButton handlePlay={handlePlay} />
       ) : (
-        <PauseButton handlePlay={handlePlay} />
+        <PauseButton handlePlay={handlePlay} fadeDuration={fadeDuration} />
       )}
-      <div onClick={playing ? handlePlay : null} style={{ zIndex: "2" }}>
+      <div onClick={!display && play ? handlePlay : null} style={{ zIndex: "2" }}>
         <div ref={visualizerRef} className="p5-canvas" />
       </div>
     </>

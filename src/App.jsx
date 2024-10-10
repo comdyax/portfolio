@@ -10,6 +10,7 @@ import Imprint from "./components/Imprint";
 import PrivacyPolicy from "./components/PrivacyPolicy";
 import { CookieConsentProvider } from "./contexts/CookieContextProvider";
 import { LanguageProvider } from "./contexts/LanguageContextProvider";
+import { PlayProvider } from "./contexts/PlayContextProvider";
 import ConsentCookies from "./components/ConsentCookies";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
@@ -19,28 +20,30 @@ import TopScroller from "./components/TopScroller";
 
 function App() {
   return (
-    <LanguageProvider>
-      <CookieConsentProvider>
-        <ConsentCookies />
-        <BackgroundWrapper canvas={flowField} />
-        <BrowserRouter>
-          <div className="app">
-            <TopScroller />
-            <Header />
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="releases" element={<Releases />} />
-              <Route path="video" element={<Video />} />
-              <Route path="tour" element={<Tour />} />
-              <Route path="band" element={<Band />} />
-              <Route path="imprint" element={<Imprint />} />
-              <Route path="privacy-policy" element={<PrivacyPolicy />} />
-            </Routes>
-            <Footer />
-          </div>
-        </BrowserRouter>
-      </CookieConsentProvider>
-    </LanguageProvider>
+    <PlayProvider>
+      <LanguageProvider>
+        <CookieConsentProvider>
+          <ConsentCookies />
+          <BackgroundWrapper canvas={flowField} />
+          <BrowserRouter>
+            <div className="app">
+              <TopScroller />
+              <Header />
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="releases" element={<Releases />} />
+                <Route path="video" element={<Video />} />
+                <Route path="tour" element={<Tour />} />
+                <Route path="band" element={<Band />} />
+                <Route path="imprint" element={<Imprint />} />
+                <Route path="privacy-policy" element={<PrivacyPolicy />} />
+              </Routes>
+              <Footer />
+            </div>
+          </BrowserRouter>
+        </CookieConsentProvider>
+      </LanguageProvider>
+    </PlayProvider>
   );
 }
 

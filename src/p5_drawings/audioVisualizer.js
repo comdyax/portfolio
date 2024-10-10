@@ -1,7 +1,7 @@
 export const audioVisualizer = (p, analyser) => {
   let size = window.innerHeight / 60;
   let length = 11;
-  let audioFreqs = new Uint8Array(256);
+  let audioFreqs = new Uint8Array(128);
   let objectData = [];
   const lerpFactor = 0.85;
 
@@ -38,8 +38,10 @@ export const audioVisualizer = (p, analyser) => {
     p.ambientLight(500);
     p.directionalLight(255, 255, 255, 1, 0.5, 0.5);
     p.specularMaterial(5);
- 
-    analyser.getByteFrequencyData(audioFreqs);
+
+    if (analyser) {
+      analyser.getByteFrequencyData(audioFreqs);
+    }
 
     for (let i = 0; i < objectData.length; i++) {
       let pos = objectData[i];
@@ -81,7 +83,7 @@ export const audioVisualizer = (p, analyser) => {
       p.rotateZ(rotationAmount / 3);
       // p.box(size * 0.8);
       p.noStroke();
-      p.sphere(size * 0.5, 9,9);
+      p.sphere(size * 0.5, 9, 9);
       p.pop();
     }
   };

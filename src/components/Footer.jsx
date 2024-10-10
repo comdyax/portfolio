@@ -1,17 +1,18 @@
 import { Container, Row, Col } from "react-bootstrap";
 import { useContext } from "react";
 import { LanguageContext } from "../contexts/LanguageContextProvider";
+import { PlayContext } from "../contexts/PlayContextProvider";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDownload, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 
-const EPK = () => {
+const EPK = ({ play }) => {
   const { language } = useContext(LanguageContext);
   const fileName = language === "de" ? "epk_pom" : "epk_pom_english";
   return (
     <a
-      href={`/${fileName}.pdf`}
-      download={`${fileName}.pdf`}
+      href={play ? null : `/${fileName}.pdf`}
+      download={play ? null : `${fileName}.pdf`}
       className="links footer_components"
     >
       {language === "de" ? "EPK.pdf herunterladen" : "EPK.pdf download"}
@@ -21,7 +22,7 @@ const EPK = () => {
   );
 };
 
-const EmailDecoder = () => {
+const EmailDecoder = ({ play }) => {
   const { language } = useContext(LanguageContext);
   const decode = (encoded) => {
     return encoded.replace(/[a-zA-Z]/g, function (c) {
@@ -40,24 +41,14 @@ const EmailDecoder = () => {
   };
 
   return (
-    <a className="links footer_components" href="#" onClick={openMailer}>
+    <a
+      className="links footer_components"
+      href={play ? null : "#"}
+      onClick={play ? null : openMailer}
+    >
       info[a]perplexitiesonmars.de&ensp;
       <FontAwesomeIcon icon={faEnvelope} />
     </a>
-  );
-};
-
-const ImprintPolicyWrapper = () => {
-  const { language } = useContext(LanguageContext);
-  return (
-    <>
-      <Link to="/imprint" className="links footer_components">
-        {language === "de" ? "Impressum" : "Imprint"}
-      </Link>
-      <Link to="/privacy-policy" className="links footer_components">
-        {language === "de" ? "Datenschutzerklärung" : "Privacy Policy"}
-      </Link>
-    </>
   );
 };
 
@@ -70,33 +61,53 @@ const Copyright = () => {
 };
 
 const Footer = () => {
+  const { display, fadeDuration, play } = useContext(PlayContext);
   const { language } = useContext(LanguageContext);
+
   return (
-    <div className="footer">
-      <Container fluid>
-        <Row className="justify-content-center">
-          <Col md="auto">
-            <Copyright />
-          </Col>
-          <Col md="auto">
-            <EmailDecoder />
-          </Col>
-          <Col md="auto">
-            <EPK />
-          </Col>
-          <Col md="auto">
-            <Link to="/privacy-policy" className="links footer_components">
-              {language === "de" ? "Datenschutzerklärung" : "Privacy Policy"}
-            </Link>
-          </Col>
-          <Col md="auto">
-            <Link to="/imprint" className="links footer_components">
-              {language === "de" ? "Impressum" : "Imprint"}
-            </Link>
-          </Col>
-        </Row>
-      </Container>
-    </div>
+    <>
+      {display && (
+        <div
+          className="footer"
+          style={{
+            opacity: play ? 0 : 1,
+            transition: `opacity ${fadeDuration}s ease`,
+          }}
+        >
+          <Container fluid>
+            <Row className="justify-content-center">
+              <Col md="auto">
+                <Copyright />
+              </Col>
+              <Col md="auto">
+                <EmailDecoder play={play} />
+              </Col>
+              <Col md="auto">
+                <EPK play={play} />
+              </Col>
+              <Col md="auto">
+                <Link
+                  to={play ? null : "/privacy-policy"}
+                  className="links footer_components"
+                >
+                  {language === "de"
+                    ? "Datenschutzerklärung"
+                    : "Privacy Policy"}
+                </Link>
+              </Col>
+              <Col md="auto">
+                <Link
+                  to={play ? null : "/imprint"}
+                  className="links footer_components"
+                >
+                  {language === "de" ? "Impressum" : "Imprint"}
+                </Link>
+              </Col>
+            </Row>
+          </Container>
+        </div>
+      )}
+    </>
   );
 };
 
