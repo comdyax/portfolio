@@ -4,13 +4,13 @@ export const flowField = (props) => {
   let cols, rows;
   let scale = 10;
   let particles = [];
-  let particleCount = 4000;
+  let particleCount = 1000;
   let particleSize = 0.5;
-  let fadingTrails = 4;
-  let particleSpeed = 20; // this can change interactive maybe on movement (1-10)
+  let fadingTrails = 10;
+  let particleSpeed = 15; // this can change interactive maybe on movement (1-10)
   let flowField;
   let inc = 0.1; // Perlin noise increment
-  let transparency = 80; // this can change interactive maybe on movement 0-40
+  let transparency = 10; // this can change interactive maybe on movement 0-40
   let transparencyThreshold = 80;
   let dissipationFactor = 0.01;
   let dissipationThreshold = 0.5; // this can change interactive maybe on movement 0-1

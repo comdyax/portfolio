@@ -19,25 +19,24 @@ import TopScroller from "./components/TopScroller";
 
 function App() {
   return (
-    
     <LanguageProvider>
       <CookieConsentProvider>
         <ConsentCookies />
         <BackgroundWrapper canvas={flowField} />
         <BrowserRouter>
-        <div className="app">
-        <TopScroller/>
-          <Header />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="releases" element={<Releases />} />
-            <Route path="video" element={<Video />} />
-            <Route path="tour" element={<Tour />} />
-            <Route path="band" element={<Band />} />
-            <Route path="imprint" element={<Imprint />} />
-            <Route path="privacy-policy" element={<PrivacyPolicy />} />
-          </Routes>
-          <Footer />
+          <div className="app">
+            <TopScroller />
+            <Header />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="releases" element={<Releases />} />
+              <Route path="video" element={<Video />} />
+              <Route path="tour" element={<Tour />} />
+              <Route path="band" element={<Band />} />
+              <Route path="imprint" element={<Imprint />} />
+              <Route path="privacy-policy" element={<PrivacyPolicy />} />
+            </Routes>
+            <Footer />
           </div>
         </BrowserRouter>
       </CookieConsentProvider>

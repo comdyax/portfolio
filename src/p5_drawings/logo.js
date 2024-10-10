@@ -1,5 +1,3 @@
-import p5 from "p5";
-
 export const logo = (p) => {
   let size = 3;
   let grid = 5;
