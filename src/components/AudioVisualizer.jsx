@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import p5 from "p5";
 import { audioVisualizer } from "../p5_drawings/audioVisualizer";
 import Button from "react-bootstrap/Button";
@@ -7,53 +7,18 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext } from "react";
 import { PlayContext } from "../contexts/PlayContextProvider";
 
-//const audioUrl = "/platte.wav";
+// const audioUrl = "/platte.wav";
 const audioUrl = "/aeguin.wav";
 
-const PlayButton = ({ handlePlay }) => {
-  return (
-    <Button
-      variant="outline-light large"
-      size="lg"
-      onClick={handlePlay}
-      style={{
-        position: "absolute",
-        top: "50%",
-        left: "50%",
-        transform: "translate(-50%, -50%)",
-        zIndex: "3",
-      }}
-    >
-      &ensp;
-      <FontAwesomeIcon icon={faPlay} />
-      &ensp;
-    </Button>
-  );
-};
-
-const PauseButton = ({ handlePlay, fadeDuration }) => {
-  const [delButton, setDelButton] = useState(false);
-  const [fade, setFade] = useState(false);
-
-  useEffect(() => {
-    setFade(true);
-    const timer = setTimeout(() => {
-      setDelButton(true);
-      setFade(false);
-    }, fadeDuration * 1000);
-
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [fadeDuration]);
-
+const PlayPauseButton = ({ handlePlay }) => {
+  const { display, fadeDuration, play } = useContext(PlayContext);
   return (
     <>
-      {!delButton && (
+      {display && (
         <Button
-          onClick={handlePlay}
           variant="outline-light large"
           size="lg"
+          onClick={handlePlay}
           style={{
             position: "absolute",
             top: "50%",
@@ -61,11 +26,15 @@ const PauseButton = ({ handlePlay, fadeDuration }) => {
             transform: "translate(-50%, -50%)",
             zIndex: "3",
             transition: `opacity ${fadeDuration}s ease`,
-            opacity: fade ? 0 : 1,
+            opacity: play ? 0 : 1,
           }}
         >
           &ensp;
-          <FontAwesomeIcon icon={faPause} />
+          {!play ? (
+            <FontAwesomeIcon icon={faPlay} />
+          ) : (
+            <FontAwesomeIcon icon={faPause} />
+          )}
           &ensp;
         </Button>
       )}
@@ -74,7 +43,8 @@ const PauseButton = ({ handlePlay, fadeDuration }) => {
 };
 
 const AudioVisualizer = () => {
-  const { display, fadeDuration, play, handleSetPlay } = useContext(PlayContext);
+  const { display, play, handleSetPlay } =
+    useContext(PlayContext);
   const visualizerRef = useRef(null);
   const audioContextRef = useRef(null);
   const analyserRef = useRef(null);
@@ -95,6 +65,14 @@ const AudioVisualizer = () => {
     source.connect(analyserRef.current);
     analyserRef.current.connect(audioContextRef.current.destination);
 
+    const handleAudioEnded = () => {
+      audioElementRef.current.currentTime = 0; 
+      console.log('Audio has ended. Playback position reset to 0.');
+      handleSetPlay(false);
+    };
+
+    audioElementRef.current.addEventListener('ended', handleAudioEnded);
+
     const visualizer = new p5(
       (p) => audioVisualizer(p, analyserRef.current),
       visualizerRef.current
@@ -103,11 +81,14 @@ const AudioVisualizer = () => {
       visualizer.remove();
       audioElementRef.current.pause();
       audioElementRef.current.src = "";
+      audioElementRef.current.removeEventListener('ended', handleAudioEnded);
       source.disconnect();
       analyserRef.current.disconnect();
       audioContextRef.current.close();
     };
   }, []);
+
+  
 
   const handlePlay = () => {
     if (audioContextRef.current.state === "suspended") {
@@ -130,12 +111,11 @@ const AudioVisualizer = () => {
 
   return (
     <>
-      {!play ? (
-        <PlayButton handlePlay={handlePlay} />
-      ) : (
-        <PauseButton handlePlay={handlePlay} fadeDuration={fadeDuration} />
-      )}
-      <div onClick={!display && play ? handlePlay : null} style={{ zIndex: "2" }}>
+      <PlayPauseButton handlePlay={handlePlay} />
+      <div
+        onClick={!display && play ? handlePlay : null}
+        style={{ zIndex: "2" }}
+      >
         <div ref={visualizerRef} className="p5-canvas" />
       </div>
     </>

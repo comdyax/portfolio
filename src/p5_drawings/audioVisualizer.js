@@ -4,6 +4,17 @@ export const audioVisualizer = (p, analyser) => {
   let audioFreqs = new Uint8Array(128);
   let objectData = [];
   const lerpFactor = 0.85;
+  let lowerColorBound = 40;
+  let upperColorBound = 120;
+
+  function getColorByFrequency(freq) {
+    return [
+      156,
+      p.map(freq, 0, 255, lowerColorBound, upperColorBound),
+      37,
+      p.map(freq, 0, 255, 50, 140),
+    ];
+  }
 
   p.setup = () => {
     p.createCanvas(window.innerWidth, window.innerHeight, p.WEBGL);
@@ -15,18 +26,13 @@ export const audioVisualizer = (p, analyser) => {
           let x = i * size + offset;
           let y = j * size + offset;
           let z = k * size + offset;
-
-          let dis = p.dist(x, y, z, 0, 0, 0);
-
           const insphere = Math.sqrt(x * x + y * y + z * z);
-
           if (insphere <= (length * size) / 2) {
-            objectData.push({ i, j, k, x, y, z, dis });
+            objectData.push({ x, y, z });
           }
         }
       }
     }
-    objectData.sort((a, b) => a.dis - b.dis);
   };
 
   p.draw = () => {
@@ -47,6 +53,7 @@ export const audioVisualizer = (p, analyser) => {
       let pos = objectData[i];
 
       let freq = audioFreqs[i % audioFreqs.length];
+
       let expansion = p.map(freq, 0, 255, 2, 5);
 
       // Target positions for breathing effect based on audio spectrum data
@@ -66,24 +73,23 @@ export const audioVisualizer = (p, analyser) => {
       pos.currentY = p.lerp(pos.currentY, targetY, lerpFactor);
       pos.currentZ = p.lerp(pos.currentZ, targetZ, lerpFactor);
 
-      let color = p.map(freq, 0, 255, 156, 255);
+      let color = getColorByFrequency(freq);
+      if (expansion > 2) p.fill(color);
+      else p.fill(100, 86, 74, 20);
 
-      if (color > 156) {
-        p.fill(color, 95, 37, 100);
-      } else {
-        p.fill(100, 86, 74, 50);
-      }
       p.push();
       p.translate(pos.currentX, pos.currentY, pos.currentZ);
-      p.stroke(28, 28, 28, 255);
-      p.strokeWeight(0.1);
+
       let rotationAmount = p.map(freq, 0, 255, 0, p.PI);
       p.rotateX(rotationAmount / 2);
       p.rotateY(rotationAmount / 5);
       p.rotateZ(rotationAmount / 3);
+      // p.stroke(28, 28, 28, 255);
+      // p.strokeWeight(0.1);
       // p.box(size * 0.8);
+
       p.noStroke();
-      p.sphere(size * 0.5, 9, 9);
+      p.sphere(size * 0.5);
       p.pop();
     }
   };

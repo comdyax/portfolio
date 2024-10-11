@@ -18,8 +18,8 @@ export const PlayProvider = ({ children }) => {
     } else setDisplay(true)
   }, [play]);
 
-  const handleSetPlay = () => {
-    setPlay(!play);
+  const handleSetPlay = (value) => {
+    setPlay(value);
   };
 
   return (
