@@ -18,9 +18,10 @@
 |05.10.2024 | 3    | header styled and css cleanup into App.css file |
 |06.10.2024 | 10   | footer with icons and download(PDF), p5 sketch logo, cleanup a bit, scroll to top, footer css/components, css fixes, tour Table, flexbox |
 |07.10.2024 | 6    | audiovisualizer with p5 -> could not use p5.sound module needed workaround + first draft |
-|10.10.2024 | 10    | audioVisualizer with control Buttons and new design... need to learn more about Audio Web API |
+|10.10.2024 | 10   | audioVisualizer with control Buttons and new design... need to learn more about Audio Web API |
+|12.10.2024 | 8    | added a view new visualizer ideas and wrote a better background: mouse responsive stars |
 
 
 
 
-sum: 87h
+sum: 95h

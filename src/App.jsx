@@ -16,6 +16,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import BackgroundWrapper from "./components/BackgroundWrapper";
 import { flowField } from "./p5_drawings/flowField";
+import { background } from "./p5_drawings/background";
 import TopScroller from "./components/TopScroller";
 
 function App() {
@@ -24,7 +25,7 @@ function App() {
       <LanguageProvider>
         <CookieConsentProvider>
           <ConsentCookies />
-          <BackgroundWrapper canvas={flowField} />
+          <BackgroundWrapper canvas={background} />
           <BrowserRouter>
             <div className="app">
               <TopScroller />

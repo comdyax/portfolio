@@ -1,0 +1,50 @@
+export const audioVisualizer_v2 = (p, analyser) => {
+  let audioFreqs = new Uint8Array(256);
+  let strokeWeight = p.ceil(window.innerWidth / 256);
+  let frameSize = 30;
+  let objectData = [];
+  let lowerColorBound = 40;
+  let upperColorBound = 120;
+
+  function getColorByFrequency(freq) {
+    if (freq === 0) return [28, 28, 28, 100];
+    else
+      return [
+        156,
+        p.map(freq, 0, 255, lowerColorBound, upperColorBound),
+        37,
+        p.map(freq, 0, 255, 100, 255),
+      ];
+  }
+
+  p.setup = () => {
+    p.createCanvas(window.innerWidth, window.innerHeight);
+    p.background(0, 0, 0, 0);
+    for (let i = 0; i < audioFreqs.length; i++) {
+      let x = p.map(
+        i,
+        0,
+        audioFreqs.length,
+        frameSize,
+        window.innerWidth - frameSize
+      );
+      let y1 = frameSize;
+      let y2 = p.ceil(window.innerHeight - frameSize);
+      objectData.push({ x, y1, y2 });
+    }
+  };
+
+  p.draw = () => {
+    p.clear()
+    analyser.getByteFrequencyData(audioFreqs);
+
+    for (let i = 0; i < objectData.length; i++) {
+      let pos = objectData[i];
+      let freq = audioFreqs[i % audioFreqs.length];
+      let color = getColorByFrequency(freq);
+      p.stroke(color);
+      p.strokeWeight(strokeWeight);
+      p.line(pos.x, pos.y1, pos.x, pos.y2);
+    }
+  };
+};

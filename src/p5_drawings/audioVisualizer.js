@@ -84,12 +84,12 @@ export const audioVisualizer = (p, analyser) => {
       p.rotateX(rotationAmount / 2);
       p.rotateY(rotationAmount / 5);
       p.rotateZ(rotationAmount / 3);
-      // p.stroke(28, 28, 28, 255);
-      // p.strokeWeight(0.1);
-      // p.box(size * 0.8);
+      p.stroke(28, 28, 28, 255);
+      p.strokeWeight(0.1);
+      p.box(size * 0.8);
 
-      p.noStroke();
-      p.sphere(size * 0.5);
+      // p.noStroke();
+      // p.sphere(size * 0.5);
       p.pop();
     }
   };
