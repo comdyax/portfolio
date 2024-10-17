@@ -9,6 +9,7 @@ import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Stack from "react-bootstrap/Stack";
+import PropTypes from "prop-types";
 
 const formatDate = (dateString) => {
   const date = new Date(dateString);
@@ -20,32 +21,48 @@ const formatDate = (dateString) => {
   return new Intl.DateTimeFormat("de-DE", conf).format(date);
 };
 
-const ReleaseCard = ({ props }) => {
+const ReleaseCard = ({
+  imgPath,
+  imgAltText,
+  name,
+  releaseDate,
+  labelUrl,
+  labelName,
+  streamingUrl,
+  streamingName,
+}) => {
   return (
     <Card className="m-3 release">
-      <Card.Img
-        variant="top"
-        src={`/images/${props.imgPath}`}
-        alt={props.imgAltText}
-      />
+      <Card.Img variant="top" src={`/images/${imgPath}`} alt={imgAltText} />
       <Card.Body>
-        <Card.Title>{props.name}</Card.Title>
-        <Card.Text>RELEASE: {formatDate(props.releaseDate)}</Card.Text>
+        <Card.Title>{name}</Card.Title>
+        <Card.Text>RELEASE: {formatDate(releaseDate)}</Card.Text>
         <Stack gap={3} className="col-md-6 mx-auto">
-          <Button variant="light" href={props.labelUrl} target="_blank">
+          <Button variant="light" href={labelUrl} target="_blank">
             <FontAwesomeIcon icon={faRecordVinyl} />
-            &ensp;{props.labelName}&ensp;
+            &ensp;{labelName}&ensp;
             <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
           </Button>
-          <Button variant="light" href={props.streamingUrl} target="_blank">
+          <Button variant="light" href={streamingUrl} target="_blank">
             <FontAwesomeIcon icon={faSpotify} />
-            &ensp;{props.streamingName}&ensp;
+            &ensp;{streamingName}&ensp;
             <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
           </Button>
         </Stack>
       </Card.Body>
     </Card>
   );
+};
+
+ReleaseCard.propTypes = {
+  streamingUrl: PropTypes.string.isRequired,
+  labelName: PropTypes.string.isRequired,
+  streamingName: PropTypes.string.isRequired,
+  labelUrl: PropTypes.string.isRequired,
+  imgPath: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  releaseDate: PropTypes.string.isRequired,
+  imgAltText: PropTypes.string.isRequired,
 };
 
 const Releases = () => {
@@ -64,7 +81,17 @@ const Releases = () => {
           <h1>{releases.header}</h1>
           <Container className="d-flex flex-wrap justify-content-center my-5 rounded-3 overflow-hidden">
             {releases.data.map((con, key) => (
-              <ReleaseCard key={key} props={con} />
+              <ReleaseCard
+                key={key}
+                imgPath={con.imgPath}
+                imgAltText={con.imgAltText}
+                name={con.name}
+                releaseDate={con.releaseDate}
+                labelUrl={con.labelUrl}
+                labelName={con.labelName}
+                streamingUrl={con.streamingUrl}
+                streamingName={con.streamingName}
+              />
             ))}
           </Container>
         </>

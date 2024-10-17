@@ -15,7 +15,6 @@ import ConsentCookies from "./components/ConsentCookies";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import BackgroundWrapper from "./components/BackgroundWrapper";
-import { flowField } from "./p5_drawings/flowField";
 import { background } from "./p5_drawings/background";
 import TopScroller from "./components/TopScroller";
 

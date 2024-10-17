@@ -1,6 +1,7 @@
 
 import { useEffect, useRef } from 'react';
 import p5 from 'p5';
+import PropTypes from 'prop-types';
 
 const BackgroundWrapper = ({ canvas }) => {
   const canvasRef = useRef(null);
@@ -14,3 +15,7 @@ const BackgroundWrapper = ({ canvas }) => {
 };
 
 export default BackgroundWrapper;
+
+BackgroundWrapper.propTypes = {
+  canvas: PropTypes.func.isRequired
+}

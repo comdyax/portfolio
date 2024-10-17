@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { createContext, useState, useEffect } from "react";
 
 export const LanguageContext = createContext();
@@ -17,15 +18,16 @@ export const LanguageProvider = ({ children }) => {
   }, []);
 
   const handleSetLanguage = (value) => {
-    setLanguage(value)
+    setLanguage(value);
   };
 
   return (
-    <LanguageContext.Provider
-      value={{ language, handleSetLanguage }}
-    >
+    <LanguageContext.Provider value={{ language, handleSetLanguage }}>
       {children}
     </LanguageContext.Provider>
   );
 };
 
+LanguageProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+};

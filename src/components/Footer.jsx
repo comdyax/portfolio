@@ -5,6 +5,7 @@ import { PlayContext } from "../contexts/PlayContextProvider";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDownload, faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import PropTypes from "prop-types";
 
 const EPK = ({ play }) => {
   const { language } = useContext(LanguageContext);
@@ -21,6 +22,10 @@ const EPK = ({ play }) => {
     </a>
   );
 };
+
+EPK.propTypes = {
+  play: PropTypes.bool.isRequired
+}
 
 const EmailDecoder = ({ play }) => {
   const { language } = useContext(LanguageContext);
@@ -51,6 +56,10 @@ const EmailDecoder = ({ play }) => {
     </a>
   );
 };
+
+EmailDecoder.propTypes = {
+  play: PropTypes.bool.isRequired
+}
 
 const Copyright = () => {
   return (

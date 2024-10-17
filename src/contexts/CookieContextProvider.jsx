@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { createContext, useState, useEffect } from "react";
 import { Cookies } from "react-cookie-consent";
 
@@ -26,3 +27,7 @@ export const CookieConsentProvider = ({ children }) => {
     </CookieConsentContext.Provider>
   );
 };
+
+CookieConsentProvider.propTypes = {
+  children: PropTypes.node.isRequired
+}

@@ -1,15 +1,17 @@
 import { useEffect, useRef } from "react";
 import p5 from "p5";
-import { audioVisualizer } from "../p5_drawings/audioVisualizer";
-import { audioVisualizer_v2 } from "../p5_drawings/audioVisualizer_v2";
-import { audioVisualizer_v3 } from "../p5_drawings/audioVisualizer_v3";
+// import { audioVisualizer } from "../p5_drawings/audioVisualizer";
+// import { audioVisualizer_v2 } from "../p5_drawings/audioVisualizer_v2";
+// import { audioVisualizer_v3 } from "../p5_drawings/audioVisualizer_v3";
+// import { audioVisualizer_v5 } from "../p5_drawings/audioVisualizer_v5";
 import { audioVisualizer_v4 } from "../p5_drawings/audioVisualizer_v4";
-import { audioVisualizer_v5 } from "../p5_drawings/audioVisualizer_v5";
+
 import Button from "react-bootstrap/Button";
 import { faPlay, faPause } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext } from "react";
 import { PlayContext } from "../contexts/PlayContextProvider";
+import PropTypes from "prop-types";
 
 // const audioUrl = "/platte.wav";
 const audioUrl = "/aeguin.wav";
@@ -46,6 +48,10 @@ const PlayPauseButton = ({ handlePlay }) => {
   );
 };
 
+PlayPauseButton.propTypes = {
+  handlePlay: PropTypes.func.isRequired
+}
+
 const AudioVisualizer = () => {
   const { display, play, handleSetPlay } =
     useContext(PlayContext);
@@ -77,10 +83,6 @@ const AudioVisualizer = () => {
 
     audioElementRef.current.addEventListener('ended', handleAudioEnded);
 
-    // const visualizer = new p5(
-    //   (p) => audioVisualizer(p, analyserRef.current),
-    //   visualizerRef.current
-    // );
     const visualizer = new p5(
       (p) => audioVisualizer_v4(p, analyserRef.current),
       visualizerRef.current
@@ -94,7 +96,7 @@ const AudioVisualizer = () => {
       analyserRef.current.disconnect();
       audioContextRef.current.close();
     };
-  }, []);
+  }, [handleSetPlay]);
 
   
 
@@ -131,3 +133,5 @@ const AudioVisualizer = () => {
 };
 
 export default AudioVisualizer;
+
+

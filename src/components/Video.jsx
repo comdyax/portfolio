@@ -7,6 +7,7 @@ import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import { faYoutube } from "@fortawesome/free-brands-svg-icons";
 import { useContext } from "react";
 import { CookieConsentContext } from "../contexts/CookieContextProvider";
+import PropTypes from "prop-types";
 
 function IFrameCard({ videoId, title }) {
   const { consentGiven } = useContext(CookieConsentContext);
@@ -40,6 +41,11 @@ function IFrameCard({ videoId, title }) {
     </Card>
   );
 }
+
+IFrameCard.propTypes = {
+  videoId: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+};
 
 const Video = () => {
   const [videos, setVideos] = useState(null);

@@ -48,7 +48,7 @@ export const background = (p) => {
     p.background(0);
     p.rotateX(p.frameCount * 0.0001);
     p.rotateY(p.frameCount * -0.0001);
-    p.rotateZ(p.frameCount * 0.0001);
+    // p.rotateZ(p.frameCount * 0.0001);
     p.fill(255, 255, 255);
     p.ambientLight(100, 100, 100);
     p.directionalLight(255, 255, 255, 0.25, 0.25, -1);
@@ -70,7 +70,6 @@ export const background = (p) => {
       let pos = dots[i];
       let z = updateZ(p.mouseX - p.width / 2, p.mouseY - p.height / 2, pos);
       p.translate(pos.x, pos.y, z);
-      
       p.sphere(twinkleFactor, 6, 5);
       p.pop();
     }

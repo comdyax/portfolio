@@ -1,7 +1,7 @@
 import AudioVisualizer from "./AudioVisualizer";
 
 const Home = () => {
-  // return <AudioVisualizer/>
+  return <AudioVisualizer/>
 };
 
 export default Home;

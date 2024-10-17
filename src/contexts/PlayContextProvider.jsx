@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { createContext, useEffect, useState } from "react";
 
 export const PlayContext = createContext();
@@ -30,3 +31,7 @@ export const PlayProvider = ({ children }) => {
     </PlayContext.Provider>
   );
 };
+
+PlayProvider.propTypes = {
+  children: PropTypes.node.isRequired
+}
