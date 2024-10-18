@@ -1,24 +1,48 @@
 import CookieConsent from "react-cookie-consent";
 import { useContext } from "react";
 import { CookieConsentContext } from "../contexts/CookieContextProvider";
+import { LanguageContext } from "../contexts/LanguageContextProvider";
 
 const ConsentCookies = () => {
   const { handleAcceptCookies } = useContext(CookieConsentContext);
+  const { language } = useContext(LanguageContext);
   return (
-    //     <button onClick={() => Cookies.remove("youtube-consent")}>
-    //     Revoke Consent
-    //   </button>
     <CookieConsent
       location="bottom"
-      buttonText="Accept"
-      declineButtonText="Decline"
+      buttonText={language === "de" ? "Annehmen" : "Accept"}
+      declineButtonText={language === "de" ? "Ablehnen" : "Decline"}
+      buttonStyle={{
+        backgroundColor: "rgb(156, 95, 37)",
+        color: "white",
+        borderRadius: "8px",
+        padding: "10px 15px",
+      }}
+      declineButtonStyle={{
+        backgroundColor: "rgba(28, 28, 28)",
+        color: "white",
+        borderRadius: "8px",
+        padding: "10px 15px",
+
+      }}
       enableDeclineButton
-      onAccept={handleAcceptCookies}
+      onAccept={() =>handleAcceptCookies(true)}
+      onDecline={() => handleAcceptCookies(false)}
       cookieName="youtube-consent"
     >
-      This site uses cookies to embed YouTube videos. YouTube may set cookies on
-      your device that could be used for tracking purposes. By clicking
-      &quot;Accept&quot;, you consent to the use of cookies.
+      {language === "de" ? (
+        <>
+          Diese Website verwendet Cookies, um YouTube-Videos einzubetten.
+          YouTube kann Cookies auf Ihrem Gerät setzen, die zu Tracking-Zwecken
+          verwendet werden könnten. Durch Klicken auf &quot;Akzeptieren&quot;
+          stimmen Sie der Verwendung von Cookies zu.
+        </>
+      ) : (
+        <>
+          This site uses cookies to embed YouTube videos. YouTube may set
+          cookies on your device that could be used for tracking purposes. By
+          clicking &quot;Accept&quot;, you consent to the use of cookies.
+        </>
+      )}
     </CookieConsent>
   );
 };

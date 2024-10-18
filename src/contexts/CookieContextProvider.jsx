@@ -9,14 +9,16 @@ export const CookieConsentProvider = ({ children }) => {
 
   useEffect(() => {
     const cookieConsent = Cookies.get("youtube-consent");
-    if (cookieConsent) {
+    if (cookieConsent === "true") {
       setConsentGiven(true);
+    }else {
+      setConsentGiven(false)
     }
   }, []);
 
-  const handleAcceptCookies = () => {
-    Cookies.set("youtube-consent", "true", { expires: 365 });
-    setConsentGiven(true);
+  const handleAcceptCookies = (value) => {
+    Cookies.set("youtube-consent", value, { expires: 365 });
+    setConsentGiven(value);
   };
 
   return (

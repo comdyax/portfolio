@@ -7,10 +7,14 @@ import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import { faYoutube } from "@fortawesome/free-brands-svg-icons";
 import { useContext } from "react";
 import { CookieConsentContext } from "../contexts/CookieContextProvider";
+import { LanguageContext } from "../contexts/LanguageContextProvider";
 import PropTypes from "prop-types";
 
 function IFrameCard({ videoId, title }) {
-  const { consentGiven } = useContext(CookieConsentContext);
+  const { consentGiven, handleAcceptCookies } =
+    useContext(CookieConsentContext);
+  const { language } = useContext(LanguageContext);
+
   return (
     <Card className="m-3 iframe">
       {consentGiven ? (
@@ -24,7 +28,22 @@ function IFrameCard({ videoId, title }) {
           referrerPolicy="strict-origin-when-cross-origin"
         />
       ) : (
-        <>Something here if no cookies set.</>
+        <div style={{minHeight: "200px", padding: "4%"}}>
+          {language === "de" ? (
+            <p style={{padding: "4%"}}>
+              Akzeptieren sie die Cookies, um Videos zu laden oder gehen Sie
+              direkt zu Youtube durch klicken des Links.
+            </p>
+          ) : (
+            <p style={{padding: "4%"}}>
+              To load the videos, you need to accept the cookies or go to
+              youtube directly by clicking th link below.
+            </p>
+          )}
+          <Button variant="success" onClick={() => handleAcceptCookies(true)}>
+            {language === "de" ? "cookies erlauben" : "allow cookies"}
+          </Button>
+        </div>
       )}
       <Card.Body>
         <Card.Title>{title}</Card.Title>

@@ -24,8 +24,8 @@ const EPK = ({ play }) => {
 };
 
 EPK.propTypes = {
-  play: PropTypes.bool.isRequired
-}
+  play: PropTypes.bool.isRequired,
+};
 
 const EmailDecoder = ({ play }) => {
   const { language } = useContext(LanguageContext);
@@ -58,8 +58,8 @@ const EmailDecoder = ({ play }) => {
 };
 
 EmailDecoder.propTypes = {
-  play: PropTypes.bool.isRequired
-}
+  play: PropTypes.bool.isRequired,
+};
 
 const Copyright = () => {
   return (

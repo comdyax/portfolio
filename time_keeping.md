@@ -20,8 +20,10 @@
 |07.10.2024 | 6    | audiovisualizer with p5 -> could not use p5.sound module needed workaround + first draft |
 |10.10.2024 | 10   | audioVisualizer with control Buttons and new design... need to learn more about Audio Web API |
 |12.10.2024 | 8    | added a view new visualizer ideas and wrote a better background: mouse responsive stars |
+|17.10.2024 | 1    | proptypes
+|18.10.2024 | 1    | cookie bugfix: correct cookie valuje on window reload (loaded Cookie in CookieProvider is string)
 
 
 
 
-sum: 95h
+sum: 96h
