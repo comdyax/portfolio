@@ -47,8 +47,8 @@ export const background = (p) => {
   p.draw = () => {
     p.background(0);
     p.rotateX(p.frameCount * 0.0001);
-    p.rotateY(p.frameCount * -0.0001);
-    // p.rotateZ(p.frameCount * 0.0001);
+    //p.rotateY(p.frameCount * -0.0001);
+    p.rotateZ(p.frameCount * 0.0001);
     p.fill(255, 255, 255);
     p.ambientLight(100, 100, 100);
     p.directionalLight(255, 255, 255, 0.25, 0.25, -1);

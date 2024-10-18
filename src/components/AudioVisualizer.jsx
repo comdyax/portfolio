@@ -96,7 +96,8 @@ const AudioVisualizer = () => {
       analyserRef.current.disconnect();
       audioContextRef.current.close();
     };
-  }, [handleSetPlay]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   
 

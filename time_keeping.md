@@ -21,9 +21,10 @@
 |10.10.2024 | 10   | audioVisualizer with control Buttons and new design... need to learn more about Audio Web API |
 |12.10.2024 | 8    | added a view new visualizer ideas and wrote a better background: mouse responsive stars |
 |17.10.2024 | 1    | proptypes
-|18.10.2024 | 1    | cookie bugfix: correct cookie valuje on window reload (loaded Cookie in CookieProvider is string)
+|18.10.2024 | 1    | cookie bugfix: correct cookie value on window reload (loaded Cookie in CookieProvider is string) + allow button instead of iframe |
 
 
 
 
-sum: 96h
+
+sum: 97h
