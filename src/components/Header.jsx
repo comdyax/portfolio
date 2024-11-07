@@ -54,7 +54,7 @@ const Header = () => {
             <Navbar.Brand
               className="nav-link"
               as={Link}
-              to={play ? "" : "/"}
+              to={play ? "" : "/music"}
               style={{ maxWidth: "20px", maxHeight: "40px" }}
             >
               <span ref={canvasRef} />
@@ -86,6 +86,14 @@ const Header = () => {
                     to={play ? "" : "/"}
                   >
                     Home
+                  </Nav.Link>
+                  <Nav.Link
+                    className="nav-link"
+                    as={Link}
+                    onClick={handleNavLinkClick}
+                    to={play ? "" : "/music"}
+                  >
+                    Music
                   </Nav.Link>
                   <Nav.Link
                     className="nav-link"

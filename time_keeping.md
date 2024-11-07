@@ -22,9 +22,10 @@
 |12.10.2024 | 8    | added a view new visualizer ideas and wrote a better background: mouse responsive stars |
 |17.10.2024 | 1    | proptypes
 |18.10.2024 | 1    | cookie bugfix: correct cookie value on window reload (loaded Cookie in CookieProvider is string) + allow button instead of iframe |
+|07.11.2024 | 3    | home screen with image slider and extract audiovis to extra sub page |
 
 
 
 
 
-sum: 97h
+sum: 100h

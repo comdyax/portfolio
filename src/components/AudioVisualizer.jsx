@@ -1,9 +1,9 @@
 import { useEffect, useRef } from "react";
 import p5 from "p5";
-// import { audioVisualizer } from "../p5_drawings/audioVisualizer";
-// import { audioVisualizer_v2 } from "../p5_drawings/audioVisualizer_v2";
-// import { audioVisualizer_v3 } from "../p5_drawings/audioVisualizer_v3";
-// import { audioVisualizer_v5 } from "../p5_drawings/audioVisualizer_v5";
+import { audioVisualizer } from "../p5_drawings/audioVisualizer";
+import { audioVisualizer_v2 } from "../p5_drawings/audioVisualizer_v2";
+import { audioVisualizer_v3 } from "../p5_drawings/audioVisualizer_v3";
+import { audioVisualizer_v5 } from "../p5_drawings/audioVisualizer_v5";
 import { audioVisualizer_v4 } from "../p5_drawings/audioVisualizer_v4";
 
 import Button from "react-bootstrap/Button";
@@ -84,7 +84,7 @@ const AudioVisualizer = () => {
     audioElementRef.current.addEventListener('ended', handleAudioEnded);
 
     const visualizer = new p5(
-      (p) => audioVisualizer_v4(p, analyserRef.current),
+      (p) => audioVisualizer(p, analyserRef.current),
       visualizerRef.current
     );
     return () => {

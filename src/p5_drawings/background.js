@@ -34,7 +34,11 @@ export const background = (p) => {
 
   p.setup = () => {
     p.createCanvas(window.innerWidth, window.innerHeight, p.WEBGL);
-    p.camera(0,0, -p.width)
+    if (p.width <= p.height) {
+      p.camera(0, 0, -p.height * 2);
+    } else {
+      p.camera(0, 0, -p.width);
+    }
 
     for (let i = 0; i < count; i++) {
       let x = p.random(-p.width, p.width);
@@ -47,7 +51,7 @@ export const background = (p) => {
   p.draw = () => {
     p.background(0);
     p.rotateX(p.frameCount * 0.0001);
-    //p.rotateY(p.frameCount * -0.0001);
+    p.rotateY(p.frameCount * -0.0001);
     p.rotateZ(p.frameCount * 0.0001);
     p.fill(255, 255, 255);
     p.ambientLight(100, 100, 100);
@@ -68,8 +72,9 @@ export const background = (p) => {
     for (let i = 0; i < dots.length; i++) {
       p.push();
       let pos = dots[i];
-      let z = updateZ(p.mouseX - p.width / 2, p.mouseY - p.height / 2, pos);
-      p.translate(pos.x, pos.y, z);
+      // let z = updateZ(p.mouseX - p.width / 2, p.mouseY - p.height / 2, pos);
+      // p.translate(pos.x, pos.y, z);
+      p.translate(pos.x, pos.y, pos.z);
       p.sphere(twinkleFactor, 6, 5);
       p.pop();
     }

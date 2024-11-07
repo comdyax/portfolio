@@ -96,6 +96,13 @@
 
 }
 
+.images {
+  height: 90vh;
+  width: 100%;
+  object-fit: contain;
+  z-index: 2;
+}
+
 .youtube-iframe {
   border: 0;
   aspect-ratio: 16/9;
