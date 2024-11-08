@@ -23,9 +23,10 @@
 |17.10.2024 | 1    | proptypes
 |18.10.2024 | 1    | cookie bugfix: correct cookie value on window reload (loaded Cookie in CookieProvider is string) + allow button instead of iframe |
 |07.11.2024 | 3    | home screen with image slider and extract audiovis to extra sub page |
+|08.11.2024 | 3    | select visualizer and background random, home: new info about album, picture gallery |
 
 
 
 
 
-sum: 100h
+sum: 103h

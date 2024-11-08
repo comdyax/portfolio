@@ -87,14 +87,14 @@ const Header = () => {
                   >
                     Home
                   </Nav.Link>
-                  <Nav.Link
+                  {/* <Nav.Link
                     className="nav-link"
                     as={Link}
                     onClick={handleNavLinkClick}
                     to={play ? "" : "/music"}
                   >
                     Music
-                  </Nav.Link>
+                  </Nav.Link> */}
                   <Nav.Link
                     className="nav-link"
                     as={Link}
