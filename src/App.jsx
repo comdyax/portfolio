@@ -17,20 +17,28 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import BackgroundWrapper from "./components/BackgroundWrapper";
 import { background } from "./p5_drawings/background";
-import { gridParticles } from "./p5_drawings/gridParticles"
-import { flowField } from "./p5_drawings/flowField"
+import { gridParticles } from "./p5_drawings/gridParticles";
+import { flowField } from "./p5_drawings/flowField";
 import TopScroller from "./components/TopScroller";
-
+import ImageGallery from "./components/ImageGallery";
 
 function App() {
+  function selectBackground() {
+    switch (Math.floor(Math.random() * 3)) {
+      case 0:
+        return <BackgroundWrapper canvas={background} />;
+      case 1:
+        return <BackgroundWrapper canvas={flowField} />;
+      default:
+        return <BackgroundWrapper canvas={gridParticles} />;
+    }
+  }
   return (
     <PlayProvider>
       <LanguageProvider>
         <CookieConsentProvider>
           <ConsentCookies />
-          <BackgroundWrapper canvas={background} />
-          {/* <BackgroundWrapper canvas={gridParticles} />
-          <BackgroundWrapper canvas={flowField} /> */}
+          {selectBackground()}
           <BrowserRouter>
             <div className="app">
               <TopScroller />
@@ -39,6 +47,7 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="music" element={<Music />} />
                 <Route path="releases" element={<Releases />} />
+                <Route path="pictures" element={<ImageGallery />} />
                 <Route path="video" element={<Video />} />
                 <Route path="tour" element={<Tour />} />
                 <Route path="band" element={<Band />} />

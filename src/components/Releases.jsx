@@ -37,7 +37,7 @@ const ReleaseCard = ({
       <Card.Body>
         <Card.Title>{name}</Card.Title>
         <Card.Text>RELEASE: {formatDate(releaseDate)}</Card.Text>
-        <Stack gap={3} className="col-md-6 mx-auto">
+        <Stack gap={3} className="col-md-8 mx-auto">
           <Button variant="light" href={labelUrl} target="_blank">
             <FontAwesomeIcon icon={faRecordVinyl} />
             &ensp;{labelName}&ensp;
@@ -79,20 +79,22 @@ const Releases = () => {
       {releases ? (
         <>
           <h1>{releases.header}</h1>
-          <Container className="d-flex flex-wrap justify-content-center my-5 rounded-3 overflow-hidden">
-            {releases.data.map((con, key) => (
-              <ReleaseCard
-                key={key}
-                imgPath={con.imgPath}
-                imgAltText={con.imgAltText}
-                name={con.name}
-                releaseDate={con.releaseDate}
-                labelUrl={con.labelUrl}
-                labelName={con.labelName}
-                streamingUrl={con.streamingUrl}
-                streamingName={con.streamingName}
-              />
-            ))}
+          <Container className="d-flex flex-wrap justify-content-center my-5">
+            {releases.data
+              .sort((a, b) => new Date(b.releaseDate) - new Date(a.releaseDate))
+              .map((con, key) => (
+                <ReleaseCard
+                  key={key}
+                  imgPath={con.imgPath}
+                  imgAltText={con.imgAltText}
+                  name={con.name}
+                  releaseDate={con.releaseDate}
+                  labelUrl={con.labelUrl}
+                  labelName={con.labelName}
+                  streamingUrl={con.streamingUrl}
+                  streamingName={con.streamingName}
+                />
+              ))}
           </Container>
         </>
       ) : (

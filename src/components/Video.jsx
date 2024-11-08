@@ -41,7 +41,7 @@ function IFrameCard({ videoId, title }) {
             </p>
           )}
           <Button variant="success" onClick={() => handleAcceptCookies(true)}>
-            {language === "de" ? "cookies erlauben" : "allow cookies"}
+            {language === "de" ? "cookies akzeptieren" : "accept cookies"}
           </Button>
         </div>
       )}

@@ -107,6 +107,14 @@ const Header = () => {
                     className="nav-link"
                     as={Link}
                     onClick={handleNavLinkClick}
+                    to={play ? "" : "/pictures"}
+                  >
+                    Pictures
+                  </Nav.Link>
+                  <Nav.Link
+                    className="nav-link"
+                    as={Link}
+                    onClick={handleNavLinkClick}
                     to={play ? "" : "/video"}
                   >
                     Video

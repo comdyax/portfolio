@@ -10,6 +10,16 @@
             "streamingName": "SPOTIFY",
             "imgPath": "PerseveranceCover.jpg",
             "imgAltText": "Perseverance Cover"
+        },
+        {
+            "name": "FOREVER HOME",
+            "releaseDate": "2025-02-18",
+            "labelUrl": "https://www.boomslang-records.com/",
+            "labelName": "BOOMSLANG RECORDS",
+            "streamingUrl": "",
+            "streamingName": "SPOTIFY",
+            "imgPath": "forever_home.png",
+            "imgAltText": "Forever Home Cover"
         }
     ]
 }

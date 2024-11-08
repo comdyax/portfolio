@@ -49,16 +49,45 @@ const PlayPauseButton = ({ handlePlay }) => {
 };
 
 PlayPauseButton.propTypes = {
-  handlePlay: PropTypes.func.isRequired
-}
+  handlePlay: PropTypes.func.isRequired,
+};
 
 const AudioVisualizer = () => {
-  const { display, play, handleSetPlay } =
-    useContext(PlayContext);
+  const { display, play, handleSetPlay } = useContext(PlayContext);
   const visualizerRef = useRef(null);
   const audioContextRef = useRef(null);
   const analyserRef = useRef(null);
   const audioElementRef = useRef(null);
+
+  function selectVisualizer() {
+    switch (Math.floor(Math.random() * 4)) {
+      case 0:
+        return new p5(
+          (p) => audioVisualizer(p, analyserRef.current),
+          visualizerRef.current
+        );
+      case 1:
+        return new p5(
+          (p) => audioVisualizer_v2(p, analyserRef.current),
+          visualizerRef.current
+        );
+      case 2:
+        return new p5(
+          (p) => audioVisualizer_v3(p, analyserRef.current),
+          visualizerRef.current
+        );
+      case 3:
+        return new p5(
+          (p) => audioVisualizer_v4(p, analyserRef.current),
+          visualizerRef.current
+        );
+      default:
+        return new p5(
+          (p) => audioVisualizer_v5(p, analyserRef.current),
+          visualizerRef.current
+        );
+    }
+  }
 
   useEffect(() => {
     audioContextRef.current = new (window.AudioContext ||
@@ -76,30 +105,26 @@ const AudioVisualizer = () => {
     analyserRef.current.connect(audioContextRef.current.destination);
 
     const handleAudioEnded = () => {
-      audioElementRef.current.currentTime = 0; 
-      console.log('Audio has ended. Playback position reset to 0.');
+      audioElementRef.current.currentTime = 0;
+      console.log("Audio has ended. Playback position reset to 0.");
       handleSetPlay(false);
     };
 
-    audioElementRef.current.addEventListener('ended', handleAudioEnded);
+    audioElementRef.current.addEventListener("ended", handleAudioEnded);
 
-    const visualizer = new p5(
-      (p) => audioVisualizer(p, analyserRef.current),
-      visualizerRef.current
-    );
+    const visualizer = selectVisualizer();
+
     return () => {
       visualizer.remove();
       audioElementRef.current.pause();
       audioElementRef.current.src = "";
-      audioElementRef.current.removeEventListener('ended', handleAudioEnded);
+      audioElementRef.current.removeEventListener("ended", handleAudioEnded);
       source.disconnect();
       analyserRef.current.disconnect();
       audioContextRef.current.close();
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  
 
   const handlePlay = () => {
     if (audioContextRef.current.state === "suspended") {
@@ -134,5 +159,3 @@ const AudioVisualizer = () => {
 };
 
 export default AudioVisualizer;
-
-
