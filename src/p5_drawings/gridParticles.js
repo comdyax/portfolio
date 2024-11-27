@@ -4,7 +4,7 @@ export const gridParticles = (props) => {
   let particles = [];
   let gridSize = 8;
   let particleCount = props.floor(window.innerHeight + window.innerWidth);
-  let fadingTrails = 20
+  let fadingTrails = 10
   let particleSpeed = 2;
   let transparency = 10;
   let particleColor = (240, 223, 199);

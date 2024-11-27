@@ -1,36 +1,36 @@
 export const background = (p) => {
   const count = p.floor(p.sqrt(window.innerHeight * window.innerWidth));
   const dots = [];
-  let maxDist = p.floor(p.sqrt((window.innerHeight * window.innerWidth) / 6));
-  let amplitude = 20;
-  let lerpFactor = 0.1;
-  let mouseEdge = 50;
-  let maxMovement = 70;
+  // let maxDist = p.floor(p.sqrt((window.innerHeight * window.innerWidth) / 6));
+  // let amplitude = 20;
+  // let lerpFactor = 0.1;
+  // let mouseEdge = 50;
+  // let maxMovement = 70;
 
-  function updateZ(mouseX, mouseY, pos) {
-    if (
-      p.mouseX > mouseEdge &&
-      p.mouseX < p.width - mouseEdge &&
-      p.mouseY > mouseEdge &&
-      p.mouseY < p.height - mouseEdge
-    ) {
-      let distance = p.dist(mouseX, mouseY, pos.x, pos.y);
-      if (distance < maxDist) {
-        let wave = p.sin((1 - distance / maxDist) * p.PI);
-        let targetZ = pos.z + wave * amplitude;
-        pos.z = p.lerp(
-          pos.z,
-          Math.min(targetZ, pos.originalZ + maxMovement),
-          lerpFactor
-        );
-      } else {
-        pos.z = p.lerp(pos.z, pos.originalZ, lerpFactor);
-      }
-    } else {
-      pos.z = p.lerp(pos.z, pos.originalZ, lerpFactor);
-    }
-    return pos.z;
-  }
+  // function updateZ(mouseX, mouseY, pos) {
+  //   if (
+  //     p.mouseX > mouseEdge &&
+  //     p.mouseX < p.width - mouseEdge &&
+  //     p.mouseY > mouseEdge &&
+  //     p.mouseY < p.height - mouseEdge
+  //   ) {
+  //     let distance = p.dist(mouseX, mouseY, pos.x, pos.y);
+  //     if (distance < maxDist) {
+  //       let wave = p.sin((1 - distance / maxDist) * p.PI);
+  //       let targetZ = pos.z + wave * amplitude;
+  //       pos.z = p.lerp(
+  //         pos.z,
+  //         Math.min(targetZ, pos.originalZ + maxMovement),
+  //         lerpFactor
+  //       );
+  //     } else {
+  //       pos.z = p.lerp(pos.z, pos.originalZ, lerpFactor);
+  //     }
+  //   } else {
+  //     pos.z = p.lerp(pos.z, pos.originalZ, lerpFactor);
+  //   }
+  //   return pos.z;
+  // }
 
   p.setup = () => {
     p.createCanvas(window.innerWidth, window.innerHeight, p.WEBGL);
