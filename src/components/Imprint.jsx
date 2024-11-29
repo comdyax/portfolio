@@ -1,5 +1,65 @@
 import { useContext } from "react";
 import { LanguageContext } from "../contexts/LanguageContextProvider";
+import { useState, useEffect } from "react";
+
+const LoadContactInfo = () => {
+  const [content, setContent] = useState(null);
+  const { language } = useContext(LanguageContext);
+  useEffect(() => {
+    fetch("/content/contact.json")
+      .then((res) => res.json())
+      .then((data) => setContent(data))
+      .catch((exc) => console.log(exc));
+  }, []);
+  return (
+    <>
+      {content ? (
+        <>
+          <p>
+            {content.persons.map((item, idx) => (
+              <span key={idx}>
+                {item}
+                <br />
+              </span>
+            ))}
+          </p>
+          <p>
+            {content.addresses.map((item, idx) => (
+              <span key={idx}>
+                {item}
+                <br />
+              </span>
+            ))}
+          </p>
+          <br />
+          <p>
+            <u>{language === "de" ? "Kontakt:" : "Contact:"}</u>
+          </p>
+          <br />
+          <p>
+            {content.contact.map((item, idx) => (
+              <span key={idx}>
+                {item}
+                <br />
+              </span>
+            ))}
+          </p>
+          <br />
+          <p>
+            {content.credits.map((item, idx) => (
+              <span key={idx}>
+                {item}
+                <br />
+              </span>
+            ))}
+          </p>
+        </>
+      ) : (
+        <h3>loading content...</h3>
+      )}
+    </>
+  );
+};
 
 const ImprintEnglish = () => {
   return (
@@ -10,28 +70,7 @@ const ImprintEnglish = () => {
         <u>Information according to § 5 TMG:</u>
       </p>
       <br />
-      <p>
-        Max Hirth
-        <br />
-        Tom Friedrich
-        <br />
-        Christopher Kunz
-        <br />
-        Stephan Deller
-      </p>
-      <p>
-        65197 Wiesbaden
-        <br />
-        04315 Leipzig
-      </p>
-      <br />
-      <p>
-        <u>Contact:</u>
-      </p>
-      <br />
-      <p>Mail: info[a]perplexitiesonmars.de</p>
-      <br />
-      <p>Pictures: Lukas Diller</p>
+      <LoadContactInfo />
       <br />
       <h3>
         <strong>Disclaimer:</strong>
@@ -83,12 +122,12 @@ const ImprintEnglish = () => {
       </p>
       <p>
         This disclaimer of liability also applies to links and references set
-        within our own website <em>perplexitiesonmars.de</em>&quot; by
-        questioners, blog contributors, and guests of the discussion forum. For
-        illegal, incorrect, or incomplete content and especially for damages
-        resulting from the use or non-use of such presented information, only
-        the service provider of the page to which reference was made is liable,
-        not the one who merely refers to the respective publication via links.
+        within our own website by questioners, blog contributors, and guests of
+        the discussion forum. For illegal, incorrect, or incomplete content and
+        especially for damages resulting from the use or non-use of such
+        presented information, only the service provider of the page to which
+        reference was made is liable, not the one who merely refers to the
+        respective publication via links.
       </p>
       <p>
         If we become aware of legal violations, we will remove the external
@@ -151,28 +190,7 @@ const ImprintGerman = () => {
         <u>Angaben gem. § 5 TMG:</u>
       </p>
       <br />
-      <p>
-        Max Hirth
-        <br />
-        Tom Friedrich
-        <br />
-        Christopher Kunz
-        <br />
-        Stephan Deller
-      </p>
-      <p>
-        65197 Wiesbaden
-        <br />
-        04315 Leipzig
-      </p>
-      <br />
-      <p>
-        <u>Kontaktaufnahme:</u>
-      </p>
-      <br />
-      <p>Mail: info[a]perplexitiesonmars.de</p>
-      <br />
-      <p>Fotos: Lukas Diller</p>
+      <LoadContactInfo />
       <br />
       <h3>
         <strong>Haftungsausschluss - Disclaimer:</strong>
@@ -227,13 +245,13 @@ const ImprintGerman = () => {
       </p>
       <p>
         Diese Haftungsausschlusserklärung gilt auch innerhalb des eigenen
-        Internetauftrittes „<em>perplexitiesonmars.de</em>“ gesetzten Links und
-        Verweise von Fragestellern, Blogeinträgern, Gästen des
-        Diskussionsforums. Für illegale, fehlerhafte oder unvollständige Inhalte
-        und insbesondere für Schäden, die aus der Nutzung oder Nichtnutzung
-        solcherart dargestellten Informationen entstehen, haftet allein der
-        Diensteanbieter der Seite, auf welche verwiesen wurde, nicht derjenige,
-        der über Links auf die jeweilige Veröffentlichung lediglich verweist.
+        Internetauftrittes gesetzten Links und Verweise von Fragestellern,
+        Blogeinträgern, Gästen des Diskussionsforums. Für illegale, fehlerhafte
+        oder unvollständige Inhalte und insbesondere für Schäden, die aus der
+        Nutzung oder Nichtnutzung solcherart dargestellten Informationen
+        entstehen, haftet allein der Diensteanbieter der Seite, auf welche
+        verwiesen wurde, nicht derjenige, der über Links auf die jeweilige
+        Veröffentlichung lediglich verweist.
       </p>
       <p>
         Werden uns Rechtsverletzungen bekannt, werden die externen Links durch
@@ -292,9 +310,9 @@ const ImprintGerman = () => {
 const Imprint = () => {
   const { language } = useContext(LanguageContext);
   return (
-      <div className="imprint_policy">
-        {language === "de" ? <ImprintGerman /> : <ImprintEnglish />}
-      </div>
+    <div className="imprint_policy">
+      {language === "de" ? <ImprintGerman /> : <ImprintEnglish />}
+    </div>
   );
 };
 

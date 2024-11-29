@@ -1,0 +1,23 @@
+{
+    "name": "Perplexities on Mars",
+    "persons": [
+        "Max Hirth",
+        "Tom Friedrich",
+        "Christopher Kunz",
+        "Stephan Deller"
+    ],
+    "addresses": [
+        "65197 Wiesbaden",
+        "04315 Leipzig"
+    ],
+    "contact": [
+        "Mail: info[a]perplexitiesonmars.de"
+    ],
+    "credits": [
+        "Photos: Lukas Diller"
+    ],
+    "hosting": {
+        "name": "Github Pages",
+        "url": "https://www.netcup.eu/legal/datenschutzerklaerung.php"
+    }
+}

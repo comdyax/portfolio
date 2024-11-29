@@ -24,9 +24,10 @@
 |18.10.2024 | 1    | cookie bugfix: correct cookie value on window reload (loaded Cookie in CookieProvider is string) + allow button instead of iframe |
 |07.11.2024 | 3    | home screen with image slider and extract audiovis to extra sub page |
 |08.11.2024 | 3    | select visualizer and background random, home: new info about album, picture gallery |
+|27.11.2024 | 1    | component Home with dynamic content from json |
+|29.11.2024 | 1    | imprint/privacy policy load content from json |
 
 
 
 
-
-sum: 103h
+sum: 105h
