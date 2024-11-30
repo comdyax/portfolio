@@ -26,8 +26,6 @@ const AppRouter = () => {
     if ("light" in config.style && "dark" in config.style) {
       const root = document.documentElement;
       if (lightMode) {
-        console.log("light");
-        
         const style = config.style.light;
         root.style.setProperty("--background-color", style.backgroundColor);
         root.style.setProperty(
@@ -39,8 +37,6 @@ const AppRouter = () => {
         root.style.setProperty("--link-hover-text-color", style.linkColorHover);
       } else {
         const style = config.style.dark;
-        console.log("dark");
-        
         root.style.setProperty("--background-color", style.backgroundColor);
         root.style.setProperty(
           "--background-color-components",
@@ -54,13 +50,11 @@ const AppRouter = () => {
   }, [lightMode]);
   const menu = config.menu;
   function selectBackground() {
-    switch (Math.floor(Math.random() * 3)) {
+    switch (Math.floor(Math.random() * 2)) {
       case 0:
         return <BackgroundWrapper canvas={background} />;
-      case 1:
-        return <BackgroundWrapper canvas={flowField} />;
       default:
-        return <BackgroundWrapper canvas={gridParticles} />;
+        return <BackgroundWrapper canvas={flowField} />;
     }
   }
   return (

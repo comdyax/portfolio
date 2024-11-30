@@ -1,6 +1,6 @@
 import p5 from "p5";
 
-export const flowField = (props) => {
+export const flowField = (props, backgroundColor, color) => {
   let cols, rows;
   let scale = 10;
   let particles = [];
@@ -17,8 +17,9 @@ export const flowField = (props) => {
   let dissipate = true;
 
   props.setup = () => {
+    console.log(backgroundColor);
     props.createCanvas(window.innerWidth + scale, window.innerHeight + scale);
-    props.background(0)
+    props.background(backgroundColor);
 
     cols = props.floor(props.width / scale);
     rows = props.floor(props.height / scale);
@@ -32,15 +33,15 @@ export const flowField = (props) => {
   };
 
   props.draw = () => {
-    props.background(0, fadingTrails);
+    backgroundColor[3] = fadingTrails;
+    props.background(backgroundColor);
 
     let yoff = 0;
     let t = props.sin(transparency) * 0.5 + 0.5; // Oscillates between 0 and 1
-    if (transparency < transparencyThreshold)
-      transparency += 0.5;
+    if (transparency < transparencyThreshold) transparency += 0.5;
 
     if (dissipate == true) {
-      dissipationFactor += 0.001;    
+      dissipationFactor += 0.001;
       if (dissipationFactor >= dissipationThreshold) {
         dissipate = false;
       }
@@ -62,11 +63,8 @@ export const flowField = (props) => {
         let v = p5.Vector.fromAngle(angle).setMag(1);
 
         if (flowField[index]) {
-          if (dissipate)
-            flowField[index].lerp(v, t * dissipationFactor);
-          else
-            flowField[index].lerp(v, 0);
-
+          if (dissipate) flowField[index].lerp(v, t * dissipationFactor);
+          else flowField[index].lerp(v, 0);
         } else {
           flowField[index] = v;
         }
@@ -112,7 +110,7 @@ export const flowField = (props) => {
     }
 
     update() {
-      this.maxSpeed = particleSpeed
+      this.maxSpeed = particleSpeed;
       this.vel.add(this.acc);
       this.vel.limit(this.maxSpeed);
       this.pos.add(this.vel);
@@ -120,8 +118,13 @@ export const flowField = (props) => {
     }
 
     show(transparency) {
-      if (transparency < transparencyThreshold) props.stroke(255, transparency);
-      else props.stroke(255, transparencyThreshold);
+      if (transparency < transparencyThreshold) {
+        color[3] = transparency;
+        props.stroke(color);
+      } else {
+        color[3] = transparencyThreshold;
+        props.stroke(255, transparencyThreshold);
+      }
       props.strokeWeight(particleSize);
       props.line(this.pos.x, this.pos.y, this.prevPos.x, this.prevPos.y);
       this.updatePrev();

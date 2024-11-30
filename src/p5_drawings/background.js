@@ -1,4 +1,4 @@
-export const background = (p) => {
+export const background = (p, backgroundColor, color) => {
   const count = p.floor(p.sqrt(window.innerHeight * window.innerWidth));
   const dots = [];
   // let maxDist = p.floor(p.sqrt((window.innerHeight * window.innerWidth) / 6));
@@ -48,12 +48,12 @@ export const background = (p) => {
     }
   };
 
-  p.draw = () => {
-    p.background(0);
+  p.draw = () => {    
+    p.background(backgroundColor);
     p.rotateX(p.frameCount * 0.0001);
     p.rotateY(p.frameCount * -0.0001);
     p.rotateZ(p.frameCount * 0.0001);
-    p.fill(255, 255, 255);
+    p.fill(color);
     p.ambientLight(100, 100, 100);
     p.directionalLight(255, 255, 255, 0.25, 0.25, -1);
     p.specularMaterial(255, 150, 150);

@@ -16,7 +16,7 @@
         "mailEncrypted": "znvygb:vasb@crecyrkvgvrfbaznef.qr"
     },
     "style": {
-        "p5background": false,
+        "p5background": true,
         "dark": {
             "textColor": "#f0e5de",
             "linkColor": "#b85742",
