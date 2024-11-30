@@ -3,9 +3,11 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useContext } from "react";
 import { LanguageContext } from "../contexts/LanguageContextProvider";
+import { LightContext } from "../contexts/LightContextProvider";
 
 const Home = () => {
   const { language } = useContext(LanguageContext);
+  const { lightMode } = useContext(LightContext);
   const [content, setContent] = useState(null);
   useEffect(() => {
     fetch("/content/home.json")
@@ -14,10 +16,7 @@ const Home = () => {
       .catch((exc) => console.log(exc));
   }, []);
   return (
-    <Container
-      className="d-flex justify-content-center"
-      style={{ margin: "auto", paddingTop: "5%", paddingBottom: "5%" }}
-    >
+    <Container className="d-flex justify-content-center home">
       <Row>
         <Col xs={12} sm={6} md={6} lg={6}>
           <Image
@@ -54,7 +53,11 @@ const Home = () => {
               <br />
 
               <Link to="/releases">
-                <Button variant="light" size="lg" style={{ padding: "2%" }}>
+                <Button
+                  variant={lightMode ? "dark" : "light"}
+                  size="lg"
+                  style={{ padding: "2%" }}
+                >
                   More Information
                 </Button>
               </Link>

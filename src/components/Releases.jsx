@@ -12,6 +12,7 @@ import Stack from "react-bootstrap/Stack";
 import PropTypes from "prop-types";
 import { useContext } from "react";
 import { LanguageContext } from "../contexts/LanguageContextProvider";
+import { LightContext } from "../contexts/LightContextProvider";
 
 const formatDate = (dateString) => {
   const date = new Date(dateString);
@@ -33,6 +34,7 @@ const ReleaseCard = ({
   streamingUrl,
   streamingName,
 }) => {
+  const { lightMode } = useContext(LightContext);
   return (
     <Card className="m-3 release">
       <Card.Img variant="top" src={`/images/${imgPath}`} alt={imgAltText} />
@@ -40,12 +42,20 @@ const ReleaseCard = ({
         <Card.Title>{name}</Card.Title>
         <Card.Text>RELEASE: {formatDate(releaseDate)}</Card.Text>
         <Stack gap={3} className="col-md-8 mx-auto">
-          <Button variant="light" href={labelUrl} target="_blank">
+          <Button
+            variant={lightMode ? "dark" : "light"}
+            href={labelUrl}
+            target="_blank"
+          >
             <FontAwesomeIcon icon={faRecordVinyl} />
             &ensp;{labelName}&ensp;
             <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
           </Button>
-          <Button variant="light" href={streamingUrl} target="_blank">
+          <Button
+            variant={lightMode ? "dark" : "light"}
+            href={streamingUrl}
+            target="_blank"
+          >
             <FontAwesomeIcon icon={faSpotify} />
             &ensp;{streamingName}&ensp;
             <FontAwesomeIcon icon={faArrowUpRightFromSquare} />

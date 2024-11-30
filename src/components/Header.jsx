@@ -1,12 +1,16 @@
 import { LanguageContext } from "../contexts/LanguageContextProvider";
+import { LightContext } from "../contexts/LightContextProvider";
 import { PlayContext } from "../contexts/PlayContextProvider";
 import { useContext, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSun, faMoon } from "@fortawesome/free-solid-svg-icons";
 import {
   Navbar,
   Offcanvas,
   Nav,
   NavDropdown,
   Container,
+  Button,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { logo } from "../p5_drawings/logo";
@@ -18,6 +22,7 @@ const Header = () => {
   const menu = config.menu;
   const { language, handleSetLanguage } = useContext(LanguageContext);
   const { display, fadeDuration, play } = useContext(PlayContext);
+  const { lightMode, handleSetLightMode } = useContext(LightContext);
   const [showOffcanvas, setShowOffcanvas] = useState(false);
   const expand = "md";
   const canvasRef = useRef(null);
@@ -60,7 +65,6 @@ const Header = () => {
                 to={play ? "" : "/music"}
                 style={{ maxWidth: "20px", maxHeight: "40px" }}
               >
-                {console.log("hey there")}
                 <span ref={canvasRef} />
               </Navbar.Brand>
             )}
@@ -69,6 +73,7 @@ const Header = () => {
             </Navbar.Brand>
             <Navbar.Toggle onClick={handleShow} />
             <Navbar.Offcanvas
+              className="nav"
               show={showOffcanvas}
               onHide={handleClose}
               placement="end"
@@ -166,6 +171,18 @@ const Header = () => {
                       English
                     </NavDropdown.Item>
                   </NavDropdown>
+                  {"light" in config.style && "dark" in config.style && (
+                    <Nav.Item>
+                      &emsp;
+                      <Button
+                        className="links"
+                        variant={lightMode ? "dark" : "light"}
+                        onClick={handleSetLightMode}
+                      >
+                        <FontAwesomeIcon icon={lightMode ? faSun : faMoon} />
+                      </Button>
+                    </Nav.Item>
+                  )}
                 </Nav>
               </Offcanvas.Body>
             </Navbar.Offcanvas>

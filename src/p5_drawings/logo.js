@@ -1,12 +1,19 @@
+import config from "../assets/config.json"
+
 export const logo = (p) => {
   let size = 3;
   let grid = 5;
   let distance = 5;
   let number = 2;
   let lineSize = 0.5;
-  let color = [156, 95, 37];
+  let color = [];
 
   p.setup = () => {
+    if ("light" in config.style) {
+      color = config.style.light.linkColor
+    } else {
+      color = [67,100,70]
+    }
     p.createCanvas(size*grid*2, size*grid *2, p.WEBGL);
   };
 

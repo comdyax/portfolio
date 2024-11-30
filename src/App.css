@@ -1,3 +1,12 @@
+:root {
+  --background-color: #282828;
+  --background-color-components: #211b1b;
+  --text-color: #acacac;
+  --link-text-color: #436446;
+  --link-hover-text-color: #273128;
+}
+
+
 /* @font-face {
   font-family: PrimaryFont;
   src: url(assets/fonts/Roboto-Thin.ttf);
@@ -8,33 +17,39 @@
   margin: 0;
   padding: 0;
   text-align: center;
-  color: #ffffff;
+  color: var(--text-color);
   min-height: 100vh;
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
   overflow-x: hidden;
   overscroll-behavior: none;
-  background-color: #000000;
+  background-color: var(--background-color);
 }
 
 .nav {
-  color: #ffffff;
-  background-color: rgba(28, 28, 28, 0.644);
+  background-color: var(--background-color-components);
 }
 
 .nav-link {
-  color: #ffffff;
+  color: var(--text-color);
 }
 
 .dropdown_nav {
-  color: #ffffff;
   text-align: center;
+
+}
+
+.home {
+  margin: auto;
+  padding-top: 5%; 
+  padding-bottom: 5%;
+  z-index: 2; 
 }
 
 .p5-canvas {
   position: fixed;
-  z-index: -5;
+  z-index: 0;
   top: 0;
   left: 0;
 }
@@ -43,7 +58,7 @@
   margin-top: auto;
   padding: 1%;
   z-index: 100;
-  background-color: rgba(28, 28, 28, 0.644);
+  background-color: var(--background-color-components);
 }
 
 .footer_components {
@@ -78,8 +93,8 @@
 .iframe {
   max-width: 600px;
   width: 100%;
-  background-color: rgba(28, 28, 28, 0.644);
-  color: rgb(255, 255, 255);
+  background-color: var(--background-color-components);
+  color: var(--text-color);
 }
 
 .imprint_policy {
@@ -111,29 +126,32 @@
 }
 
 .links {
-  color: rgb(156, 95, 37);
+  color: var(--link-text-color);
   text-decoration: none;
 }
 
 .links:hover {
-  color: rgb(100, 86, 74);
+  color: var(--link-hover-text-color);
 }
 
 .release {
+  color: var(--text-color);
   max-width: 500px;
   width: 100%;
-  background-color: rgba(28, 28, 28, 0.644);
-  color: #ffffff;
+  background-color: var(--background-color-components);
 }
 
 .tour_table {
-  background-color: rgba(28, 28, 28, 0.644);
+  color: var(--text-color);
+  background-color: var(--background-color-components);
 }
 
 .tour_table th {
-  background-color: rgba(28, 28, 28, 0.644);
+  color: var(--text-color);
+  background-color: var(--background-color-components);
 }
 
 .tour_table td {
-  background-color: rgba(28, 28, 28, 0.644);
+  color: var(--text-color);
+  background-color: var(--background-color-components);
 }

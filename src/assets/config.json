@@ -7,7 +7,7 @@
         "video": true,
         "tour": true,
         "about": true,
-        "visualizer": false
+        "visualizer": true
     },
     "footer": {
         "epkFilenameGerman": "epk_pom",
@@ -16,9 +16,20 @@
         "mailEncrypted": "znvygb:vasb@crecyrkvgvrfbaznef.qr"
     },
     "style": {
-        "canvasActive": true,
-        "defaultTheme": "dark",
-        "backgroundColor": "rgb(0,0,0,0)",
-        "primaryColor": "rgb(15,15,15,15)"
+        "p5background": false,
+        "dark": {
+            "textColor": "#f0e5de",
+            "linkColor": "#b85742",
+            "linkColorHover": "#d27a56",
+            "backgroundColor": "#2e1f1b",
+            "backgroundColorComponents": "#3c2a24a4"
+        },
+        "light": {
+            "textColor": "#3b2f2b",
+            "linkColor": "#b85742",
+            "linkColorHover": "#d27a56",
+            "backgroundColor": "#f7ebe4",
+            "backgroundColorComponents": "#e6d5cb"
+        }
     }
 }

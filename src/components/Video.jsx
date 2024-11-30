@@ -9,8 +9,10 @@ import { useContext } from "react";
 import { CookieConsentContext } from "../contexts/CookieContextProvider";
 import { LanguageContext } from "../contexts/LanguageContextProvider";
 import PropTypes from "prop-types";
+import { LightContext } from "../contexts/LightContextProvider";
 
 function IFrameCard({ videoId, title }) {
+  const { lightMode } = useContext(LightContext);
   const { consentGiven, handleAcceptCookies } =
     useContext(CookieConsentContext);
   const { language } = useContext(LanguageContext);
@@ -28,14 +30,14 @@ function IFrameCard({ videoId, title }) {
           referrerPolicy="strict-origin-when-cross-origin"
         />
       ) : (
-        <div style={{minHeight: "200px", padding: "4%"}}>
+        <div style={{ minHeight: "200px", padding: "4%" }}>
           {language === "de" ? (
-            <p style={{padding: "4%"}}>
+            <p style={{ padding: "4%" }}>
               Akzeptieren sie die Cookies, um Videos zu laden oder gehen Sie
               direkt zu Youtube durch klicken des Links.
             </p>
           ) : (
-            <p style={{padding: "4%"}}>
+            <p style={{ padding: "4%" }}>
               To load the videos, you need to accept the cookies or go to
               youtube directly by clicking th link below.
             </p>
@@ -48,7 +50,7 @@ function IFrameCard({ videoId, title }) {
       <Card.Body>
         <Card.Title>{title}</Card.Title>
         <Button
-          variant="light"
+          variant={lightMode ? "dark" : "light"}
           href={`https://www.youtube.com/watch?v=${videoId}`}
           target="_blank"
         >
