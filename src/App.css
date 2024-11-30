@@ -15,11 +15,12 @@
   flex-direction: column;
   overflow-x: hidden;
   overscroll-behavior: none;
+  background-color: #000000;
 }
 
 .nav {
   color: #ffffff;
-  background-color: #252525ad;
+  background-color: rgba(28, 28, 28, 0.644);
 }
 
 .nav-link {
@@ -122,7 +123,7 @@
   max-width: 500px;
   width: 100%;
   background-color: rgba(28, 28, 28, 0.644);
-  color: rgb(255, 255, 255);
+  color: #ffffff;
 }
 
 .tour_table {

@@ -19,6 +19,7 @@ import { gridParticles } from "./p5_drawings/gridParticles";
 import { flowField } from "./p5_drawings/flowField";
 import TopScroller from "./components/TopScroller";
 import ImageGallery from "./components/ImageGallery";
+import NotFound from "./components/NotFound";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import config from "./assets/config.json";
@@ -61,6 +62,7 @@ function App() {
                 {menu.about && <Route path="about" element={<About />} />}
                 <Route path="imprint" element={<Imprint />} />
                 <Route path="privacy-policy" element={<PrivacyPolicy />} />
+                <Route path="*" element={<NotFound />} />
               </Routes>
               <Footer />
             </div>

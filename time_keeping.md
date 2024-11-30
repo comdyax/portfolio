@@ -26,7 +26,7 @@
 |08.11.2024 | 3    | select visualizer and background random, home: new info about album, picture gallery |
 |27.11.2024 | 1    | component Home with dynamic content from json |
 |29.11.2024 | 1    | imprint/privacy policy load content from json |
-
+|30.11.2024 |      | make header and footer dynamic with appconfig from assets to decide before build what components to use |
 
 
 
