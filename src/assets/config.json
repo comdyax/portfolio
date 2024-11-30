@@ -1,0 +1,24 @@
+{
+    "name": "Perplexities on Mars",
+    "menu": {
+        "home": true,
+        "releases": true,
+        "pictures": true,
+        "video": true,
+        "tour": true,
+        "about": true,
+        "visualizer": false
+    },
+    "footer": {
+        "epkFilenameGerman": "epk_pom",
+        "epkFilenameEnglish": "epk_pom_english",
+        "mailPlain": "info[a]perplexitiesonmars.de",
+        "mailEncrypted": "znvygb:vasb@crecyrkvgvrfbaznef.qr"
+    },
+    "style": {
+        "canvasActive": true,
+        "defaultTheme": "dark",
+        "backgroundColor": "rgb(0,0,0,0)",
+        "primaryColor": "rgb(15,15,15,15)"
+    }
+}

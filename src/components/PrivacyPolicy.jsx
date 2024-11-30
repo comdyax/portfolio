@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { LanguageContext } from "../contexts/LanguageContextProvider";
 import { useState, useEffect } from "react";
+import config from "../assets/config.json"
 
 const PolicyGerman = () => {
   const [content, setContent] = useState(null);
@@ -23,7 +24,7 @@ const PolicyGerman = () => {
           <p>
             Verantwortlicher für die Datenverarbeitung auf dieser Website ist:
             <br />
-            <strong>{content.name}</strong>
+            <strong>{config.name}</strong>
             <br />
             {content.contact.map((item, idx) => (
               <span key={idx}>
@@ -177,7 +178,7 @@ const PolicyEnglish = () => {
           <p>
             The data controller for this website is:
             <br />
-            <strong>{content.name}</strong>
+            <strong>{config.name}</strong>
             <br />
             {content.contact.map((item, idx) => (
               <span key={idx}>

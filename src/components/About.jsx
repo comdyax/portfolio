@@ -4,11 +4,11 @@ import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import { useContext } from "react";
 import { LanguageContext } from "../contexts/LanguageContextProvider";
 
-const Band = () => {
+const About = () => {
   const { language } = useContext(LanguageContext);
   const [content, setContent] = useState(null);
   useEffect(() => {
-    fetch("/content/band.json")
+    fetch("/content/about.json")
       .then((res) => res.json())
       .then((text) => setContent(text))
       .catch((exc) => console.log(exc));
@@ -17,7 +17,7 @@ const Band = () => {
     <div className="text-content">
       {content ? (
         <>
-          <h1>{content.header}</h1>
+          <h1>{language === "de" ? "ÜBER" : "ABOUT"}</h1>
           <br />
           {language == "de"
             ? content.text_german.map((con, idx) => <p key={idx}>{con}</p>)
@@ -57,4 +57,4 @@ const Band = () => {
   );
 };
 
-export default Band;
+export default About;

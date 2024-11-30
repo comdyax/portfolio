@@ -29,7 +29,7 @@ const Tour = () => {
     <div className="text-content">
       {dates ? (
         <>
-          <h1>{dates.title}</h1>
+          <h1>{language === "de" ? "KONZERTE" : "TOUR"}</h1>
           <br />
           <Table borderless hover variant="dark" className="tour_table rounded-3 overflow-hidden">
             <thead>

@@ -5,11 +5,16 @@ import { PlayContext } from "../contexts/PlayContextProvider";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDownload, faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import config from "../assets/config.json";
 import PropTypes from "prop-types";
 
 const EPK = ({ play }) => {
+  const footerContent = config.footer;
   const { language } = useContext(LanguageContext);
-  const fileName = language === "de" ? "epk_pom" : "epk_pom_english";
+  const fileName =
+    language === "de"
+      ? footerContent.epkFilenameGerman
+      : footerContent.epkFilenameEnglish;
   return (
     <a
       href={play ? null : `/${fileName}.pdf`}
@@ -28,6 +33,7 @@ EPK.propTypes = {
 };
 
 const EmailDecoder = ({ play }) => {
+  const footerContent = config.footer;
   const { language } = useContext(LanguageContext);
   const decode = (encoded) => {
     return encoded.replace(/[a-zA-Z]/g, function (c) {
@@ -39,7 +45,7 @@ const EmailDecoder = ({ play }) => {
 
   const openMailer = (event) => {
     event.preventDefault();
-    const email = decode("znvygb:vasb@crecyrkvgvrfbaznef.qr");
+    const email = decode(footerContent.mailEncrypted);
     window.location.href = `mailto:${email}`;
     event.currentTarget.textContent =
       language === "de" ? "E-Mail-Software öffnet sich" : "Mail-Software opens";
@@ -51,7 +57,7 @@ const EmailDecoder = ({ play }) => {
       href={play ? null : "#"}
       onClick={play ? null : openMailer}
     >
-      info[a]perplexitiesonmars.de&ensp;
+      {footerContent.mailPlain}&ensp;
       <FontAwesomeIcon icon={faEnvelope} />
     </a>
   );
@@ -64,7 +70,7 @@ EmailDecoder.propTypes = {
 const Copyright = () => {
   return (
     <div className="footer_components">
-      &copy; {new Date().getFullYear()} Perplexities on Mars
+      &copy; {new Date().getFullYear()} {config.name}
     </div>
   );
 };

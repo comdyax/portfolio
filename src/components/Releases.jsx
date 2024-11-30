@@ -10,6 +10,8 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Stack from "react-bootstrap/Stack";
 import PropTypes from "prop-types";
+import { useContext } from "react";
+import { LanguageContext } from "../contexts/LanguageContextProvider";
 
 const formatDate = (dateString) => {
   const date = new Date(dateString);
@@ -66,6 +68,7 @@ ReleaseCard.propTypes = {
 };
 
 const Releases = () => {
+  const { language } = useContext(LanguageContext);
   const [releases, setReleases] = useState(null);
   useEffect(() => {
     fetch("/content/releases.json")
@@ -78,7 +81,7 @@ const Releases = () => {
     <div className="content">
       {releases ? (
         <>
-          <h1>{releases.header}</h1>
+          <h1>{language === "de" ? "VERÖFFENTLICHUNGEN" : "RELEASES"}</h1>
           <Container className="d-flex flex-wrap justify-content-center my-5">
             {releases.data
               .sort((a, b) => new Date(b.releaseDate) - new Date(a.releaseDate))
