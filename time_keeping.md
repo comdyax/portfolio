@@ -27,6 +27,6 @@
 | 27.11.2024 | 1    | component Home with dynamic content from json                                                                                                                                                                                                                                 |
 | 29.11.2024 | 1    | imprint/privacy policy load content from json                                                                                                                                                                                                                                 |
 | 30.11.2024 | 8    | make header and footer dynamic with appconfig from assets to decide before build what components to use, refactoring of App.jsx and adding light dark mode with provider, adding config file to set custom color designs in pre-build and select which menu points are active |
-| 01.12.2024 | 4    | a view css fixes in the header, select a font, color responsive background |
+| 01.12.2024 | 4    | a view css fixes in the header, select a font, color responsive background, load image names from json                                                                                                                                                                        |
 
 sum: 117h

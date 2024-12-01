@@ -6,9 +6,14 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import { LightProvider } from "./contexts/LightContextProvider";
 import AppRouter from "./components/AppRouter";
+import { useEffect } from "react";
+import config from "./assets/config.json";
 
 const App = () => {
-  
+  useEffect(() => {
+    document.title = config.name;
+  }, []);
+
   return (
     <LightProvider>
       <PlayProvider>
