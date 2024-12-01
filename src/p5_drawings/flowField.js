@@ -17,7 +17,6 @@ export const flowField = (props, backgroundColor, color) => {
   let dissipate = true;
 
   props.setup = () => {
-    console.log(backgroundColor);
     props.createCanvas(window.innerWidth + scale, window.innerHeight + scale);
     props.background(backgroundColor);
 
@@ -123,7 +122,7 @@ export const flowField = (props, backgroundColor, color) => {
         props.stroke(color);
       } else {
         color[3] = transparencyThreshold;
-        props.stroke(255, transparencyThreshold);
+        props.stroke(color, transparencyThreshold);
       }
       props.strokeWeight(particleSize);
       props.line(this.pos.x, this.pos.y, this.prevPos.x, this.prevPos.y);

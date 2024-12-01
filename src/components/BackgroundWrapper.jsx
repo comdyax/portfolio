@@ -30,7 +30,7 @@ const BackgroundWrapper = ({ canvas }) => {
     if ("light" in config.style && "dark" in config.style) {
       if (lightMode) {
         backgroundColor = hexToRgb(config.style.light.backgroundColor);
-        color = hexToRgb(config.style.light.textColor);
+        color = hexToRgb(config.style.light.linkColorHover);
         console.log(color);
       } else {
         backgroundColor = hexToRgb(config.style.dark.backgroundColor);

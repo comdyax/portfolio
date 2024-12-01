@@ -18,18 +18,18 @@
     "style": {
         "p5background": true,
         "dark": {
-            "textColor": "#f0e5de",
-            "linkColor": "#b85742",
-            "linkColorHover": "#d27a56",
-            "backgroundColor": "#2e1f1b",
-            "backgroundColorComponents": "#3c2a24a4"
+            "textColor": "#fefefe",
+            "linkColor": "#d68b00",
+            "linkColorHover": "#ffa500",
+            "backgroundColor": "#141416",
+            "backgroundColorComponents": "#232326a4"
         },
         "light": {
-            "textColor": "#3b2f2b",
-            "linkColor": "#b85742",
-            "linkColorHover": "#d27a56",
-            "backgroundColor": "#f7ebe4",
-            "backgroundColorComponents": "#e6d5cb"
+            "textColor": "#2a2a2a",
+            "linkColor": "#d68b00",
+            "linkColorHover": "#ffa500",
+            "backgroundColor": "#f4f4f6",
+            "backgroundColorComponents": "#dedfe2"
         }
     }
 }

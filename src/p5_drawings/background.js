@@ -68,14 +68,14 @@ export const background = (p, backgroundColor, color) => {
     );
     p.shininess(255);
     p.noStroke();
-    let twinkleFactor = p.sin(p.frameCount * 0.01) * 0.2 + 1;
+    let twinkleFactor = p.sin(p.frameCount * 0.01) * 0.2 + 2;
     for (let i = 0; i < dots.length; i++) {
       p.push();
       let pos = dots[i];
       // let z = updateZ(p.mouseX - p.width / 2, p.mouseY - p.height / 2, pos);
       // p.translate(pos.x, pos.y, z);
       p.translate(pos.x, pos.y, pos.z);
-      p.sphere(twinkleFactor, 6, 5);
+      p.sphere(twinkleFactor, 4, 4);
       p.pop();
     }
   };

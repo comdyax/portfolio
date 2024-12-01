@@ -17,8 +17,6 @@ import config from "../assets/config.json";
 import { LightContext } from "../contexts/LightContextProvider";
 import BackgroundWrapper from "./BackgroundWrapper";
 import { background } from "../p5_drawings/background";
-import { gridParticles } from "../p5_drawings/gridParticles";
-import { flowField } from "../p5_drawings/flowField";
 
 const AppRouter = () => {
   const { lightMode } = useContext(LightContext);
@@ -49,17 +47,11 @@ const AppRouter = () => {
     }
   }, [lightMode]);
   const menu = config.menu;
-  function selectBackground() {
-    switch (Math.floor(Math.random() * 2)) {
-      case 0:
-        return <BackgroundWrapper canvas={background} />;
-      default:
-        return <BackgroundWrapper canvas={flowField} />;
-    }
-  }
   return (
     <>
-      {config.style.p5background && selectBackground()}
+      {config.style.p5background && !lightMode && (
+        <BackgroundWrapper canvas={background} />
+      )}
       <BrowserRouter>
         <div className="app">
           <TopScroller />

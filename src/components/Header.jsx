@@ -24,7 +24,7 @@ const Header = () => {
   const { display, fadeDuration, play } = useContext(PlayContext);
   const { lightMode, handleSetLightMode } = useContext(LightContext);
   const [showOffcanvas, setShowOffcanvas] = useState(false);
-  const expand = "md";
+  const expand = "xxl";
   const canvasRef = useRef(null);
 
   useEffect(() => {
@@ -51,7 +51,7 @@ const Header = () => {
           fixed="top"
           expand={expand}
           className="nav"
-          data-bs-theme="dark"
+          data-bs-theme={lightMode ? "light" : "dark"}
           style={{
             opacity: play ? 0 : 1,
             transition: `opacity ${fadeDuration}s ease`,
@@ -68,16 +68,36 @@ const Header = () => {
                 <span ref={canvasRef} />
               </Navbar.Brand>
             )}
-            <Navbar.Brand className="nav-link" as={Link} to={play ? "" : "/"}>
+            <Navbar.Brand
+              className="nav-link d-none d-md-block"
+              as={Link}
+              to={play ? "" : "/"}
+            >
               <b>{config.name}</b>
             </Navbar.Brand>
+            <Navbar.Brand
+              className="nav-link d-block d-md-none"
+              as={Link}
+              to={play ? "" : "/"}
+            >
+              <b>HOME</b>
+            </Navbar.Brand>
+            <Navbar.Text className="ms-auto pe-3">
+              <Button
+                className="links rounded-circle d-block d-xxl-none"
+                variant={lightMode ? "dark" : "light"}
+                onClick={handleSetLightMode}
+              >
+                <FontAwesomeIcon icon={lightMode ? faSun : faMoon} />
+              </Button>
+            </Navbar.Text>
             <Navbar.Toggle onClick={handleShow} />
             <Navbar.Offcanvas
               className="nav"
               show={showOffcanvas}
               onHide={handleClose}
               placement="end"
-              data-bs-theme="dark"
+              data-bs-theme={lightMode ? "light" : "dark"}
             >
               <Offcanvas.Header closeButton>
                 <Offcanvas.Title className="nav-link">
@@ -172,10 +192,10 @@ const Header = () => {
                     </NavDropdown.Item>
                   </NavDropdown>
                   {"light" in config.style && "dark" in config.style && (
-                    <Nav.Item>
+                    <Nav.Item className="d-none d-xxl-block">
                       &emsp;
                       <Button
-                        className="links"
+                        className="links rounded-circle"
                         variant={lightMode ? "dark" : "light"}
                         onClick={handleSetLightMode}
                       >
