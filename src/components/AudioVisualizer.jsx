@@ -1,10 +1,7 @@
 import { useEffect, useRef } from "react";
 import p5 from "p5";
 import { audioVisualizer } from "../p5_drawings/audioVisualizer";
-import { audioVisualizer_v2 } from "../p5_drawings/audioVisualizer_v2";
 import { audioVisualizer_v3 } from "../p5_drawings/audioVisualizer_v3";
-import { audioVisualizer_v5 } from "../p5_drawings/audioVisualizer_v5";
-import { audioVisualizer_v4 } from "../p5_drawings/audioVisualizer_v4";
 
 import Button from "react-bootstrap/Button";
 import { faPlay, faPause } from "@fortawesome/free-solid-svg-icons";
@@ -13,9 +10,6 @@ import { useContext } from "react";
 import { PlayContext } from "../contexts/PlayContextProvider";
 import PropTypes from "prop-types";
 import { LightContext } from "../contexts/LightContextProvider";
-
-// const audioUrl = "/platte.wav";
-const audioUrl = "/aeguin.wav";
 
 const PlayPauseButton = ({ handlePlay }) => {
   const { lightMode } = useContext(LightContext);
@@ -54,7 +48,7 @@ PlayPauseButton.propTypes = {
   handlePlay: PropTypes.func.isRequired,
 };
 
-const AudioVisualizer = () => {
+const AudioVisualizer = ({ audioUrl }) => {
   const { display, play, handleSetPlay } = useContext(PlayContext);
   const visualizerRef = useRef(null);
   const audioContextRef = useRef(null);
@@ -62,30 +56,15 @@ const AudioVisualizer = () => {
   const audioElementRef = useRef(null);
 
   function selectVisualizer() {
-    switch (Math.floor(Math.random() * 4)) {
+    switch (Math.floor(Math.random() * 2)) {
       case 0:
         return new p5(
           (p) => audioVisualizer(p, analyserRef.current),
           visualizerRef.current
         );
-      case 1:
-        return new p5(
-          (p) => audioVisualizer_v2(p, analyserRef.current),
-          visualizerRef.current
-        );
-      case 2:
-        return new p5(
-          (p) => audioVisualizer_v3(p, analyserRef.current),
-          visualizerRef.current
-        );
-      case 3:
-        return new p5(
-          (p) => audioVisualizer_v4(p, analyserRef.current),
-          visualizerRef.current
-        );
       default:
         return new p5(
-          (p) => audioVisualizer_v5(p, analyserRef.current),
+          (p) => audioVisualizer_v3(p, analyserRef.current),
           visualizerRef.current
         );
     }
@@ -158,6 +137,9 @@ const AudioVisualizer = () => {
       </div>
     </>
   );
+};
+AudioVisualizer.propTypes = {
+  audioUrl: PropTypes.string.isRequired,
 };
 
 export default AudioVisualizer;
