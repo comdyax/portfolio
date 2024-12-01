@@ -39,10 +39,13 @@ function IFrameCard({ videoId, title }) {
           ) : (
             <p style={{ padding: "4%" }}>
               To load the videos, you need to accept the cookies or go to
-              youtube directly by clicking th link below.
+              youtube directly by clicking the link below.
             </p>
           )}
-          <Button variant="success" onClick={() => handleAcceptCookies(true)}>
+          <Button
+            variant={lightMode ? "dark" : "light"}
+            onClick={() => handleAcceptCookies(true)}
+          >
             {language === "de" ? "cookies akzeptieren" : "accept cookies"}
           </Button>
         </div>

@@ -12,20 +12,19 @@ const ConsentCookies = () => {
       buttonText={language === "de" ? "Annehmen" : "Accept"}
       declineButtonText={language === "de" ? "Ablehnen" : "Decline"}
       buttonStyle={{
-        backgroundColor: "rgb(156, 95, 37)",
-        color: "white",
+        backgroundColor: "white",
+        color: "black",
         borderRadius: "8px",
         padding: "10px 15px",
       }}
       declineButtonStyle={{
-        backgroundColor: "rgba(28, 28, 28)",
+        backgroundColor: "black",
         color: "white",
         borderRadius: "8px",
         padding: "10px 15px",
-
       }}
       enableDeclineButton
-      onAccept={() =>handleAcceptCookies(true)}
+      onAccept={() => handleAcceptCookies(true)}
       onDecline={() => handleAcceptCookies(false)}
       cookieName="youtube-consent"
     >

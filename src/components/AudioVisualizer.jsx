@@ -12,17 +12,19 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext } from "react";
 import { PlayContext } from "../contexts/PlayContextProvider";
 import PropTypes from "prop-types";
+import { LightContext } from "../contexts/LightContextProvider";
 
 // const audioUrl = "/platte.wav";
 const audioUrl = "/aeguin.wav";
 
 const PlayPauseButton = ({ handlePlay }) => {
+  const { lightMode } = useContext(LightContext);
   const { display, fadeDuration, play } = useContext(PlayContext);
   return (
     <>
       {display && (
         <Button
-          variant="outline-light large"
+          variant={lightMode ? "outline-dark large" : "outline-light large"}
           size="lg"
           onClick={handlePlay}
           style={{

@@ -12,8 +12,11 @@
   src: url(assets/Silkscreen-Regular.ttf);
 }
 
-.app {
+body {
   font-family: PrimaryFont, "Helvetica", sans-serif;
+}
+
+.app {
   margin: 0;
   padding: 0;
   text-align: center;
