@@ -24,7 +24,8 @@ const Music = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch("/content/music.json")
+    const baseUrl = import.meta.env.BASE_URL;
+    fetch(`${baseUrl}/content/music.json`)
       .then((res) => res.json())
       .then((data) => {
         setData(data);

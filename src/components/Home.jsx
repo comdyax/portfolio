@@ -30,10 +30,9 @@ const Home = () => {
   const [content, setContent] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const baseUrl = import.meta.env.BASE_URL;
 
-  
   useEffect(() => {
-    const baseUrl = import.meta.env.BASE_URL;
     fetch(`${baseUrl}/content/home.json`)
       .then((res) => res.json())
       .then((data) => {
@@ -45,7 +44,7 @@ const Home = () => {
         setError("Failed to load content");
         setIsLoading(false);
       });
-  }, []);
+  }, [baseUrl]);
 
   if (isLoading) {
     return (
@@ -68,7 +67,7 @@ const Home = () => {
       <Row>
         <Col xs={12} sm={6} md={6} lg={6}>
           <Image
-            src="/images/forever_home.png"
+            src={`${baseUrl}/${content.imagePath}`}
             style={{
               height: "60vh",
               width: "100%",

@@ -22,7 +22,8 @@ const ImageGallery = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch("/content/imageGallery.json")
+    const baseUrl = import.meta.env.BASE_URL;
+    fetch(`${baseUrl}/content/imageGallery.json`)
       .then((res) => res.json())
       .then((data) => {
         setData(data);

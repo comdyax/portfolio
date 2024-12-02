@@ -53,7 +53,8 @@ const Tour = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch("/content/tour.json")
+    const baseUrl = import.meta.env.BASE_URL;
+    fetch(`${baseUrl}/content/tour.json`)
       .then((res) => res.json())
       .then((text) => {
         setDates(text);

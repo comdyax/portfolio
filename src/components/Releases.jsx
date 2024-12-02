@@ -153,7 +153,8 @@ const Releases = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch("/content/releases.json")
+    const baseUrl = import.meta.env.BASE_URL;
+    fetch(`${baseUrl}/content/releases.json`)
       .then((res) => res.json())
       .then((data) => {
         setReleases(data);

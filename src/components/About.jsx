@@ -26,7 +26,8 @@ const About = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch("/content/about.json")
+    const baseUrl = import.meta.env.BASE_URL;
+    fetch(`${baseUrl}/content/about.json`)
       .then((res) => res.json())
       .then((text) => {
         setContent(text);
