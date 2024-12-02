@@ -87,9 +87,14 @@ const ReleaseCard = ({
   streamingName,
 }) => {
   const { lightMode } = useContext(LightContext);
+  const baseUrl = import.meta.env.BASE_URL;
   return (
     <Card className="m-3 release">
-      <Card.Img variant="top" src={`/images/${imgPath}`} alt={imgAltText} />
+      <Card.Img
+        variant="top"
+        src={`${baseUrl}/images/${imgPath}`}
+        alt={imgAltText}
+      />
       <Card.Body>
         <Card.Title>{name}</Card.Title>
         <Card.Text>RELEASE: {formatDate(releaseDate)}</Card.Text>

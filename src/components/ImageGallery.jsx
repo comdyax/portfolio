@@ -20,9 +20,9 @@ const ImageGallery = () => {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const baseUrl = import.meta.env.BASE_URL;
 
   useEffect(() => {
-    const baseUrl = import.meta.env.BASE_URL;
     fetch(`${baseUrl}/content/imageGallery.json`)
       .then((res) => res.json())
       .then((data) => {
@@ -34,7 +34,7 @@ const ImageGallery = () => {
         setError("Failed to load content");
         setIsLoading(false);
       });
-  }, []);
+  }, [baseUrl]);
 
   if (isLoading) {
     return (
@@ -60,7 +60,7 @@ const ImageGallery = () => {
     >
       {data.imageNames.map((path, idx) => (
         <Carousel.Item key={idx}>
-          <Image src={`/images/${path}.jpg`} className="images" />
+          <Image src={`${baseUrl}/images/${path}.jpg`} className="images" />
         </Carousel.Item>
       ))}
     </Carousel>
