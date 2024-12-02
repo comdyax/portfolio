@@ -384,7 +384,7 @@ const PolicyEnglish = () => {
 const PrivacyPolicy = () => {
   const { language } = useContext(LanguageContext);
   return (
-    <div className="imprint_policy">
+    <div className="imprint_policy text-content">
       {language === "de" ? <PolicyGerman /> : <PolicyEnglish />}
     </div>
   );
