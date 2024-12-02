@@ -58,12 +58,14 @@ const AppRouter = () => {
 
   const menu = config.menu;
 
+  const baseUrl = import.meta.env.BASE_URL;
+
   return (
     <>
       {config.style.p5background && !lightMode && (
         <BackgroundWrapper canvas={background} />
       )}
-      <BrowserRouter>
+      <BrowserRouter basename={baseUrl}>
         <div className="app">
           <TopScroller />
           <Header />
