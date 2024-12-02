@@ -4,10 +4,20 @@ import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import { LanguageContext } from "../contexts/LanguageContextProvider";
 
 /**
- * About component that displays content in english or german.
- * It fetches and displays content from 'about.json' file based on the selected language.
+ * The `About` component fetches and displays information about the site or band, including its text content and member details.
+ * It supports language switching between German and English and handles loading and error states.
  *
- * @returns {JSX.Element} The About page component.
+ * This component will display:
+ * - A heading with the title ("ABOUT" or "ÜBER")
+ * - The main content text, based on the current language
+ * - A list of members, each with their instrument and optional URL links to external pages
+ *
+ * @component
+ * @example
+ * // Usage:
+ * <About />
+ *
+ * @returns {JSX.Element} The JSX for rendering the about page, including content and team member details.
  */
 const About = () => {
   const { language } = useContext(LanguageContext);
@@ -15,10 +25,6 @@ const About = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  /**
-   * Fetches content from the "/content/about.json" file.
-   * Updates state with the fetched content and handles errors.
-   */
   useEffect(() => {
     fetch("/content/about.json")
       .then((res) => res.json())
@@ -33,7 +39,6 @@ const About = () => {
       });
   }, []);
 
-  // If the content is loading, display a loading message
   if (isLoading) {
     return (
       <div className="text-content">
@@ -42,7 +47,6 @@ const About = () => {
     );
   }
 
-  // If there was an error loading the content, display an error message
   if (error) {
     return (
       <div className="text-content">
@@ -51,26 +55,10 @@ const About = () => {
     );
   }
 
-  /**
-   * Returns the appropriate heading text based on the current language.
-   *
-   * @returns {string} "ÜBER" for German or "ABOUT" for English.
-   */
   const heading = language === "de" ? "ÜBER" : "ABOUT";
 
-  /**
-   * Returns the appropriate text array based on the current language.
-   *
-   * @returns {Array<string>} Array of content text in the selected language.
-   */
   const text = language === "de" ? content.text_german : content.text_english;
 
-  /**
-   * Returns the appropriate instrument text for a given team member based on the current language.
-   *
-   * @param {Object} member - A member object containing instrument information.
-   * @returns {string} The instrument name in the selected language.
-   */
   const getMemberInstrument = (member) =>
     language === "de" ? member.instrument_german : member.instrument_english;
 

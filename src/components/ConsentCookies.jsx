@@ -3,6 +3,21 @@ import { useContext } from "react";
 import { CookieConsentContext } from "../contexts/CookieContextProvider";
 import { LanguageContext } from "../contexts/LanguageContextProvider";
 
+/**
+ * ConsentCookies is a React component that displays a cookie consent banner,
+ * allowing users to accept or decline cookies. The banner's text and button
+ * labels adapt to the current language context.
+ *
+ * @component
+ *
+ * @example
+ * // Usage:
+ * <ConsentCookies />
+ *
+ * @requires CookieConsentContext - Context providing the handler for accepting or declining cookies.
+ * @requires LanguageContext - Context providing the current language setting.
+ * @requires CookieConsent - A third-party component for managing cookie consent UI.
+ */
 const ConsentCookies = () => {
   const { handleAcceptCookies } = useContext(CookieConsentContext);
   const { language } = useContext(LanguageContext);

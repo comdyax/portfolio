@@ -5,6 +5,23 @@ import { Table } from "react-bootstrap";
 import { useContext } from "react";
 import { LanguageContext } from "../contexts/LanguageContextProvider";
 
+/**
+ * The `Tour` component displays a list of concert dates and locations.
+ * It fetches tour data from a JSON file and renders a table of concert dates
+ * with optional links to external sites for each concert. The component supports
+ * dynamic language switching between German and English.
+ *
+ * The component fetches tour information from a local JSON file (`/content/tour.json`),
+ * formats the concert dates, and displays them in a table. Each entry shows the date
+ * and location of the concert, with a link if provided.
+ *
+ * @component
+ * @example
+ * // Usage:
+ * <Tour />
+ *
+ * @returns {JSX.Element} The JSX for rendering the concert dates and locations.
+ */
 const Tour = () => {
   const { language } = useContext(LanguageContext);
   const [dates, setDates] = useState(null);
@@ -31,9 +48,14 @@ const Tour = () => {
         <>
           <h1>{language === "de" ? "KONZERTE" : "TOUR"}</h1>
           <br />
-          <Table borderless hover variant="dark" className="tour_table rounded-3 overflow-hidden">
+          <Table
+            borderless
+            hover
+            variant="dark"
+            className="tour_table rounded-3 overflow-hidden"
+          >
             <thead>
-              <tr >
+              <tr>
                 <th>{language === "de" ? "Datum" : "Date"}</th>
                 <th>{language === "de" ? "Ort" : "Location"}</th>
               </tr>
@@ -55,8 +77,8 @@ const Tour = () => {
                         </td>
                       </>
                     ) : (
-                      <><td>
-                        {formatDate(date.date)}</td>
+                      <>
+                        <td>{formatDate(date.date)}</td>
                         <td> @ {date.text}</td>
                       </>
                     )}

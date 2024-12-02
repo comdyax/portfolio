@@ -1,8 +1,27 @@
 import { useContext } from "react";
 import { LanguageContext } from "../contexts/LanguageContextProvider";
 import { useState, useEffect } from "react";
-import config from "../assets/config.json"
+import config from "../assets/config.json";
 
+/**
+ * The `PolicyGerman` component displays the privacy policy in German. It fetches content from a JSON file
+ * (`/content/contact.json`) and renders the privacy policy sections, such as data controller, personal data
+ * collection, cookies, embedded content, fonts, hosting provider, and user rights.
+ *
+ * It provides details like:
+ * - The responsible data controller's contact information.
+ * - Information on cookies, YouTube videos, and external resources.
+ * - Hosting provider and their privacy policy.
+ * - User rights under GDPR/DSGVO.
+ * - Contact information for privacy-related queries.
+ *
+ * @component
+ * @example
+ * // Usage:
+ * <PolicyGerman />
+ *
+ * @returns {JSX.Element} The rendered German privacy policy page or a loading message while content is being fetched.
+ */
 const PolicyGerman = () => {
   const [content, setContent] = useState(null);
   useEffect(() => {
@@ -157,6 +176,25 @@ const PolicyGerman = () => {
   );
 };
 
+/**
+ * The `PolicyEnglish` component displays the privacy policy in English. It fetches content from a JSON file
+ * (`/content/contact.json`) and renders the privacy policy sections, such as data controller, personal data
+ * collection, cookies, embedded content, fonts, hosting provider, and user rights.
+ *
+ * It provides details like:
+ * - The responsible data controller's contact information.
+ * - Information on cookies, YouTube videos, and external resources.
+ * - Hosting provider and their privacy policy.
+ * - User rights under GDPR/DSGVO.
+ * - Contact information for privacy-related queries.
+ *
+ * @component
+ * @example
+ * // Usage:
+ * <PolicyEnglish />
+ *
+ * @returns {JSX.Element} The rendered English privacy policy page or a loading message while content is being fetched.
+ */
 const PolicyEnglish = () => {
   const [content, setContent] = useState(null);
   useEffect(() => {
@@ -298,6 +336,20 @@ const PolicyEnglish = () => {
   );
 };
 
+/**
+ * The `PrivacyPolicy` component determines the language and conditionally renders either the `PolicyGerman` or
+ * `PolicyEnglish` component based on the current language in context.
+ *
+ * It uses the `LanguageContext` to check the user's language preference and dynamically displays the corresponding
+ * version of the privacy policy.
+ *
+ * @component
+ * @example
+ * // Usage:
+ * <PrivacyPolicy />
+ *
+ * @returns {JSX.Element} The rendered privacy policy in the appropriate language (German or English).
+ */
 const PrivacyPolicy = () => {
   const { language } = useContext(LanguageContext);
   return (

@@ -5,6 +5,25 @@ import { useContext } from "react";
 import { LanguageContext } from "../contexts/LanguageContextProvider";
 import { LightContext } from "../contexts/LightContextProvider";
 
+/**
+ * Home is a React component that renders the homepage of the website.
+ * It fetches dynamic content from a JSON file and displays it in either English or German
+ * based on the current language setting. The page also includes an image and a button
+ * that links to the "releases" page.
+ *
+ * @component
+ *
+ * @example
+ * // Usage:
+ * <Home />
+ *
+ * @requires LanguageContext - Context providing the current language setting.
+ * @requires LightContext - Context providing the current light/dark mode setting.
+ * @requires fetch - Used to retrieve the dynamic content from the server (`/content/home.json`).
+ * @requires config - Provides configuration data such as paths to images and text content.
+ * @requires React Router's `Link` - Used for navigation to the "releases" page.
+ * @requires Button - A Bootstrap button component used for linking to the releases page.
+ */
 const Home = () => {
   const { language } = useContext(LanguageContext);
   const { lightMode } = useContext(LightContext);

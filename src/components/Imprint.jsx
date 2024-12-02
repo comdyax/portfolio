@@ -2,6 +2,18 @@ import { useContext } from "react";
 import { LanguageContext } from "../contexts/LanguageContextProvider";
 import { useState, useEffect } from "react";
 
+/**
+ * The `LoadContactInfo` component fetches and renders the contact information
+ * and other legal details (persons, addresses, contact, credits) from a JSON file.
+ * It displays the content based on the current language (English or German).
+ *
+ * @component
+ * @example
+ * // Usage:
+ * <LoadContactInfo />
+ *
+ * @returns {JSX.Element} The rendered contact information and other details.
+ */
 const LoadContactInfo = () => {
   const [content, setContent] = useState(null);
   const { language } = useContext(LanguageContext);
@@ -61,6 +73,18 @@ const LoadContactInfo = () => {
   );
 };
 
+/**
+ * The `ImprintEnglish` component renders the imprint page in English, including
+ * legal information required by German law (§ 5 TMG), disclaimers, external links
+ * liability, and copyright information.
+ *
+ * @component
+ * @example
+ * // Usage:
+ * <ImprintEnglish />
+ *
+ * @returns {JSX.Element} The rendered imprint page in English.
+ */
 const ImprintEnglish = () => {
   return (
     <>
@@ -181,6 +205,18 @@ const ImprintEnglish = () => {
   );
 };
 
+/**
+ * The `ImprintGerman` component renders the imprint page in German, including
+ * legal information required by German law (§ 5 TMG), disclaimers, external links
+ * liability, and copyright information.
+ *
+ * @component
+ * @example
+ * // Usage:
+ * <ImprintGerman />
+ *
+ * @returns {JSX.Element} The rendered imprint page in German.
+ */
 const ImprintGerman = () => {
   return (
     <>
@@ -307,6 +343,18 @@ const ImprintGerman = () => {
   );
 };
 
+/**
+ * The `Imprint` component renders the imprint page of the website, including
+ * legal information, disclaimers, and copyright notices. It conditionally
+ * displays either the German or English version based on the selected language.
+ *
+ * @component
+ * @example
+ * // Usage:
+ * <Imprint />
+ *
+ * @returns {JSX.Element} The rendered imprint page in either English or German.
+ */
 const Imprint = () => {
   const { language } = useContext(LanguageContext);
   return (

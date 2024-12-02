@@ -19,20 +19,27 @@ import BackgroundWrapper from "./BackgroundWrapper";
 import { background } from "../p5_drawings/background";
 
 /**
- * AppRouter component that handles routing and dynamic styling based on light mode.
- * It renders different routes and handles the background and theme changes based on light/dark mode.
+ * The `AppRouter` component is the main routing component for the application.
+ * It manages the routes and rendering of various pages (like Home, Music, Releases, etc.)
+ * based on the configuration passed through `config.menu`. It also handles light/dark mode
+ * styling and renders a dynamic background effect if specified.
  *
- * @returns {JSX.Element} The AppRouter component.
+ * It performs the following:
+ * - Adjusts styles based on the `lightMode` value (light or dark mode).
+ * - Conditionally renders routes and pages based on the configuration (`config.menu`).
+ * - Includes routes for Home, Music, Releases, Image Gallery, Video, Tour, About, Imprint, and Privacy Policy.
+ * - Renders a custom background effect based on the configuration when dark mode is enabled.
+ *
+ * @component
+ * @example
+ * // Usage:
+ * <AppRouter />
+ *
+ * @returns {JSX.Element} The JSX for routing pages with dynamic styling and background effect.
  */
 const AppRouter = () => {
   const { lightMode } = useContext(LightContext);
 
-  /**
-   * useEffect hook that updates the CSS variables for background colors, text colors,
-   * and link colors when the lightMode state changes.
-   *
-   * It applies the appropriate styles from the config file based on whether the user is in light or dark mode.
-   */
   useEffect(() => {
     if ("light" in config.style && "dark" in config.style) {
       const root = document.documentElement;
@@ -53,11 +60,9 @@ const AppRouter = () => {
 
   return (
     <>
-      {/* Conditionally render the BackgroundWrapper based on the lightMode */}
       {config.style.p5background && !lightMode && (
         <BackgroundWrapper canvas={background} />
       )}
-
       <BrowserRouter>
         <div className="app">
           <TopScroller />
