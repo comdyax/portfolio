@@ -31,8 +31,10 @@ const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  
   useEffect(() => {
-    fetch("/content/home.json")
+    const baseUrl = import.meta.env.BASE_URL;
+    fetch(`${baseUrl}/content/home.json`)
       .then((res) => res.json())
       .then((data) => {
         setContent(data);
