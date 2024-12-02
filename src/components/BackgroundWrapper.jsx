@@ -4,6 +4,30 @@ import PropTypes from "prop-types";
 import { LightContext } from "../contexts/LightContextProvider";
 import config from "../assets/config.json";
 
+/**
+ * BackgroundWrapper is a React component that creates and manages
+ * a p5.js canvas element as a background, adapting its colors dynamically
+ * based on the current light mode and configuration styles.
+ *
+ * @component
+ * @param {Object} props - The component props.
+ * @param {Function} props.canvas - A callback function to initialize the p5.js canvas.
+ * This function receives the p5 instance, background color, and foreground color as arguments.
+ *
+ * @example
+ * // Usage:
+ * const canvasSetup = (p, bgColor, fgColor) => {
+ *   p.setup = () => {
+ *     p.createCanvas(window.innerWidth, window.innerHeight);
+ *     p.background(...bgColor);
+ *   };
+ *   p.draw = () => ...
+ * };
+ * <BackgroundWrapper canvas={canvasSetup} />
+ *
+ * @requires LightContext - Context providing the current light mode state.
+ * @requires p5 - Library for creative coding used to render the canvas.
+ */
 const BackgroundWrapper = ({ canvas }) => {
   const { lightMode } = useContext(LightContext);
   const canvasRef = useRef(null);

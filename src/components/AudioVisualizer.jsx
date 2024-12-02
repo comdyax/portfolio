@@ -11,6 +11,23 @@ import { PlayContext } from "../contexts/PlayContextProvider";
 import PropTypes from "prop-types";
 import { LightContext } from "../contexts/LightContextProvider";
 
+/**
+ * PlayPauseButton is a React component that renders a button
+ * to toggle the playback state of audio or video content. The button
+ * displays a play or pause icon depending on the current state.
+ *
+ * @component
+ * @param {Object} props - The component props.
+ * @param {Function} props.handlePlay - Callback function to handle play/pause toggle.
+ *
+ * @example
+ * // Usage:
+ * <PlayPauseButton handlePlay={() => console.log('Play/Pause toggled')} />
+ *
+ * @requires LightContext - Context that provides the current light mode state.
+ * @requires PlayContext - Context that provides playback state and display configurations.
+ * @requires FontAwesomeIcon - Icon component for rendering play/pause icons.
+ */
 const PlayPauseButton = ({ handlePlay }) => {
   const { lightMode } = useContext(LightContext);
   const { display, fadeDuration, play } = useContext(PlayContext);
@@ -48,6 +65,22 @@ PlayPauseButton.propTypes = {
   handlePlay: PropTypes.func.isRequired,
 };
 
+/**
+ * AudioVisualizer is a React component that visualizes audio playback
+ * using the p5.js library. It provides an interactive play/pause button
+ * and a visual representation of the audio's frequency data.
+ *
+ * @component
+ * @param {Object} props - The component props.
+ * @param {string} props.audioUrl - The URL of the audio file to be played and visualized.
+ *
+ * @example
+ * // Usage:
+ * <AudioVisualizer audioUrl="https://example.com/audio.mp3" />
+ *
+ * @requires PlayContext - Context that provides playback state and handlers.
+ * @requires PlayPauseButton - Button component to toggle audio playback.
+ */
 const AudioVisualizer = ({ audioUrl }) => {
   const { display, play, handleSetPlay } = useContext(PlayContext);
   const visualizerRef = useRef(null);

@@ -18,6 +18,26 @@ import { useEffect, useRef } from "react";
 import p5 from "p5";
 import config from "../assets/config.json";
 
+/**
+ * Header is a React component that renders a responsive navigation bar.
+ * It includes dynamic features such as a logo visualizer, theme toggle button,
+ * language switcher, and navigation links that adapt based on context and configuration.
+ * The header's visibility and opacity are controlled by the playback state.
+ *
+ * @component
+ *
+ * @example
+ * // Usage:
+ * <Header />
+ *
+ * @requires PlayContext - Context providing playback-related state (`display`, `fadeDuration`, and `play`).
+ * @requires LanguageContext - Context providing the current language and language setting function.
+ * @requires LightContext - Context providing the current light/dark mode and its toggle function.
+ * @requires p5 - Used to render the logo visualizer if enabled in the configuration.
+ * @requires config.menu - Configuration object containing navigation menu settings.
+ * @requires config.name - Configuration object containing the site name displayed in the header.
+ * @requires config.style - Configuration object containing style settings for light and dark modes.
+ */
 const Header = () => {
   const menu = config.menu;
   const { language, handleSetLanguage } = useContext(LanguageContext);
