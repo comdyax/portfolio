@@ -87,9 +87,6 @@ export const audioVisualizer = (p, analyser) => {
       p.stroke(28, 28, 28, 255);
       p.strokeWeight(0.1);
       p.box(size * 0.8);
-
-      // p.noStroke();
-      // p.sphere(size * 0.5);
       p.pop();
     }
   };
