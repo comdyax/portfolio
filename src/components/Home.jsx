@@ -99,7 +99,7 @@ const Home = () => {
               size="lg"
               style={{ padding: "2%" }}
             >
-              More Information
+              {language === "de" ? "Mehr Informationen" : "More Information"}
             </Button>
           </Link>
         </Col>
