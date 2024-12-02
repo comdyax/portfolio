@@ -105,27 +105,47 @@ IFrameCard.propTypes = {
  */
 const Video = () => {
   const [videos, setVideos] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+
   useEffect(() => {
     fetch("/content/video.json")
       .then((res) => res.json())
-      .then((text) => setVideos(text))
-      .catch((exc) => console.log(exc));
+      .then((text) => {
+        setVideos(text);
+        setIsLoading(false);
+      })
+      .catch((exc) => {
+        console.log(exc);
+        setError("Failed to load content");
+        setIsLoading(false);
+      });
   }, []);
+
+  if (isLoading) {
+    return (
+      <div className="text-content">
+        <h3>loading content...</h3>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="text-content">
+        <h3>{error}</h3>
+      </div>
+    );
+  }
 
   return (
     <div className="content">
-      {videos ? (
-        <>
-          <h1>{videos.header}</h1>
-          <Container className="d-flex flex-wrap justify-content-center my-5">
-            {videos.data.map((con, key) => (
-              <IFrameCard key={key} videoId={con.id} title={con.title} />
-            ))}
-          </Container>
-        </>
-      ) : (
-        <h3>loading content...</h3>
-      )}
+      <h1>{videos.header}</h1>
+      <Container className="d-flex flex-wrap justify-content-center my-5">
+        {videos.data.map((con, key) => (
+          <IFrameCard key={key} videoId={con.id} title={con.title} />
+        ))}
+      </Container>
     </div>
   );
 };

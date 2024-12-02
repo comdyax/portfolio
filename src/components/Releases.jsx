@@ -149,39 +149,59 @@ ReleaseCard.propTypes = {
 const Releases = () => {
   const { language } = useContext(LanguageContext);
   const [releases, setReleases] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+
   useEffect(() => {
     fetch("/content/releases.json")
       .then((res) => res.json())
-      .then((data) => setReleases(data))
-      .catch((exc) => console.log(exc));
+      .then((data) => {
+        setReleases(data);
+        setIsLoading(false);
+      })
+      .catch((exc) => {
+        console.log(exc);
+        setError("Failed to load content");
+        setIsLoading(false);
+      });
   }, []);
+
+  if (isLoading) {
+    return (
+      <div className="text-content">
+        <h3>loading content...</h3>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="text-content">
+        <h3>{error}</h3>
+      </div>
+    );
+  }
 
   return (
     <div className="content">
-      {releases ? (
-        <>
-          <h1>{language === "de" ? "VERÖFFENTLICHUNGEN" : "RELEASES"}</h1>
-          <Container className="d-flex flex-wrap justify-content-center my-5">
-            {releases.data
-              .sort((a, b) => new Date(b.releaseDate) - new Date(a.releaseDate))
-              .map((con, key) => (
-                <ReleaseCard
-                  key={key}
-                  imgPath={con.imgPath}
-                  imgAltText={con.imgAltText}
-                  name={con.name}
-                  releaseDate={con.releaseDate}
-                  labelUrl={con.labelUrl}
-                  labelName={con.labelName}
-                  streamingUrl={con.streamingUrl}
-                  streamingName={con.streamingName}
-                />
-              ))}
-          </Container>
-        </>
-      ) : (
-        <h3>loading content...</h3>
-      )}
+      <h1>{language === "de" ? "VERÖFFENTLICHUNGEN" : "RELEASES"}</h1>
+      <Container className="d-flex flex-wrap justify-content-center my-5">
+        {releases.data
+          .sort((a, b) => new Date(b.releaseDate) - new Date(a.releaseDate))
+          .map((con, key) => (
+            <ReleaseCard
+              key={key}
+              imgPath={con.imgPath}
+              imgAltText={con.imgAltText}
+              name={con.name}
+              releaseDate={con.releaseDate}
+              labelUrl={con.labelUrl}
+              labelName={con.labelName}
+              streamingUrl={con.streamingUrl}
+              streamingName={con.streamingName}
+            />
+          ))}
+      </Container>
     </div>
   );
 };

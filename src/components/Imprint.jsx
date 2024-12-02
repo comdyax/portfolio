@@ -17,58 +17,79 @@ import { useState, useEffect } from "react";
 const LoadContactInfo = () => {
   const [content, setContent] = useState(null);
   const { language } = useContext(LanguageContext);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+
   useEffect(() => {
     fetch("/content/contact.json")
       .then((res) => res.json())
-      .then((data) => setContent(data))
-      .catch((exc) => console.log(exc));
+      .then((data) => {
+        setContent(data);
+        setIsLoading(false);
+      })
+      .catch((exc) => {
+        console.log(exc);
+        setError("Failed to load content");
+        setIsLoading(false);
+      });
   }, []);
+
+  if (isLoading) {
+    return (
+      <div className="text-content">
+        <h3>loading content...</h3>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="text-content">
+        <h3>{error}</h3>
+      </div>
+    );
+  }
+
   return (
     <>
-      {content ? (
-        <>
-          <p>
-            {content.persons.map((item, idx) => (
-              <span key={idx}>
-                {item}
-                <br />
-              </span>
-            ))}
-          </p>
-          <p>
-            {content.addresses.map((item, idx) => (
-              <span key={idx}>
-                {item}
-                <br />
-              </span>
-            ))}
-          </p>
-          <br />
-          <p>
-            <u>{language === "de" ? "Kontakt:" : "Contact:"}</u>
-          </p>
-          <br />
-          <p>
-            {content.contact.map((item, idx) => (
-              <span key={idx}>
-                {item}
-                <br />
-              </span>
-            ))}
-          </p>
-          <br />
-          <p>
-            {content.credits.map((item, idx) => (
-              <span key={idx}>
-                {item}
-                <br />
-              </span>
-            ))}
-          </p>
-        </>
-      ) : (
-        <h3>loading content...</h3>
-      )}
+      <p>
+        {content.persons.map((item, idx) => (
+          <span key={idx}>
+            {item}
+            <br />
+          </span>
+        ))}
+      </p>
+      <p>
+        {content.addresses.map((item, idx) => (
+          <span key={idx}>
+            {item}
+            <br />
+          </span>
+        ))}
+      </p>
+      <br />
+      <p>
+        <u>{language === "de" ? "Kontakt:" : "Contact:"}</u>
+      </p>
+      <br />
+      <p>
+        {content.contact.map((item, idx) => (
+          <span key={idx}>
+            {item}
+            <br />
+          </span>
+        ))}
+      </p>
+      <br />
+      <p>
+        {content.credits.map((item, idx) => (
+          <span key={idx}>
+            {item}
+            <br />
+          </span>
+        ))}
+      </p>
     </>
   );
 };
