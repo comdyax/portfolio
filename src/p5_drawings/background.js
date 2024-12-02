@@ -81,6 +81,6 @@ export const background = (p, backgroundColor, color) => {
   };
 
   p.windowResized = () => {
-    location.reload();
+    p.resizeCanvas(window.innerWidth, window.innerHeight);
   };
 };
