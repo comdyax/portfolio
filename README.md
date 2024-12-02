@@ -1,3 +1,6 @@
+- link to deployed app: https://comdyax.github.io/portfolio/
+- link to time keeping: https://github.com/comdyax/portfolio/blob/main/time_keeping.md
+
 # Portfolio App
 
 A dynamic portfolio web app built with **React** and **Vite**. It loads content and images from JSON files stored in the `public` folder and allows customization through a configuration file (`config.json`). The app includes a **p5.js** sketch as a background and supports both **dark** and **light** modes. It also features multi-language support (English and German) and uses **React Router** for navigation and **Context API** for state management. Additionally, it is styled using **React Bootstrap** components and **FontAwesome** icons.
