@@ -28,6 +28,6 @@
 | 29.11.2024 | 1    | imprint/privacy policy load content from json                                                                                                                                                                                                                                 |
 | 30.11.2024 | 8    | make header and footer dynamic with appconfig from assets to decide before build what components to use, refactoring of App.jsx and adding light dark mode with provider, adding config file to set custom color designs in pre-build and select which menu points are active |
 | 01.12.2024 | 4    | a view css fixes in the header, select a font, color responsive background, load image names from json                                                                                                                                                                        |
-| 02.12.2024 | 5   | documentation of components and providers + refactoring the components + adding error screen                                                                                                                                                                                  |
+| 02.12.2024 | 9    | documentation of components and providers + refactoring the components + adding error screen. finally: deployment on github pages + view bugfixes + readme                                                                                                                       |
 
-sum: 122h
+sum: 126h
