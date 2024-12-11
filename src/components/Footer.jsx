@@ -28,14 +28,15 @@ import PropTypes from "prop-types";
 const EPK = ({ play }) => {
   const footerContent = config.footer;
   const { language } = useContext(LanguageContext);
+  const baseUrl = import.meta.env.BASE_URL;
   const fileName =
     language === "de"
       ? footerContent.epkFilenameGerman
       : footerContent.epkFilenameEnglish;
   return (
     <a
-      href={play ? null : `/${fileName}.pdf`}
-      download={play ? null : `${fileName}.pdf`}
+      href={play ? null : `${baseUrl}/${fileName}.pdf`}
+      download={play ? null : `${baseUrl}${fileName}.pdf`}
       className="links footer_components"
     >
       {language === "de" ? "EPK.pdf herunterladen" : "EPK.pdf download"}
