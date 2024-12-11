@@ -36,7 +36,7 @@ const EPK = ({ play }) => {
   return (
     <a
       href={play ? null : `${baseUrl}/${fileName}.pdf`}
-      download={play ? null : `${baseUrl}${fileName}.pdf`}
+      download={play ? null : `${baseUrl}/${fileName}.pdf`}
       className="links footer_components"
     >
       {language === "de" ? "EPK.pdf herunterladen" : "EPK.pdf download"}
