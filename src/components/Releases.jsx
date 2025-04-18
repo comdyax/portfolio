@@ -9,6 +9,7 @@ import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Stack from "react-bootstrap/Stack";
+import { Modal } from "react-bootstrap";
 import PropTypes from "prop-types";
 import { useContext } from "react";
 import { LanguageContext } from "../contexts/LanguageContextProvider";
@@ -85,9 +86,17 @@ const ReleaseCard = ({
   labelName,
   streamingUrl,
   streamingName,
+  textGerman,
+  textEnglish,
+  resources,
 }) => {
+  const { language } = useContext(LanguageContext);
   const { lightMode } = useContext(LightContext);
   const baseUrl = import.meta.env.BASE_URL;
+  const [lgShow, setLgShow] = useState(false);
+
+  const text = language === "de" ? textGerman : textEnglish;
+
   return (
     <Card className="m-3 release">
       <Card.Img
@@ -99,6 +108,38 @@ const ReleaseCard = ({
         <Card.Title>{name}</Card.Title>
         <Card.Text>RELEASE: {formatDate(releaseDate)}</Card.Text>
         <Stack gap={3} className="col-md-8 mx-auto">
+          <Button
+            onClick={() => setLgShow(true)}
+            variant={lightMode ? "dark" : "light"}
+          >
+            Reviews
+          </Button>
+          <Modal
+            size="xl"
+            show={lgShow}
+            centered={true}
+            scrollable={true}
+            onHide={() => setLgShow(false)}
+          >
+            <Modal.Header closeButton>
+              <Modal.Title>Reviews</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <div>
+                {text.map((con, idx) => (
+                  <p className="release_modal" key={idx}>
+                    {con}
+                  </p>
+                ))}
+                <br/>
+                {resources.map((con, idx) => (
+                  <p className="release_modal_resources" key={idx}>
+                    {con}
+                  </p>
+                ))}
+              </div>
+            </Modal.Body>
+          </Modal>
           <Button
             variant={lightMode ? "dark" : "light"}
             href={labelUrl}
@@ -132,6 +173,9 @@ ReleaseCard.propTypes = {
   name: PropTypes.string.isRequired,
   releaseDate: PropTypes.string.isRequired,
   imgAltText: PropTypes.string.isRequired,
+  textGerman: PropTypes.array.isRequired,
+  textEnglish: PropTypes.array.isRequired,
+  resources: PropTypes.array.isRequired,
 };
 
 /**
@@ -205,6 +249,9 @@ const Releases = () => {
               labelName={con.labelName}
               streamingUrl={con.streamingUrl}
               streamingName={con.streamingName}
+              textGerman={con.textGerman}
+              textEnglish={con.textEnglish}
+              resources={con.resources}
             />
           ))}
       </Container>

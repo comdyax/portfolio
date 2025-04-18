@@ -69,9 +69,10 @@ const Home = () => {
           <Image
             src={`${content.imagePath}`}
             style={{
-              height: "60vh",
+              height: "70vh",
               width: "100%",
               objectFit: "contain",
+              margin: "auto",
             }}
           />
         </Col>
@@ -86,18 +87,16 @@ const Home = () => {
         >
           <h1>{content.header}</h1>
           <br />
-          <h3>
+          <p style={{ lineHeight: "2.4", padding:"2%" }}>
             {language == "de"
               ? content.text_german.map((con, idx) => <p key={idx}>{con}</p>)
               : content.text_english.map((con, idx) => <p key={idx}>{con}</p>)}
-          </h3>
-          <br />
-
+          </p>
           <Link to="/releases">
             <Button
               variant={lightMode ? "dark" : "light"}
               size="lg"
-              style={{ padding: "2%" }}
+              style={{ padding: "2%", marginTop: "2%" }}
             >
               {language === "de" ? "Mehr Informationen" : "More Information"}
             </Button>

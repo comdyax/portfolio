@@ -45,6 +45,10 @@ h1 {
   background-color: var(--background-color);
 }
 
+.my-modal .modal-content {
+  background-color: var(--background-color);
+}
+
 .nav {
   background-color: var(--background-color-components);
 }
@@ -165,6 +169,35 @@ h1 {
   max-width: 500px;
   width: 100%;
   background-color: var(--background-color-components);
+}
+
+.modal {
+  background-color: var(--background-color-components);
+}
+
+.release_modal {
+  width: 100%;
+  align-self: center;
+  text-align: justify;
+  flex-grow: 1;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1%;
+  line-height: 2.3;
+  z-index: 2;
+}
+
+.release_modal_resources {
+  width: 100%;
+  align-self: center;
+  text-align: justify;
+  flex-grow: 1;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1%;
+  z-index: 2;
 }
 
 .tour_table {
