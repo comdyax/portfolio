@@ -23,7 +23,7 @@ const ImageGallery = () => {
   const baseUrl = import.meta.env.BASE_URL;
 
   useEffect(() => {
-    fetch(`${baseUrl}/content/imageGallery.json`)
+    fetch(`${baseUrl}content/imageGallery.json`)
       .then((res) => res.json())
       .then((data) => {
         setData(data);
@@ -60,7 +60,7 @@ const ImageGallery = () => {
     >
       {data.imageNames.map((path, idx) => (
         <Carousel.Item key={idx}>
-          <Image src={`${baseUrl}/images/${path}.jpg`} className="images" />
+          <Image src={`${baseUrl}images/${path}.jpg`} className="images" />
         </Carousel.Item>
       ))}
     </Carousel>

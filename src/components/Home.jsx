@@ -33,7 +33,7 @@ const Home = () => {
   const baseUrl = import.meta.env.BASE_URL;
 
   useEffect(() => {
-    fetch(`${baseUrl}/content/home.json`)
+    fetch(`${baseUrl}content/home.json`)
       .then((res) => res.json())
       .then((data) => {
         setContent(data);
@@ -67,7 +67,7 @@ const Home = () => {
       <Row>
         <Col xs={12} sm={6} md={6} lg={6}>
           <Image
-            src={`${baseUrl}/${content.imagePath}`}
+            src={`${content.imagePath}`}
             style={{
               height: "60vh",
               width: "100%",

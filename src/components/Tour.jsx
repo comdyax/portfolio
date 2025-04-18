@@ -54,7 +54,7 @@ const Tour = () => {
 
   useEffect(() => {
     const baseUrl = import.meta.env.BASE_URL;
-    fetch(`${baseUrl}/content/tour.json`)
+    fetch(`${baseUrl}content/tour.json`)
       .then((res) => res.json())
       .then((text) => {
         setDates(text);

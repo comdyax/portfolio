@@ -29,7 +29,7 @@ const PolicyGerman = () => {
 
   useEffect(() => {
     const baseUrl = import.meta.env.BASE_URL;
-    fetch(`${baseUrl}/content/contact.json`)
+    fetch(`${baseUrl}content/contact.json`)
       .then((res) => res.json())
       .then((data) => {
         setContent(data);
@@ -212,7 +212,7 @@ const PolicyEnglish = () => {
 
   useEffect(() => {
     const baseUrl = import.meta.env.BASE_URL;
-    fetch(`${baseUrl}/content/contact.json`)
+    fetch(`${baseUrl}content/contact.json`)
       .then((res) => res.json())
       .then((data) => {
         setContent(data);

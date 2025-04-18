@@ -35,7 +35,7 @@ const EPK = ({ play }) => {
       : footerContent.epkFilenameEnglish;
   return (
     <a
-      href={play ? null : `${baseUrl}/${fileName}.pdf`}
+      href={play ? null : `${baseUrl}${fileName}.pdf`}
       download={play ? null : `${fileName}.pdf`}
       className="links footer_components"
     >

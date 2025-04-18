@@ -92,7 +92,7 @@ const ReleaseCard = ({
     <Card className="m-3 release">
       <Card.Img
         variant="top"
-        src={`${baseUrl}/images/${imgPath}`}
+        src={`${baseUrl}images/${imgPath}`}
         alt={imgAltText}
       />
       <Card.Body>
@@ -159,7 +159,7 @@ const Releases = () => {
 
   useEffect(() => {
     const baseUrl = import.meta.env.BASE_URL;
-    fetch(`${baseUrl}/content/releases.json`)
+    fetch(`${baseUrl}content/releases.json`)
       .then((res) => res.json())
       .then((data) => {
         setReleases(data);

@@ -27,7 +27,7 @@ const About = () => {
 
   useEffect(() => {
     const baseUrl = import.meta.env.BASE_URL;
-    fetch(`${baseUrl}/content/about.json`)
+    fetch(`${baseUrl}content/about.json`)
       .then((res) => res.json())
       .then((text) => {
         setContent(text);

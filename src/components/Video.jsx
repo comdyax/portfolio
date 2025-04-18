@@ -110,7 +110,7 @@ const Video = () => {
 
   useEffect(() => {
     const baseUrl = import.meta.env.BASE_URL;
-    fetch(`${baseUrl}/content/video.json`)
+    fetch(`${baseUrl}content/video.json`)
       .then((res) => res.json())
       .then((text) => {
         setVideos(text);
