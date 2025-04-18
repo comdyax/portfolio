@@ -45,10 +45,6 @@ h1 {
   background-color: var(--background-color);
 }
 
-.my-modal .modal-content {
-  background-color: var(--background-color);
-}
-
 .nav {
   background-color: var(--background-color-components);
 }
@@ -171,14 +167,12 @@ h1 {
   background-color: var(--background-color-components);
 }
 
-.modal {
-  background-color: var(--background-color-components);
-}
-
 .release_modal {
+  word-wrap: break-word;
+  overflow-wrap: break-word; 
+  max-width: 100%;
   width: 100%;
-  align-self: center;
-  text-align: justify;
+  text-align: center;
   flex-grow: 1;
   max-width: 1000px;
   margin-left: auto;
@@ -189,9 +183,11 @@ h1 {
 }
 
 .release_modal_resources {
+  word-wrap: break-word;
+  overflow-wrap: break-word; 
+  max-width: 100%;
+  hyphens: auto; 
   width: 100%;
-  align-self: center;
-  text-align: justify;
   flex-grow: 1;
   max-width: 1000px;
   margin-left: auto;
